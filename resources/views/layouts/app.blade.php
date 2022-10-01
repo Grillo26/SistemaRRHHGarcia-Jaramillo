@@ -42,7 +42,7 @@
                         @isset($header_content)
                             {{ $header_content }}
                         @else
-                            {{ __('Halaman') }}
+                            {{ __('Configuración del Perfil de Usuario') }}
                         @endisset
                       </div>
 
