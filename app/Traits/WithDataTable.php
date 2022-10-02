@@ -19,9 +19,9 @@ trait WithDataTable {
                     "data" => array_to_object([
                         'href' => [
                             'create_new' => route('user.new'),
-                            'create_new_text' => 'Buat User Baru',
+                            'create_new_text' => 'Nuevo Usuario',
                             'export' => '#',
-                            'export_text' => 'Export'
+                            'export_text' => 'Exportar'
                         ]
                     ])
                 ];

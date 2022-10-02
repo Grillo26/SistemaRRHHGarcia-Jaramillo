@@ -6,19 +6,32 @@
                     ID
                     @include('components.sort-icon', ['field' => 'id'])
                 </a></th>
+
                 <th><a wire:click.prevent="sortBy('name')" role="button" href="#">
-                    Name
+                    Nombre
                     @include('components.sort-icon', ['field' => 'name'])
                 </a></th>
+
+                <th><a wire:click.prevent="sortBy('lastname')" role="button" href="#">
+                    Apellido
+                    @include('components.sort-icon', ['field' => 'lastname'])
+                </a></th>
+
+                <th><a wire:click.prevent="sortBy('username')" role="button" href="#">
+                    Usuario
+                    @include('components.sort-icon', ['field' => 'username'])
+                </a></th>
+
                 <th><a wire:click.prevent="sortBy('email')" role="button" href="#">
                     Email
                     @include('components.sort-icon', ['field' => 'email'])
                 </a></th>
+                
                 <th><a wire:click.prevent="sortBy('created_at')" role="button" href="#">
-                    Tanggal Dibuat
+                    Fecha de Creación
                     @include('components.sort-icon', ['field' => 'created_at'])
                 </a></th>
-                <th>Action</th>
+                <th>Acciones</th>
             </tr>
         </x-slot>
         <x-slot name="body">
@@ -26,6 +39,8 @@
                 <tr x-data="window.__controller.dataTableController({{ $user->id }})">
                     <td>{{ $user->id }}</td>
                     <td>{{ $user->name }}</td>
+                    <td>{{ $user->lastname }}</td>
+                    <td>{{ $user->username }}</td>
                     <td>{{ $user->email }}</td>
                     <td>{{ $user->created_at->format('d M Y H:i') }}</td>
                     <td class="whitespace-no-wrap row-action--icon">

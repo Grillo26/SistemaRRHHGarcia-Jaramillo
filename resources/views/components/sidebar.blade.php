@@ -8,14 +8,14 @@ $links = [
     [
         "href" => [
             [
-                "section_text" => "User",
+                "section_text" => "Usuarios",
                 "section_list" => [
-                    ["href" => "user", "text" => "Data User"],
-                    ["href" => "user.new", "text" => "Buat User"]
+                    ["href" => "user", "text" => "Gestionar Usuarios"],
+                    ["href" => "user.new", "text" => "Crear Usuario"]
                 ]
             ]
         ],
-        "text" => "User",
+        "text" => "Usuarios",
         "is_multi" => true,
     ],
 ];
