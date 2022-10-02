@@ -38,7 +38,7 @@ class Main extends Component
         if (!$data) {
             $this->emit("deleteResult", [
                 "status" => false,
-                "message" => "Gagal menghapus data " . $this->name
+                "message" => "Error al eliminar datos" . $this->name
             ]);
             return;
         }
@@ -46,7 +46,7 @@ class Main extends Component
         $data->delete();
         $this->emit("deleteResult", [
             "status" => true,
-            "message" => "Data " . $this->name . " berhasil dihapus!"
+            "message" => "Data " . $this->name . " Eliminado con éxito!"
         ]);
     }
 

@@ -7,12 +7,13 @@
             <a href="{{ $data->href->export }}" class="ml-2 btn btn-success shadow-none">
                 <span class="fas fa-file-export"></span> {{ $data->href->export_text }}
             </a>
+
         </div>
 
         <div class="row mb-4">
             <div class="col form-inline">
                 Ver Páginas: &nbsp;
-                <select wire:model="perPage" class="form-control">
+                <select wire:model="perPage" class="form-control ">
                     <option>10</option>
                     <option>15</option>
                     <option>25</option>
@@ -20,7 +21,7 @@
             </div>
 
             <div class="col">
-                <input wire:model="search" class="form-control" type="text" placeholder="Search...">
+                <input wire:model="search" class="form-control" type="text" placeholder="Buscar...">
             </div>
         </div>
 
