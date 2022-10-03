@@ -5,6 +5,20 @@ $links = [
         "text" => "Dashboard",
         "is_multi" => false,
     ],
+    
+    [
+        "href" => [
+            [
+                "section_text" => "Artículos",
+                "section_list" => [
+                    ["href" => "productos", "text" => "Gestionar Artículos"]
+                ]
+            ]
+        ],
+        "text" => "Artículos",
+        "is_multi" => true,
+    ],
+
     [
         "href" => [
             [
@@ -25,7 +39,7 @@ $navigation_links = array_to_object($links);
 <div class="main-sidebar">
     <aside id="sidebar-wrapper">
         <div class="sidebar-brand">
-            <a href="{{ route('dashboard') }}">Almacén</a>
+            <a href="{{ route('dashboard') }}">Administrador</a>
         </div>
         <div class="sidebar-brand sidebar-brand-sm">
             <a href="{{ route('dashboard') }}">
