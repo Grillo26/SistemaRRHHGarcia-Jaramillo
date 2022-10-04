@@ -28,4 +28,5 @@ Route::group([ "middleware" => ['auth:sanctum', 'verified'] ], function() {
     Route::view('/user/edit/{userId}', "pages.user.user-edit")->name('user.edit');
 
     Route::get('productos', Productos::class)->name('productos');
+    Route::view('/productos/new', "pages.productos.productos-new")->name('productos.new');
 });

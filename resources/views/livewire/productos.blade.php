@@ -1,3 +1,13 @@
+<x-slot name="header_content">
+        <h1>{{ __('Gestionar Artículos') }}</h1>
+
+        <div class="section-header-breadcrumb">
+        <div class="breadcrumb-item active"><a href="{{ route('dashboard') }}">Dashboard</a></div>
+            <div class="breadcrumb-item"><a href="#">Artículos</a></div>
+            <div class="breadcrumb-item"><a href="{{ route('user') }}">Gestionar Artículos</a></div>
+        </div>
+</x-slot>
+
 <div class="bg-gray-100 text-gray-900 tracking-wider leading-normal">
     <div class="p-8 pt-4 mt-2 bg-white" x-data="window.__controller.dataTableMainController()" x-init="setCallback();">
         <!--Butons-->
@@ -12,9 +22,9 @@
 
         <!--Options-->
         <div class="row mb-4">
-            <div class="col form-inline"> 
+            <div class="col form-inline">
                 Por Páginas: &nbsp;
-                <select  class="form-control">
+                <select  class="form-control" >
                     <option>10</option>
                     <option>15</option>
                     <option>25</option>
