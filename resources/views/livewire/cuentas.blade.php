@@ -1,11 +1,11 @@
 <div>
     <x-slot name="header_content">
-        <h1>{{ __('Gestionar Grupos') }}</h1>
+        <h1>{{ __('Gestionar Cuentas') }}</h1>
 
         <div class="section-header-breadcrumb">
         <div class="breadcrumb-item active"><a href="{{ route('dashboard') }}">Artículos</a></div>
-            <div class="breadcrumb-item"><a href="#">Grupos</a></div>
-            <div class="breadcrumb-item"><a href="{{ route('user') }}">Gestionar Grupos</a></div>
+            <div class="breadcrumb-item"><a href="#">Cuentas</a></div>
+            <div class="breadcrumb-item"><a href="{{ route('user') }}">Gestionar Cuentas</a></div>
         </div>
     </x-slot>
 
@@ -13,7 +13,7 @@
         <!--Butons-->
         <div class="flex pb-4 -ml-3">
             <a href="#"  class="-ml- btn btn-primary shadow-none">
-                Añadir Grupo
+                Añadir Cuenta
                 <span class="fas fa-plus"></span> 
             </a>
             <a href="#" class="ml-2 btn btn-success shadow-none">
@@ -39,15 +39,15 @@
         </div>
 
         <!--TABLE-->
-        @if($grupos->count())
+        @if($cuentas->count())
         <div class="row">
             <div class="table-responsive">
                 <table class="table table-bordered table-striped text-sm text-gray-600">
                     <thead>
                     <tr>
-                        <th class="cursor-pointer" wire:click="order('nombre_grupo')" >
-                            <a>Nombre de Grupo
-                                @if ($sort == 'nombre_grupo')
+                        <th class="cursor-pointer" wire:click="order('nombre_cuenta')" >
+                            <a>Nombre de Cuenta
+                                @if ($sort == 'nombre_cuenta')
                                     @if ($direction == 'asc')
                                         <i class="fas fa-sort-up"></i>
                                     @else
@@ -57,9 +57,9 @@
                                     <i class="text-muted fas fa-sort"></i>
                                 @endif
                         </th>
-                        <th class="cursor-pointer" wire:click="order('grupo')" >
-                            <a>Grupo
-                                @if ($sort == 'grupo')
+                        <th class="cursor-pointer" wire:click="order('codigo_cuenta')" >
+                            <a>Código de Cuenta
+                                @if ($sort == 'codigo_cuenta')
                                     @if ($direction == 'asc')
                                         <i class="fas fa-sort-up"></i>
                                     @else
@@ -68,40 +68,16 @@
                                 @else
                                     <i class="text-muted fas fa-sort"></i>
                                 @endif</th>
-                        <th class="cursor-pointer" wire:click="order('cuenta_a')" >
-                            <a>Cuenta A.
-                            @if ($sort == 'cuenta_a')
-                                    @if ($direction == 'asc')
-                                        <i class="fas fa-sort-up"></i>
-                                    @else
-                                        <i class="fas fa-sort-down"></i>
-                                    @endif
-                                @else
-                                    <i class="text-muted fas fa-sort"></i>
-                                @endif</th>
-                        <th class="cursor-pointer" wire:click="order('partida_a')" >
-                            <a>Partida A.
-                            @if ($sort == 'partida_a')
-                                    @if ($direction == 'asc')
-                                        <i class="fas fa-sort-up"></i>
-                                    @else
-                                        <i class="fas fa-sort-down"></i>
-                                    @endif
-                                @else
-                                    <i class="text-muted fas fa-sort"></i>
-                                @endif</th>
-                        
+
                         <th><a>Action</th>
                     </tr>
                     </thead>
 
                     <tbody>
-                    @foreach ($grupos as $grupo)
+                    @foreach ($cuentas as $cuenta)
                     <tr>
-                        <td>{{ $grupo->nombre_grupo }}</td>
-                        <td>{{ $grupo->grupo}}</td>
-                        <td>{{ $grupo->cuenta_a }}</td>
-                        <td>{{ $grupo->partida_a }}</td>
+                        <td>{{ $cuenta->nombre_cuenta }}</td>
+                        <td>{{ $cuenta->codigo_cuenta}}</td>
                         <td class="whitespace-no-wrap row-action--icon">
                             <a role="button" href="#" class="mr-3"><i class="fa fa-16px fa-pen"></i></a>
                             <a role="button"  href="#"><i class="fa fa-16px fa-trash text-red-500"></i></a>
@@ -118,6 +94,4 @@
             </div>
         @endif
     </div>
-
-
 </div>

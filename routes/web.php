@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\livewire\Productos;
 use App\Http\livewire\Grupos;
+use App\Http\livewire\Cuentas;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,4 +33,6 @@ Route::group([ "middleware" => ['auth:sanctum', 'verified'] ], function() {
     Route::view('/productos/new', "pages.productos.productos-new")->name('productos.new');
 
     Route::get('grupos', Grupos::class)->name('grupos');
+
+    Route::get('cuentas', Cuentas::class)->name('cuentas');
 });

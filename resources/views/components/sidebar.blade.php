@@ -13,7 +13,8 @@ $links = [
                 "section_list" => [
                     ["href" => "productos", "text" => "Gestionar Artículos"],
                     ["href" => "productos.new", "text" => "Nuevo Artículo"],
-                    ["href" => "grupos", "text" => "Grupos"]
+                    ["href" => "grupos", "text" => "Grupos"],
+                    ["href" => "cuentas", "text" => "Cuentas"]
                 ]
     
             ]
