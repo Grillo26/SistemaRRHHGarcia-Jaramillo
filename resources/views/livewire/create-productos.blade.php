@@ -51,7 +51,7 @@
           <div class="mt-4  grid grid-cols-1">
             <div class="row justify-content-end gap-3">
               <x-jet-button wire:click="guardar()" class="justify-center"> Guardar</x-jet-button>
-              <x-jet-danger-button class="justify-center"> Cancelar</x-jet-danger-button>
+              <x-jet-danger-button wire:click="limpiarCampos()" class="justify-center"> Limpiar</x-jet-danger-button>
             </div>
             
           </div>
