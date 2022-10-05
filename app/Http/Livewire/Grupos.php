@@ -11,6 +11,9 @@ class Grupos extends Component
     public $sort='id';
     public $direction ='desc';
 
+    public $open = false;
+    public $nombre, $grup, $cuenta, $partida;
+
     public function render(){
         $grupos = Grupo::where('nombre_grupo', 'like', '%' . $this->search . '%')
         ->orwhere('grupo', 'like', '%' . $this->search . '%')
@@ -34,5 +37,26 @@ class Grupos extends Component
             $this->sort = $sort;
             $this->direction = 'asc';
         }
+    }
+
+    public function guardar(){
+        Grupo::create([
+            'nombre_grupo' => $this->nombre,
+            'grupo' => $this->grup,
+            'cuenta_a' => $this->cuenta,
+            'partida_a' => $this->partida
+        ]);
+        $this->limpiarCampos();
+        
+        $this->open=false;
+    }
+
+    public function limpiarCampos(){
+        $this->nombre = '';
+        $this->grup = '';
+        $this->cuenta = '';
+        $this->partida ='';
+        
+
     }
 }

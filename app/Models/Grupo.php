@@ -14,7 +14,7 @@ class Grupo extends Model
         'nombre_grupo',
         'grupo',
         'cuenta_a',
-        'partida_p'
+        'partida_a'
     ];
 
      //relacion uno a muchos

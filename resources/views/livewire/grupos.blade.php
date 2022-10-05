@@ -12,7 +12,7 @@
     <div class="p-8 pt-4 mt-2 bg-white">
         <!--Butons-->
         <div class="flex pb-4 -ml-3">
-            <a href="#"  class="-ml- btn btn-primary shadow-none">
+            <a wire:click="$set('open', true)" class="-ml- btn btn-primary shadow-none">
                 Añadir Grupo
                 <span class="fas fa-plus"></span> 
             </a>
@@ -21,6 +21,39 @@
                 <span class="fas fa-file-export"></span> 
             </a>
         </div>
+
+        <!--Modal-->
+        <x-jet-dialog-modal wire:model="open">
+            <x-slot name="title">Crear Nuevo Grupo</x-slot>
+            <x-slot name="content">
+                <!--Nombre-->
+                <div class="mb-4">
+                    <x-jet-input wire:model.defer="nombre" type="text"  class="mt-1 block w-full border-gray-200 form-control shadow-none" placeholder="Nombre del Grupo" autocomplete="off"/>
+                </div>
+
+                <!--Grupo-->
+                <div class="mb-4">
+                    <x-jet-input wire:model.defer="grup" type="text"  class="mt-1 block w-full border-gray-200 form-control shadow-none" placeholder="Grupo" autocomplete="off"/>
+                </div>
+
+                <!--Cuenta-->
+                <div class="mb-4">
+                    <x-jet-input wire:model.defer="cuenta" type="text"  class="mt-1 block w-full border-gray-200 form-control shadow-none" placeholder="Cuenta" autocomplete="off"/>
+                </div>
+
+                <!--Partida A.-->
+                <div class="mb-4">
+                    <x-jet-input wire:model.defer="partida" type="text"  class="mt-1 block w-full border-gray-200 form-control shadow-none" placeholder="Partida" autocomplete="off"/>
+                </div>
+  
+            </x-slot>
+            <x-slot name="footer">
+                <x-jet-button wire:click="guardar" class="justify-center"> Guardar</x-jet-button>
+                <x-jet-danger-button wire:click="$set('open', false)" class="justify-center"> Cancelar</x-jet-danger-button>
+            </x-slot>
+
+
+        </x-jet-dialog-modal>
 
         <!--Options-->
         <div class="row mb-4">
