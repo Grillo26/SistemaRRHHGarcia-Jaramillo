@@ -9,13 +9,15 @@
 </x-slot>
 
 <div class="bg-gray-100 text-gray-900 tracking-wider leading-normal">
-    <div class="p-8 pt-4 mt-2 bg-white" x-data="window.__controller.dataTableMainController()" x-init="setCallback();">
+    <div class="p-8 pt-4 mt-2 bg-white">
         <!--Butons-->
         <div class="flex pb-4 -ml-3">
-            <a href="#"  class="-ml- btn btn-primary shadow-none">
+            <a href="{{route('productos.new')}}"  class="-ml- btn btn-primary shadow-none">
+                Añadir Artículo
                 <span class="fas fa-plus"></span> 
             </a>
             <a href="#" class="ml-2 btn btn-success shadow-none">
+                Exportar
                 <span class="fas fa-file-export"></span> 
             </a>
         </div>
