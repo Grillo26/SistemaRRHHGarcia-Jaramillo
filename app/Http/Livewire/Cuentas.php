@@ -11,7 +11,10 @@ class Cuentas extends Component
     //Definicion de variables
     public $search="";
     public $sort='id';
-    public $direction ='desc';
+    public $direction ='desc'; 
+
+    public $open = false;
+    public $nombre, $codigo;
 
     public function render(){
         $cuentas = Cuenta::where('nombre_cuenta', 'like', '%' . $this->search . '%')
@@ -34,6 +37,22 @@ class Cuentas extends Component
             $this->sort = $sort;
             $this->direction = 'asc';
         }
+    }
+
+    public function guardar(){
+        Cuenta::create([
+            'nombre_cuenta' => $this->nombre,
+            'codigo_cuenta' => $this->codigo
+        ]);
+        $this->limpiarCampos();
+        
+        $this->open=false;
+    }
+
+    public function limpiarCampos(){
+        $this->nombre = '';
+        $this->codigo = '';
+
     }
     
 }

@@ -12,7 +12,7 @@
     <div class="p-8 pt-4 mt-2 bg-white">
         <!--Butons-->
         <div class="flex pb-4 -ml-3">
-            <a href="#"  class="-ml- btn btn-primary shadow-none">
+            <a wire:click="$set('open', true)" class="-ml- btn btn-primary shadow-none">
                 Añadir Cuenta
                 <span class="fas fa-plus"></span> 
             </a>
@@ -21,6 +21,30 @@
                 <span class="fas fa-file-export"></span> 
             </a>
         </div>
+
+        <!--Modal-->
+        <x-jet-dialog-modal wire:model="open">
+            <x-slot name="title">Crear Nueva Cuenta</x-slot>
+            <x-slot name="content">
+                <!--Nombre-->
+                <div class="mb-4">
+                    <x-jet-input wire:model.defer="nombre" type="text"  class="mt-1 block w-full border-gray-200 form-control shadow-none" placeholder="Nombre de Cuenta" autocomplete="off"/>
+                </div>
+
+                <!--codigo-->
+                <div class="mb-4">
+                    <x-jet-input wire:model.defer="codigo" type="text"  class="mt-1 block w-full border-gray-200 form-control shadow-none" placeholder="Código Cuenta" autocomplete="off"/>
+                </div>
+  
+            </x-slot>
+            <x-slot name="footer">
+                <x-jet-button wire:click="guardar" class="justify-center"> Guardar</x-jet-button>
+                <x-jet-danger-button wire:click="$set('open', false)" class="justify-center"> Cancelar</x-jet-danger-button>
+            </x-slot>
+
+
+        </x-jet-dialog-modal>
+
 
         <!--Options-->
         <div class="row mb-4">
