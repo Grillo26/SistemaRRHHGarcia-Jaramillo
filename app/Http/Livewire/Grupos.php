@@ -12,7 +12,7 @@ class Grupos extends Component
     public $direction ='desc';
 
     public $open = false;
-    public $nombre, $grup, $cuenta, $partida;
+    public $nombre, $grup, $cuenta, $partida, $id_grupo, $grupo;
 
     public function render(){
         $grupos = Grupo::where('nombre_grupo', 'like', '%' . $this->search . '%')
@@ -40,7 +40,8 @@ class Grupos extends Component
     }
 
     public function guardar(){
-        Grupo::create([
+        Grupo::updateOrCreate(['id'=>$this->id_grupo],
+        [
             'nombre_grupo' => $this->nombre,
             'grupo' => $this->grup,
             'cuenta_a' => $this->cuenta,
@@ -49,6 +50,21 @@ class Grupos extends Component
         $this->limpiarCampos();
         
         $this->open=false;
+    }
+
+    public function editar($id){
+        $grupo = Grupo::findOrFail($id);
+        $this->id_grupo = $id;
+        $this->nombre = $grupo->nombre_grupo;
+        $this->grup = $grupo->grupo;
+        $this->cuenta = $grupo->cuenta_a;
+        $this->partida = $grupo->partida_a;
+        $this->open=true;
+    }
+
+    public function borrar($id){
+        Grupo::find($id)->delete();
+        
     }
 
     public function limpiarCampos(){

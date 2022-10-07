@@ -136,8 +136,8 @@
                         <td>{{ $grupo->cuenta_a }}</td>
                         <td>{{ $grupo->partida_a }}</td>
                         <td class="whitespace-no-wrap row-action--icon">
-                            <a role="button" href="#" class="mr-3"><i class="fa fa-16px fa-pen"></i></a>
-                            <a role="button"  href="#"><i class="fa fa-16px fa-trash text-red-500"></i></a>
+                            <a wire:click="editar({{$grupo->id}})" role="button" class="mr-3"><i class="fa fa-16px fa-pen"></i></a>
+                            <a wire:click="borrar({{$grupo->id}})" role="button"><i class="fa fa-16px fa-trash text-red-500"></i></a>
                         </td>
                     </tr>
             @endforeach
@@ -147,7 +147,7 @@
         </div>
         @else
             <div class="px-6 py-4">
-                No se encontro ningún registro con {{$search}}
+                No se encontro ningún registro
             </div>
         @endif
     </div>

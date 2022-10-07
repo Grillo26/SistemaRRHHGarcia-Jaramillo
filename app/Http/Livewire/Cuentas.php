@@ -14,7 +14,7 @@ class Cuentas extends Component
     public $direction ='desc'; 
 
     public $open = false;
-    public $nombre, $codigo;
+    public $nombre, $codigo, $cuenta;
 
     public function render(){
         $cuentas = Cuenta::where('nombre_cuenta', 'like', '%' . $this->search . '%')
@@ -40,7 +40,8 @@ class Cuentas extends Component
     }
 
     public function guardar(){
-        Cuenta::create([
+        Cuenta::updateOrCreate(['id'=>$this->id_cuenta],
+        [
             'nombre_cuenta' => $this->nombre,
             'codigo_cuenta' => $this->codigo
         ]);
@@ -49,10 +50,26 @@ class Cuentas extends Component
         $this->open=false;
     }
 
+    public function editar($id){
+        $cuenta = Cuenta::findOrFail($id);
+        $this->id_cuenta = $id;
+        $this->nombre = $cuenta->nombre_cuenta;
+        $this->codigo = $cuenta->codigo_cuenta;
+        $this->open=true;
+        
+
+    }
+
+    public function borrar($id){
+        Cuenta::find($id)->delete();
+        
+    }
+
     public function limpiarCampos(){
         $this->nombre = '';
         $this->codigo = '';
 
     }
+    
     
 }

@@ -103,8 +103,8 @@
                         <td>{{ $cuenta->nombre_cuenta }}</td>
                         <td>{{ $cuenta->codigo_cuenta}}</td>
                         <td class="whitespace-no-wrap row-action--icon">
-                            <a role="button" href="#" class="mr-3"><i class="fa fa-16px fa-pen"></i></a>
-                            <a role="button"  href="#"><i class="fa fa-16px fa-trash text-red-500"></i></a>
+                            <a wire:click="editar({{$cuenta->id}})" role="button" class="mr-3"><i class="fa fa-16px fa-pen"></i></a>
+                            <a wire:click="borrar({{$cuenta->id}})" role="button" ><i class="fa fa-16px fa-trash text-red-500"></i></a>
                         </td>
                     </tr>
             @endforeach
@@ -114,7 +114,7 @@
         </div>
         @else
             <div class="px-6 py-4">
-                No se encontro ningún registro con {{$search}}
+                No se encontro ningún registro 
             </div>
         @endif
     </div>
