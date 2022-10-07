@@ -4,7 +4,7 @@
         <form action="" class="space-y-4">
           <div class="text-center grid grid-cols-1 gap-4 sm:grid-cols-2">
             <!--Nombre-->
-            <div>
+            <div class="flex">
               <x-jet-input id="name" wire:model.defer="name" type="text" class="mt-1 block w-full border-gray-200 form-control shadow-none" placeholder="Nombre del Artículo" autocomplete="off"/>
             </div>
 

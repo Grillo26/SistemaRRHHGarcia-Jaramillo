@@ -49,6 +49,6 @@
                     </td>
                 </tr>
             @endforeach
-        </x-slot>
+        </x-slot> 
     </x-data-table>
 </div>

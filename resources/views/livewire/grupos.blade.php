@@ -36,7 +36,7 @@
                     <x-jet-input wire:model.defer="grup" type="text"  class="mt-1 block w-full border-gray-200 form-control shadow-none" placeholder="Grupo" autocomplete="off"/>
                 </div>
 
-                <!--Cuenta-->
+                <!--fffff-->
                 <div class="mb-4">
                     <x-jet-input wire:model.defer="cuenta" type="text"  class="mt-1 block w-full border-gray-200 form-control shadow-none" placeholder="Cuenta" autocomplete="off"/>
                 </div>
