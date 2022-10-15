@@ -6,6 +6,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\livewire\Productos;
 use App\Http\livewire\Grupos;
 use App\Http\livewire\Cuentas;
+use App\Http\livewire\Salidas;
+use App\Http\livewire\Unidades;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,4 +37,8 @@ Route::group([ "middleware" => ['auth:sanctum', 'verified'] ], function() {
     Route::get('grupos', Grupos::class)->name('grupos');
 
     Route::get('cuentas', Cuentas::class)->name('cuentas');
+
+    Route::get('unidades', Unidades::class)->name('unidades');
+
+    Route::get('salidas', Salidas::class)->name('salidas');
 });

@@ -11,10 +11,12 @@ $links = [
             [
                 "section_text" => "Artículos",
                 "section_list" => [
+                    ["href" => "salidas", "text" => "Salida de Artículo"],
                     ["href" => "productos", "text" => "Gestionar Artículos"],
                     ["href" => "productos.new", "text" => "Nuevo Artículo"],
                     ["href" => "grupos", "text" => "Grupos"],
-                    ["href" => "cuentas", "text" => "Cuentas"]
+                    ["href" => "cuentas", "text" => "Cuentas"],
+                    ["href" => "unidades", "text" => "Unidades"]
                 ]
     
             ]
