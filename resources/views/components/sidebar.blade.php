@@ -10,6 +10,7 @@ $links = [
         "href" => [
             [
                 "section_text" => "Artículos",
+                "icon" => "fas fa-truck",
                 "section_list" => [
                     ["href" => "salidas", "text" => "Salida de Artículo"],
                     ["href" => "productos", "text" => "Gestionar Artículos"],
@@ -29,6 +30,7 @@ $links = [
         "href" => [
             [
                 "section_text" => "Usuarios",
+                "icon" => "fas fa-user",
                 "section_list" => [
                     ["href" => "user", "text" => "Gestionar Usuarios"],
                     ["href" => "user.new", "text" => "Crear Usuario"]
@@ -57,7 +59,7 @@ $navigation_links = array_to_object($links);
             <li class="menu-header">{{ $link->text }}</li>
             @if (!$link->is_multi)
             <li class="{{ Request::routeIs($link->href) ? 'active' : '' }}">
-                <a class="nav-link" href="{{ route($link->href) }}"><i class="fas fa-fire"></i><span>Dashboard</span></a>
+                <a class="nav-link" href="{{ route($link->href) }}"><i class="fas fa-chart-line"></i><span>Dashboard</span></a>
             </li>
             @else
                 @foreach ($link->href as $section)
@@ -70,7 +72,7 @@ $navigation_links = array_to_object($links);
                     @endphp
 
                     <li class="dropdown {{ ($is_active) ? 'active' : '' }}">
-                        <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-chart-bar"></i> <span>{{ $section->section_text }}</span></a>
+                        <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="{{ $section->icon}}"></i> <span>{{ $section->section_text }}</span></a>
                         <ul class="dropdown-menu">
                             @foreach ($section->section_list as $child)
                                 <li class="{{ Request::routeIs($child->href) ? 'active' : '' }}"><a class="nav-link" href="{{ route($child->href) }}">{{ $child->text }}</a></li>

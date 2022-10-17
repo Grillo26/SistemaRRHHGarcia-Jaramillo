@@ -9,18 +9,17 @@
         </div>
     </x-slot>
 
-    <div class="p-10 bg-white rounded-lg shadow-lg lg:p-12 lg:col-span-1">
+    <div class="p-4 bg-white rounded-lg shadow-lg lg:p-12 lg:col-span-1">
         <form>
             <div class="border p-3 rounded-lg"> 
                 <div class="form-row">
                     <!--Codigo Unidad-->
                     <div class="form-group col-md-4">
-                    <select class="selectpicker" data-live-search="true">
+                    <select class="" data-live-search="true">
                         <option data-tokens="ketchup mustard">Hot Dog, Fries and a Soda</option>
                         <option data-tokens="mustard">Burger, Shake and a Smile</option> 
                         <option data-tokens="frosting">Sugar, Spice and all things nice</option>
                     </select>
-
 
                     </div>
                     <!--xxxxxx-->
@@ -35,15 +34,15 @@
                     </div>
                 </div>
 
-                <div class="form-row">
+                <div class="form-row form-inline align-items-center">
                     <!--Fecha-->
                     <div class="form-group col-md-4">
-                        <label>Fecha</label>
-                        <input type="text" class="form-control" id="" placeholder="dd/mm/aaaaa">
+                        <label class="px-4">Fecha</label>
+                        <input type="date" id="start" name="trip-start" value="" min="2018-01-01" max="20-12-31">
                     </div>
                     <!--Nro Comp-->
                     <div class="form-group col-md-4">
-                        <label>Nro. Comp.</label>
+                        <label class="px-4">Nro. Comp.</label>
                         <input type="text" class="form-control" id="" placeholder="Escriba Número de Comp.">
                     </div>
                 </div>
