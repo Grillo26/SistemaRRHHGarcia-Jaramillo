@@ -8,6 +8,7 @@ use App\Http\livewire\Grupos;
 use App\Http\livewire\Cuentas;
 use App\Http\livewire\Salidas;
 use App\Http\livewire\Unidades;
+use App\Http\livewire\Entradas;
 
 /*
 |--------------------------------------------------------------------------
@@ -41,4 +42,6 @@ Route::group([ "middleware" => ['auth:sanctum', 'verified'] ], function() {
     Route::get('unidades', Unidades::class)->name('unidades');
 
     Route::get('salidas', Salidas::class)->name('salidas');
+
+    Route::get('entradas', Entradas::class)->name('entradas');
 });
