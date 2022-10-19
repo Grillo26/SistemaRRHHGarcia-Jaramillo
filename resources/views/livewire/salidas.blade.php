@@ -14,9 +14,14 @@
             <div class="border p-3 rounded-lg"> 
                 <div class="form-row">
                     <!--Codigo Unidad-->
-                    <div class="form-group col-md-2">
+                    <div class="form-group col-md-2" wire:ignore >
                     <label>Codigo de Unidad</label>
-                        <input type="text" class="form-control" id="" placeholder="" >
+                        <select class="select2" wire:model="unidad">
+                            <option value="" selected>Seleccione Unidad</option>
+                            @foreach ( $unidades as $unidad )
+                            <option  value="{{$unidad->id}}">{{$unidad->nombre_unidad}}</option>
+                            @endforeach 
+                        </select>
                     </div>
 
                     <!--xxxxxx-->
@@ -54,7 +59,12 @@
                     <!--Codigo Prod.-->
                     <div class="form-group col-md-3">
                         <label>Cod. Prod.</label>
-                        <input type="text" class="form-control" id="" placeholder="Codigo de Producto">
+                        <select class="select2" wire:model="producto">
+                            <option value="" selected>Seleccion Codigo</option>
+                            @foreach ( $productos as $producto )
+                            <option  value="{{$producto->id}}">{{$producto->codigo_producto}}</option>
+                            @endforeach 
+                        </select>
                     </div>
                     <!--Producto-->
                     <div class="form-group col-md-3">
@@ -121,6 +131,15 @@
         </form>
 
     </div>
+
+    <script>
+        document.addEventListener('livewire:load', function(){
+            $('.select2').select2();
+            $('.select2').on('change', function(){
+                @this.set('producto', this.value);
+            });
+        })
+    </script>
 
 
 </div>
