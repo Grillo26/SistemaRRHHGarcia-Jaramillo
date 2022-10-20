@@ -27,12 +27,13 @@
                     <!--xxxxxx-->
                     <div class="form-group col-md-3">
                         <label>xxxxxx</label>
-                        <input type="text" class="form-control" id="" placeholder="" disabled>
+                        <input type="text" class="form-control" value="prueba" placeholder="" disabled>
                     </div>
                     <!--Nombre-->
                     <div class="form-group col-md-3">
                         <label >Nombre</label>
-                        <input type="text" class="form-control" id="" disabled>
+                        <input wire:model="unidad" type="text" class="form-control" value="{{$unidad->nombre_unidad}}" disabled>
+                        
                     </div>
 
                     <!--Nro Comp-->
@@ -133,6 +134,12 @@
     </div>
 
     <script>
+        document.addEventListener('livewire:load', function(){
+            $('.select2').select2();
+            $('.select2').on('change', function(){
+                @this.set('unidad', this.value);
+            });
+        })
         document.addEventListener('livewire:load', function(){
             $('.select2').select2();
             $('.select2').on('change', function(){

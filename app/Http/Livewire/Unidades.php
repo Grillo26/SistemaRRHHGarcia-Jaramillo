@@ -12,6 +12,10 @@ class Unidades extends Component
     public $search="";
     public $sort='id';
     public $direction ='desc';
+    public $open = false;
+
+    public $id_unidad,$nombre;
+    
     public function render()
     {
         $unidades = Unidad::where('id', 'like', '%' . $this->search . '%')
@@ -35,4 +39,35 @@ class Unidades extends Component
             $this->direction = 'asc';
         }
     }
+
+    public function guardar(){
+        Unidad::updateOrCreate(['id'=>$this->id_unidad],
+        [
+            'nombre_unidad' => $this->nombre
+
+        ]);
+        $this->limpiarCampos();
+        
+        $this->open=false;
+    }
+
+    public function editar($id){
+        $unidad = Unidad::findOrFail($id);
+        $this->id_unidad = $id;
+        $this->nombre = $unidad->nombre_unidad;
+        $this->open=true;
+        
+
+    }
+
+    public function borrar($id){
+        Unidad::find($id)->delete();
+        
+    }
+
+    public function limpiarCampos(){
+        $this->nombre = '';
+
+    }
+
 }

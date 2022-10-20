@@ -2,10 +2,12 @@
     <div class="p-8 pt-4 mt-2 bg-white" x-data="window.__controller.dataTableMainController()" x-init="setCallback();">
         <!--Butons-->
         <div class="flex pb-4 -ml-3">
-            <a href="" class="-ml- btn btn-primary shadow-none">
+            <a wire:click="$set('open', true)" class="-ml- btn btn-primary shadow-none">
+                Añadir Unidad
                 <span class="fas fa-plus"></span> 
             </a>
             <a href="#" class="ml-2 btn btn-success shadow-none">
+                Exportar
                 <span class="fas fa-file-export"></span> 
             </a>
         </div>
@@ -25,6 +27,25 @@
                 <input wire:model="search"  class="form-control" type="text" placeholder="Search...">
             </div>
         </div>
+
+         <!--Modal-->
+         <x-jet-dialog-modal wire:model="open">
+            <x-slot name="title">Crear Nueva Unidad</x-slot>
+            <x-slot name="content">
+                <!--Nombre-->
+                <div class="mb-4">
+                    <x-jet-input wire:model.defer="nombre" type="text"  class="mt-1 block w-full border-gray-200 form-control shadow-none" placeholder="Nombre de Cuenta" autocomplete="off"/>
+                </div>
+  
+            </x-slot>
+            <x-slot name="footer">
+                <x-jet-button wire:click="guardar" class="justify-center"> Guardar</x-jet-button>
+                <x-jet-danger-button wire:click="$set('open', false)" class="justify-center"> Cancelar</x-jet-danger-button>
+            </x-slot>
+
+
+        </x-jet-dialog-modal>
+
         <!--TABLE-->
         @if($unidades->count())
             <div class="row">
@@ -67,8 +88,8 @@
                     <td>{{ $unidad->nombre_unidad}}</td>
                     
                     <td class="whitespace-no-wrap row-action--icon">
-                        <a role="button" href="#" class="mr-3"><i class="fa fa-16px fa-pen"></i></a>
-                        <a role="button"  href="#"><i class="fa fa-16px fa-trash text-red-500"></i></a>
+                            <a wire:click="editar({{$unidad->id}})" role="button" class="mr-3"><i class="fa fa-16px fa-pen"></i></a>
+                            <a wire:click="borrar({{$unidad->id}})" role="button"><i class="fa fa-16px fa-trash text-red-500"></i></a>
                     </td>
                 </tr>
             @endforeach
