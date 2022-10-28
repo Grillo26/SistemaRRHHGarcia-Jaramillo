@@ -9,7 +9,7 @@ use Livewire\Component;
 
 class Salidas extends Component
 {
-    public $unidad, $producto, $cuenta, $grupo, $unidads;
+    public $unidad ='';
     public function render()
     {
         return view('livewire.salidas',[
@@ -21,9 +21,10 @@ class Salidas extends Component
         ]);
     }
 
-    public function updateUnidad($unidad){
-        $this->unidad = Unidad::where('nombre_unidad', $unidad)->get();
-    }
+
+   
+
+   
 
     
 }

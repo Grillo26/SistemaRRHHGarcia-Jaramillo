@@ -28,6 +28,7 @@
                     <option  value="{{$grupo->id}}">{{$grupo->nombre_grupo}}</option>
                   @endforeach 
                 </select> 
+              
             </div>
             
             <!--Cuenta-->

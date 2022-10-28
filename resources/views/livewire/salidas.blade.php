@@ -14,25 +14,28 @@
             <div class="border p-3 rounded-lg"> 
                 <div class="form-row">
                     <!--Codigo Unidad-->
-                    <div class="form-group col-md-2" wire:ignore >
+                    <div class="form-group col-md-2" >
+                        
                     <label>Codigo de Unidad</label>
-                        <select class="select2" wire:model="unidad">
-                            <option value="" selected>Seleccione Unidad</option>
-                            @foreach ( $unidades as $unidad )
-                            <option  value="{{$unidad->id}}">{{$unidad->nombre_unidad}}</option>
-                            @endforeach 
-                        </select>
+                        <select class="form-control" wire:model="unidad">
+                            
+                            <option value="" selected >Seleccione Grupo</option>
+                                @foreach ( $unidades as $unidad )
+                                <option  value="{{$unidad->nombre_unidad}}">{{$unidad->id}}</option>
+                                 @endforeach 
+                        </select> 
+                       
+                        
                     </div>
-
                     <!--xxxxxx-->
                     <div class="form-group col-md-3">
                         <label>xxxxxx</label>
                         <input type="text" class="form-control" value="prueba" placeholder="" disabled>
                     </div>
                     <!--Nombre-->
-                    <div class="form-group col-md-3">
+                    <div class="form-group col-md-3" >
                         <label >Nombre</label>
-                        <input wire:model="unidad" type="text" class="form-control" value="{{$unidad->nombre_unidad}}" disabled>
+                        <input wire:model="unidad" type="text" class="form-control"  disabled>
                         
                     </div>
 
@@ -134,12 +137,6 @@
     </div>
 
     <script>
-        document.addEventListener('livewire:load', function(){
-            $('.select2').select2();
-            $('.select2').on('change', function(){
-                @this.set('unidad', this.value);
-            });
-        })
         document.addEventListener('livewire:load', function(){
             $('.select2').select2();
             $('.select2').on('change', function(){

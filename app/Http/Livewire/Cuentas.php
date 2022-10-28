@@ -14,7 +14,7 @@ class Cuentas extends Component
     public $direction ='desc'; 
 
     public $open = false;
-    public $nombre, $codigo, $cuenta;
+    public $nombre, $codigo, $cuenta, $id_cuenta;
 
     public function render(){
         $cuentas = Cuenta::where('nombre_cuenta', 'like', '%' . $this->search . '%')
