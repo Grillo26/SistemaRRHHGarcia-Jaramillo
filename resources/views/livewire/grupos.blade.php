@@ -51,9 +51,10 @@
                 <x-jet-button wire:click="guardar" class="justify-center"> Guardar</x-jet-button>
                 <x-jet-danger-button wire:click="$set('open', false)" class="justify-center"> Cancelar</x-jet-danger-button>
             </x-slot>
-
-
         </x-jet-dialog-modal>
+
+
+        <x-notify-message on="saved" type="success" message="Grupo creado correctamente!" />
 
         <!--Options-->
         <div class="row mb-4">
@@ -130,14 +131,14 @@
 
                     <tbody>
                     @foreach ($grupos as $grupo)
-                    <tr>
+                    <tr x-data="window.__controller.dataTableController({{ $grupo->id }})">
                         <td>{{ $grupo->nombre_grupo }}</td>
                         <td>{{ $grupo->grupo}}</td>
                         <td>{{ $grupo->cuenta_a }}</td>
                         <td>{{ $grupo->partida_a }}</td>
                         <td class="whitespace-no-wrap row-action--icon">
                             <a wire:click="editar({{$grupo->id}})" role="button" class="mr-3"><i class="fa fa-16px fa-pen"></i></a>
-                            <a wire:click="borrar({{$grupo->id}})" role="button"><i class="fa fa-16px fa-trash text-red-500"></i></a>
+                            <a x-on:click.prevent="deleteItem"  role="button"><i class="fa fa-16px fa-trash text-red-500"></i></a>
                         </td>
                     </tr>
             @endforeach

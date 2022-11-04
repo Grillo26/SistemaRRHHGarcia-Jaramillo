@@ -2,7 +2,9 @@
 
 namespace App\Http\Livewire;
 use App\Models\Grupo;
+use Illuminate\Support\Facades\Hash;
 use Livewire\Component;
+
 
 class Grupos extends Component
 {
@@ -13,6 +15,8 @@ class Grupos extends Component
 
     public $open = false;
     public $nombre, $grup, $cuenta, $partida, $id_grupo, $grupo;
+
+    protected $listeners = [ "deleteItem" => "delete_item" ];
 
     public function render(){
         $grupos = Grupo::where('nombre_grupo', 'like', '%' . $this->search . '%')
@@ -50,6 +54,7 @@ class Grupos extends Component
         $this->limpiarCampos();
         
         $this->open=false;
+        $this->emit('saved');
     }
 
     public function editar($id){
@@ -62,9 +67,25 @@ class Grupos extends Component
         $this->open=true;
     }
 
-    public function borrar($id){
-        Grupo::find($id)->delete();
-        
+
+
+    public function delete_item($id)
+    {
+        $data = Grupo::find($id);
+
+        if (!$data) {
+            $this->emit("deleteResult", [
+                "status" => false,
+                "message" => "Error al eliminar datos" . $this->nombre
+            ]);
+            return;
+        }
+
+        $data->delete();
+        $this->emit("deleteResult", [
+            "status" => true,
+            "message" => "Data " . $this->nombre . " Eliminado con éxito!"
+        ]);
     }
 
     public function limpiarCampos(){

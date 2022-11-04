@@ -17,13 +17,13 @@
                     <div class="form-group col-md-2" >
                         
                     <label>Codigo de Unidad</label>
-                        <select class="form-control" wire:model="unidad">
-                            
-                            <option value="" selected >Seleccione Grupo</option>
-                                @foreach ( $unidades as $unidad )
-                                <option  value="{{$unidad->nombre_unidad}}">{{$unidad->id}}</option>
-                                 @endforeach 
-                        </select> 
+                     <select class="form-control" wire:model="unidad">
+                        <option value="" selected >Seleccione Grupo</option>
+                        @foreach ( $unidades as $unidad )
+                        <option  value="{{$unidad->nombre_unidad}}">{{$unidad->id}}</option>
+                        @endforeach 
+                    </select> 
+                        
                        
                         
                     </div>
@@ -63,18 +63,24 @@
                     <!--Codigo Prod.-->
                     <div class="form-group col-md-3">
                         <label>Cod. Prod.</label>
-                        <select class="select2" wire:model="producto">
-                            <option value="" selected>Seleccion Codigo</option>
-                            @foreach ( $productos as $producto )
-                            <option  value="{{$producto->id}}">{{$producto->codigo_producto}}</option>
-                            @endforeach 
-                        </select>
+                        <div wire:ignore>
+                            <select class="select2" wire:model="producto">
+                                <option value="" selected>Seleccion Codigo</option>
+                                @foreach ( $productos as $product )
+                                <option  value="{{$product->id}}">{{$product->codigo_producto}}</option>
+                                @endforeach 
+                            </select>
+                            
+
+                        </div>
                     </div>
                     <!--Producto-->
                     <div class="form-group col-md-3">
                         <label>Producto</label>
-                        <input type="text" class="form-control" id="" disabled>
+                        <input type="text" class="form-control" wire:model="producto" disabled>
                     </div>
+                    
+                    
                     <!--Unidad-->
                     <div class="form-group col-md-3">
                         <label >Unidad</label>

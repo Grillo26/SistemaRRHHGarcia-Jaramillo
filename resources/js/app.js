@@ -1,12 +1,12 @@
 require('./bootstrap');
 
 function dataTableController (id) {
-    return {
+    return { 
         id,
         deleteItem() {
             Swal.fire({
-                title: 'Are you sure?',
-                text: "You won't be able to revert this!",
+                title: '¿Estás seguro que desea eliminar?',
+                text: "¡No podrás revertir esto!",
                 icon: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',

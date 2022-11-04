@@ -9,7 +9,7 @@ use Livewire\Component;
 
 class Salidas extends Component
 {
-    public $unidad ='';
+    public $unidad ='', $producto, $name_producto='';
     public function render()
     {
         return view('livewire.salidas',[
@@ -19,7 +19,12 @@ class Salidas extends Component
             'grupos'=>Grupo::get()
 
         ]);
+
     }
+
+  
+
+   
 
 
    
