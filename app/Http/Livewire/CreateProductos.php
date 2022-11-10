@@ -37,6 +37,7 @@ class CreateProductos extends Component
             'cuenta_idCuenta' => $this->cuenta
         ]);
         $this->limpiarCampos();
+        $this->emit('saved');
     }
 
     public function limpiarCampos(){

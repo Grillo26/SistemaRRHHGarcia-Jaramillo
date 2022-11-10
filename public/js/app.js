@@ -19361,11 +19361,11 @@ function dataTableController(id) {
       var _this = this;
 
       Swal.fire({
-        title: 'Are you sure?',
-        text: "You won't be able to revert this!",
+        title: '¿Estás seguro que desea eliminar?',
+        text: "¡No podrás revertir esto!",
         icon: 'warning',
         showCancelButton: true,
-        confirmButtonColor: '#3085d6',
+        confirmButtonColor: '#0E4D46',
         cancelButtonColor: '#d33',
         confirmButtonText: 'Yes, delete it!'
       }).then(function (result) {
@@ -19437,9 +19437,9 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! D:\Programing\Laravel\laravel-8-stisla-jetstream\resources\js\app.js */"./resources/js/app.js");
-__webpack_require__(/*! D:\Programing\Laravel\laravel-8-stisla-jetstream\resources\css\app.css */"./resources/css/app.css");
-module.exports = __webpack_require__(/*! D:\Programing\Laravel\laravel-8-stisla-jetstream\resources\css\tailwind.css */"./resources/css/tailwind.css");
+__webpack_require__(/*! D:\Programing\Laravel\cnsinventarios\resources\js\app.js */"./resources/js/app.js");
+__webpack_require__(/*! D:\Programing\Laravel\cnsinventarios\resources\css\app.css */"./resources/css/app.css");
+module.exports = __webpack_require__(/*! D:\Programing\Laravel\cnsinventarios\resources\css\tailwind.css */"./resources/css/tailwind.css");
 
 
 /***/ })

@@ -63,8 +63,9 @@
             
           </div>
         </form>
-
     </div>
          
   </div>
+  <x-notify-message on="saved" type="success" message="Producto creado correctamente!" />
+
 </div>

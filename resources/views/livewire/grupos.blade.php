@@ -54,7 +54,7 @@
         </x-jet-dialog-modal>
 
 
-        <x-notify-message on="saved" type="success" message="Grupo creado correctamente!" />
+        <x-notify-message on="saved" type="success" message="Grupo creado correctamente!" /> 
 
         <!--Options-->
         <div class="row mb-4">

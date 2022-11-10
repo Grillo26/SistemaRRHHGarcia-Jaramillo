@@ -71,7 +71,7 @@
                                 @endforeach 
                             </select>
                             
-
+                            <a wire:click="editar({{$product->id}})" role="button" class="mr-3"><i class="fa fa-16px fa-pen"></i></a>
                         </div>
                     </div>
                     <!--Producto-->
@@ -84,13 +84,13 @@
                     <!--Unidad-->
                     <div class="form-group col-md-3">
                         <label >Unidad</label>
-                        <input type="text" class="form-control" id="" disabled>
+                        <input type="text" class="form-control" wire:model="unidadpro" disabled>
                     </div>
 
                     <!--Grupo.-->
                     <div class="form-group col-md-3">
                         <label>Grupo</label>
-                        <input type="text" class="form-control" id="" disabled>
+                        <input type="text" class="form-control" wire:model="grupo" disabled>
                     </div>
                 </div>
                 <div class="form-row"> 
