@@ -17,6 +17,8 @@ class Productos extends Component
     public $direction ='desc';
 
     public $open = false;
+    public $open2 = false;
+
     protected $listeners = [ "deleteItem" => "delete_item" ];
 
     public $codigoProd, $nombreProd, $unidadId, $grupoId, $cuentaId, $id_producto;
@@ -66,6 +68,36 @@ class Productos extends Component
         $this->emit('saved');
     }
 
+    public function editar($id){
+        $producto = Producto::findOrFail($id);
+        $this->id_producto = $id;
+        $this->codigoProd = $producto->codigo_producto;
+        $this->nombreProd = $producto->nombre_producto;
+        $this->unidadId = $producto->unidad_idUnidad;
+        $this->grupoId = $producto->grupo_idGrupo;
+        $this->cuentaId = $producto->cuenta_idCuenta;
+        $this->open=true;
+    }
+
+    public function delete_item($id)
+    {
+        $data = Producto::find($id);
+
+        if (!$data) {
+            $this->emit("deleteResult", [
+                "status" => false,
+                "message" => "Error al eliminar datos" . $this->nombreProd
+            ]);
+            return;
+        }
+
+        $data->delete();
+        $this->emit("deleteResult", [
+            "status" => true,
+            "message" => "Data " . $this->nombreProd . " Eliminado con éxito!"
+        ]);
+    }
+
     public function limpiarCampos(){
         $this->codigoProd = '';
         $this->nombreProd = '';
@@ -73,8 +105,17 @@ class Productos extends Component
         $this->unidadId ='';
         $this->grupoId ='';
         $this->cuentaId ='';
-        
-        
 
+    }
+
+    public function salida($id){
+        $producto = Producto::findOrFail($id);
+        $this->id_producto = $id;
+        $this->codigoProd = $producto->codigo_producto;
+        $this->nombreProd = $producto->nombre_producto;
+        $this->unidadId = $producto->unidad_idUnidad;
+        $this->grupoId = $producto->grupo_idGrupo;
+        $this->cuentaId = $producto->cuenta_idCuenta;
+        $this->open2=true;
     }
 }

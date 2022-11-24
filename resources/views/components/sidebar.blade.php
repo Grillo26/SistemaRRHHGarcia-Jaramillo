@@ -3,19 +3,26 @@ $links = [
     [
         "href" => "dashboard",
         "text" => "Dashboard",
+        "icon" => "fas fa-chart-line",
         "is_multi" => false,
+    ],
+
+    [
+        "href" => "productos",
+        "text" => "Artículos",
+        "icon" => "fas fa-syringe",
+        "is_multi" => false,
+
     ],
     
     [
         "href" => [
             [
-                "section_text" => "Artículos",
-                "icon" => "fas fa-truck",
+                "section_text" => "Información",
+                "icon" => "fas fa-database",
                 "section_list" => [
                     ["href" => "salidas", "text" => "Salida de Artículo"],
                     ["href" => "entradas", "text" => "Entrada de Artículo"],
-                    ["href" => "productos", "text" => "Gestionar Artículos"],
-                    ["href" => "productos.new", "text" => "Nuevo Artículo"],
                     ["href" => "grupos", "text" => "Grupos"],
                     ["href" => "cuentas", "text" => "Cuentas"],
                     ["href" => "unidades", "text" => "Unidades"]
@@ -23,7 +30,7 @@ $links = [
     
             ]
         ],
-        "text" => "Artículos",
+        "text" => "Gestión de Artículos",
         "is_multi" => true,
     ],
 
@@ -60,7 +67,7 @@ $navigation_links = array_to_object($links);
             <li class="menu-header">{{ $link->text }}</li>
             @if (!$link->is_multi)
             <li class="{{ Request::routeIs($link->href) ? 'active' : '' }}">
-                <a class="nav-link" href="{{ route($link->href) }}"><i class="fas fa-chart-line"></i><span>Dashboard</span></a>
+                <a class="nav-link" href="{{ route($link->href) }}"><i class="{{ $link->icon }}"></i><span> {{ $link->text}} </span></a>
             </li>
             @else
                 @foreach ($link->href as $section)

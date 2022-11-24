@@ -97,6 +97,68 @@
             </x-slot>
         </x-jet-dialog-modal>
 
+        <!--Modal2 Para Registrar Salidas -->
+        <x-jet-dialog-modal wire:model="open2">
+            <x-slot name="title">Registrar Salida del Artículo</x-slot>
+            <x-slot name="content">
+
+            <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
+                <!--Codigo de Producto-->
+                <div class="mb-6">
+                    <label>Código del Artículo</label><br>
+                    <x-jet-input wire:model.defer="codigoProd" type="text"  class="mt-1 block w-full border-gray-200 form-control shadow-none" disabled/>
+                </div>
+
+                <!--Nombre de producto-->
+                <div class="mb-6">
+                    <label>Nombre del Artículo</label>
+                    <x-jet-input wire:model.defer="nombreProd" type="text"  class="mt-1 block w-full border-gray-200 form-control shadow-none" disabled/>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 gap-4 sm:grid-cols-3">
+                    <!--unidad-->
+                <div class="mb-4">
+                    <label>Unidad</label>
+                    <select class="form-control"  wire:model.defer="unidadId" disabled>
+                        <option value="" selected>Seleccione Unidad</option>
+                        @foreach ( $unidades as $unidad )
+                        <option  value="{{$unidad->id}}">{{$unidad->nombre_unidad}}</option>
+                        @endforeach   
+                    </select>
+                </div>
+
+                    <!--Grupo-->
+                    <div class="mb-4">
+                        <label>Grupo</label>
+                        <select class="form-control" wire:model.defer="grupoId" disabled>
+                            <option value="" selected >Seleccione Grupo</option>
+                            @foreach ( $grupos as $grupo )
+                            <option  value="{{$grupo->id}}">{{$grupo->nombre_grupo}}</option>
+                            @endforeach 
+                        </select> 
+                    </div>
+
+                    <!--Cuenta.-->
+                    <div class="mb-4">
+                        <label>Cuenta</label>
+                        <select class="form-control" wire:model.defer="cuentaId" disabled>
+                            <option value="" selected >Seleccione Cuenta</option>
+                            @foreach ( $cuentas as $cuenta )
+                            <option  value="{{$cuenta->id}}">{{$cuenta->nombre_cuenta}}</option>
+                            @endforeach   
+                        </select>
+                    </div>
+
+            </div>
+  
+            </x-slot>
+            <x-slot name="footer">
+                <x-jet-button wire:click="guardar" class="justify-center"> Guardar</x-jet-button>
+                <x-jet-danger-button wire:click="$set('open2', false)" class="justify-center"> Cancelar</x-jet-danger-button>
+            </x-slot>
+        </x-jet-dialog-modal>
+
         <x-notify-message on="saved" type="success" message="Artículo creado correctamente!" /> 
 
 
@@ -108,7 +170,7 @@
                     <thead>
                     <tr>
                         <th class="cursor-pointer" wire:click="order('codigo_producto')" >
-                            <a>Codigo Artículo
+                            <a>Código
                                 @if ($sort == 'codigo_producto')
                                     @if ($direction == 'asc')
                                         <i class="fas fa-sort-up"></i>
@@ -120,7 +182,7 @@
                                 @endif
                         </th>
                         <th class="cursor-pointer" wire:click="order('nombre_producto')" >
-                            <a>Nombre Artículo
+                            <a>Nombre
                                 @if ($sort == 'nombre_producto')
                                     @if ($direction == 'asc')
                                         <i class="fas fa-sort-up"></i>
@@ -172,12 +234,30 @@
                     <tr>
                         <td>{{ $producto->codigo_producto }}</td>
                         <td>{{ $producto->nombre_producto}}</td>
-                        <td>{{ $producto->unidad_idUnidad }}</td>
-                        <td>{{ $producto->grupo_idGrupo }}</td>
-                        <td>{{ $producto->cuenta_idCuenta }}</td>
-                        <td class="whitespace-no-wrap row-action--icon">
-                            <a role="button" href="#" class="mr-3"><i class="fa fa-16px fa-pen"></i></a>
-                            <a role="button"  href="#"><i class="fa fa-16px fa-trash text-red-500"></i></a>
+
+                        @foreach ($unidades as $unidad )
+                        @if(  $producto->unidad_idUnidad == $unidad->id)
+                        <td>{{ $unidad->nombre_unidad}}</td>
+                        @endif
+                        @endforeach
+
+                        @foreach ($grupos as $grupo )
+                        @if(  $producto->grupo_idGrupo == $grupo->id)
+                        <td>{{ $grupo->nombre_grupo}}</td>
+                        @endif
+                        @endforeach
+
+                        @foreach ($cuentas as $cuenta )
+                        @if(  $producto->cuenta_idCuenta == $cuenta->id)
+                        <td>{{ $cuenta->nombre_cuenta}}</td>
+                        @endif
+                        @endforeach
+
+                        <td class="whitespace-no-wrap row-action--icon" x-data="window.__controller.dataTableController({{ $producto->id }})">
+                            <a wire:click="entrada({{$producto->id}})" role="button" class="ml-3"><i class="fa fa-16px fa-sign-in-alt"></i></a>
+                            <a wire:click="editar({{$producto->id}})" role="button" class="ml-3"><i class="fa fa-16px fa-pen"></i></a>
+                            <a x-on:click.prevent="deleteItem"  role="button" class="ml-3"><i class="fa fa-16px fa-trash text-red-500"></i></a>
+                            <a wire:click="salida({{$producto->id}})" role="button" class="ml-3"><i class="fa fa-16px fa-sign-out-alt"></i></a>
                         </td>
                     </tr>
             @endforeach
