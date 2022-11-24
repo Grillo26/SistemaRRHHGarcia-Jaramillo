@@ -10,7 +10,7 @@ class Grupos extends Component
 {
     //Definicion de variables
     public $search="";
-    public $sort='id';
+    public $sort='id'; 
     public $direction ='desc';
 
     public $open = false;

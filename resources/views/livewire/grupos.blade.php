@@ -52,7 +52,7 @@
                 <x-jet-danger-button wire:click="$set('open', false)" class="justify-center"> Cancelar</x-jet-danger-button>
             </x-slot>
         </x-jet-dialog-modal>
-
+  
 
         <x-notify-message on="saved" type="success" message="Grupo creado correctamente!" /> 
 

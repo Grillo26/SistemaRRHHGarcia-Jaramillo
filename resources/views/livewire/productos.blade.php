@@ -12,7 +12,7 @@
     <div class="p-8 pt-4 mt-2 bg-white">
         <!--Butons-->
         <div class="flex pb-4 -ml-3">
-            <a href="{{route('productos.new')}}"  class="-ml- btn btn-primary shadow-none">
+            <a wire:click="$set('open', true)"  class="-ml- btn btn-primary shadow-none">
                 Añadir Artículo
                 <span class="fas fa-plus"></span> 
             </a>
@@ -37,6 +37,68 @@
                 <input wire:model="search" class="form-control" type="text" placeholder="Buscar...">
             </div>
         </div>
+
+        <!--Modal-->
+        <x-jet-dialog-modal wire:model="open">
+            <x-slot name="title">Crear Nuevo Artículo</x-slot>
+            <x-slot name="content">
+                <!--Codigo de Producto-->
+                <div class="mb-4">
+                    <label>Coódigo del Artículo</label><br>
+                    <x-jet-input wire:model.defer="codigoProd" type="text"  class="mt-1 block w-full border-gray-200 form-control shadow-none" placeholder="Ej. 223" autocomplete="off"/>
+                </div>
+
+                <!--Nombre de producto-->
+                <div class="mb-4">
+                    <label>Nombre del Artículo</label>
+                    <x-jet-input wire:model.defer="nombreProd" type="text"  class="mt-1 block w-full border-gray-200 form-control shadow-none" placeholder="Ej. Medicamentos" autocomplete="off"/>
+                </div>
+
+                <div class="grid grid-cols-1 gap-4 sm:grid-cols-3">
+                    <!--unidad-->
+                    <div class="mb-4">
+                        <label>Unidad</label>
+                        <select class="form-control"  wire:model.defer="unidadId">
+                            <option value="" selected>Seleccione Unidad</option>
+                            @foreach ( $unidades as $unidad )
+                            <option  value="{{$unidad->id}}">{{$unidad->nombre_unidad}}</option>
+                            @endforeach   
+                        </select>
+                    </div>
+
+                    <!--Grupo-->
+                    <div class="mb-4">
+                        <label>Grupo</label>
+                        <select class="form-control" wire:model.defer="grupoId">
+                            <option value="" selected >Seleccione Grupo</option>
+                            @foreach ( $grupos as $grupo )
+                            <option  value="{{$grupo->id}}">{{$grupo->nombre_grupo}}</option>
+                            @endforeach 
+                        </select> 
+                    </div>
+
+                    <!--Cuenta.-->
+                    <div class="mb-4">
+                        <label>Cuenta</label>
+                        <select class="form-control" wire:model.defer="cuentaId">
+                            <option value="" selected >Seleccione Cuenta</option>
+                            @foreach ( $cuentas as $cuenta )
+                            <option  value="{{$cuenta->id}}">{{$cuenta->nombre_cuenta}}</option>
+                            @endforeach   
+                        </select>
+                    </div>
+
+                </div>
+  
+            </x-slot>
+            <x-slot name="footer">
+                <x-jet-button wire:click="guardar" class="justify-center"> Guardar</x-jet-button>
+                <x-jet-danger-button wire:click="$set('open', false)" class="justify-center"> Cancelar</x-jet-danger-button>
+            </x-slot>
+        </x-jet-dialog-modal>
+
+        <x-notify-message on="saved" type="success" message="Artículo creado correctamente!" /> 
+
 
         <!--TABLE-->
         @if($productos->count())
