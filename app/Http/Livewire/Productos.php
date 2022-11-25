@@ -6,6 +6,7 @@ use Livewire\Component;
 use App\Models\Grupo; 
 use App\Models\Cuenta; 
 use App\Models\Unidad;
+use App\Models\Comprobante;
 use App\Models\Producto;
 
 
@@ -18,6 +19,8 @@ class Productos extends Component
 
     public $open = false;
     public $open2 = false;
+    public $open3 = false;
+    public $verifiEdit = false;
 
     protected $listeners = [ "deleteItem" => "delete_item" ];
 
@@ -34,7 +37,8 @@ class Productos extends Component
         return view('livewire.productos', compact ('productos'),[
             'grupos'=>Grupo::get(),
             'cuentas'=>Cuenta::get(),
-            'unidades'=>Unidad::get()
+            'unidades'=>Unidad::get(),
+            'comprobantes'=>Comprobante::get()
         ]);
     }
 
@@ -66,6 +70,12 @@ class Productos extends Component
         
         $this->open=false;
         $this->emit('saved');
+
+        //Para alerta de Editado
+        if($this->verifiEdit == true){
+            $this->emit('edit');
+        }
+        $this->verifiEdit=false;
     }
 
     public function editar($id){
@@ -77,6 +87,8 @@ class Productos extends Component
         $this->grupoId = $producto->grupo_idGrupo;
         $this->cuentaId = $producto->cuenta_idCuenta;
         $this->open=true;
+        $this->verifiEdit=true;
+        
     }
 
     public function delete_item($id)
@@ -118,4 +130,16 @@ class Productos extends Component
         $this->cuentaId = $producto->cuenta_idCuenta;
         $this->open2=true;
     }
+
+    public function entrada($id){
+        $producto = Producto::findOrFail($id);
+        $this->id_producto = $id;
+        $this->codigoProd = $producto->codigo_producto;
+        $this->nombreProd = $producto->nombre_producto;
+        $this->unidadId = $producto->unidad_idUnidad;
+        $this->grupoId = $producto->grupo_idGrupo;
+        $this->cuentaId = $producto->cuenta_idCuenta;
+        $this->open3=true;
+    }
+
 }

@@ -73,6 +73,8 @@
         <script defer src="{{ asset('stisla/js/modules/chart.min.js') }}"></script>
         <script defer src="{{ asset('vendor/select2/select2.min.js') }}"></script>
 
+        <script src="https://unpkg.com/flowbite@1.5.4/dist/datepicker.js"></script>
+
         <script src="{{ asset('stisla/js/stisla.js') }}"></script>
         <script src="{{ asset('stisla/js/scripts.js') }}"></script>
 

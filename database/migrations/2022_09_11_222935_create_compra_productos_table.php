@@ -15,6 +15,17 @@ return new class extends Migration
     {
         Schema::create('compra_productos', function (Blueprint $table) {
             $table->id();
+            $table->date('fecha_compra');
+            $table->integer('horac');
+            $table->decimal('total', 10,2);
+            $table->string('ady');
+            $table->unsignedBigInteger('proveedor_idProveedor')->nullable();
+
+            $table->foreign('proveedor_idProveedor')
+            ->references('id')->on('proveedors')->onDelete('set null');
+
+
+
             $table->timestamps();
         });
     }

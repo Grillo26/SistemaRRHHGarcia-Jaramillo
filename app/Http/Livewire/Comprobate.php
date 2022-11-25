@@ -1,12 +1,11 @@
 <?php
 
 namespace App\Http\Livewire;
-use App\Models\Grupo; 
-use Illuminate\Support\Facades\Hash;
+use App\Models\Comprobante;
+
 use Livewire\Component;
 
-
-class Grupos extends Component
+class Comprobate extends Component
 {
     //Definicion de variables
     public $search="";
@@ -14,18 +13,18 @@ class Grupos extends Component
     public $direction ='desc';
 
     public $open = false;
-    public $nombre, $grup, $cuenta, $partida, $id_grupo, $grupo;
+    public $verifiEdit = false;
+
+    public $nComp, $detall, $id_comprobante;
 
     protected $listeners = [ "deleteItem" => "delete_item" ];
 
     public function render(){
-        $grupos = Grupo::where('nombre_grupo', 'like', '%' . $this->search . '%')
-        ->orwhere('grupo', 'like', '%' . $this->search . '%')
-        ->orwhere('cuenta_a', 'like', '%' . $this->search . '%')
-        ->orwhere('partida_a', 'like', '%' . $this->search . '%')
+        $comprobantes = Comprobante::where('n_comprobante', 'like', '%' . $this->search . '%')
+        ->orwhere('detalle', 'like', '%' . $this->search . '%')
         ->orderBy($this->sort, $this->direction)
         ->get();
-        return view('livewire.grupos', compact ('grupos'));
+        return view('livewire.comprobate', compact ('comprobantes'));
     }
 
     public function order($sort){ //Metodo para ordenar
@@ -44,39 +43,42 @@ class Grupos extends Component
     }
 
     public function guardar(){
-        Grupo::updateOrCreate(['id'=>$this->id_grupo],
+        Comprobante::updateOrCreate(['id'=>$this->id_comprobante],
         [
-            'nombre_grupo' => $this->nombre,
-            'grupo' => $this->grup,
-            'cuenta_a' => $this->cuenta,
-            'partida_a' => $this->partida
+            'n_comprobante' => $this->nComp,
+            'detalle' => $this->detall
         ]);
         $this->limpiarCampos();
         
         $this->open=false;
         $this->emit('saved');
+
+        //Para alerta de Editado
+        if($this->verifiEdit == true){
+            $this->emit('edit');
+        }
+        $this->verifiEdit=false;
     }
 
     public function editar($id){
-        $grupo = Grupo::findOrFail($id);
-        $this->id_grupo = $id;
-        $this->nombre = $grupo->nombre_grupo;
-        $this->grup = $grupo->grupo;
-        $this->cuenta = $grupo->cuenta_a;
-        $this->partida = $grupo->partida_a;
+        $comprobante = Comprobante::findOrFail($id);
+        $this->id_comprobante = $id;
+        $this->nComp = $comprobante->n_comprobante;
+        $this->detall = $comprobante->detalle;
         $this->open=true;
+        $this->verifiEdit=true;
     }
 
 
 
     public function delete_item($id)
     {
-        $data = Grupo::find($id);
+        $data = Comprobante::find($id);
 
         if (!$data) {
             $this->emit("deleteResult", [
                 "status" => false,
-                "message" => "Error al eliminar datos" . $this->nombre
+                "message" => "Error al eliminar datos" . $this->nComp
             ]);
             return;
         }
@@ -84,16 +86,14 @@ class Grupos extends Component
         $data->delete();
         $this->emit("deleteResult", [
             "status" => true,
-            "message" => "Data " . $this->nombre . " Eliminado con éxito!"
+            "message" => "Data " . $this->nComp . " Eliminado con éxito!"
         ]);
     }
 
     public function limpiarCampos(){
-        $this->nombre = '';
-        $this->grup = '';
-        $this->cuenta = '';
-        $this->partida ='';
-        
+        $this->nComp = '';
+        $this->detall = '';
+
 
     }
 }

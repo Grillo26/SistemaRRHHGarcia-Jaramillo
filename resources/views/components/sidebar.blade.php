@@ -25,7 +25,8 @@ $links = [
                     ["href" => "entradas", "text" => "Entrada de Artículo"],
                     ["href" => "grupos", "text" => "Grupos"],
                     ["href" => "cuentas", "text" => "Cuentas"],
-                    ["href" => "unidades", "text" => "Unidades"]
+                    ["href" => "unidades", "text" => "Unidades"],
+                    ["href" => "comprobantes", "text" => "Comprobantes"]
                 ]
     
             ]

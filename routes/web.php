@@ -9,6 +9,7 @@ use App\Http\livewire\Cuentas;
 use App\Http\livewire\Salidas;
 use App\Http\livewire\Unidades;
 use App\Http\livewire\Entradas;
+use App\Http\livewire\Comprobate;
 
 /*
 |--------------------------------------------------------------------------
@@ -44,4 +45,6 @@ Route::group([ "middleware" => ['auth:sanctum', 'verified'] ], function() {
     Route::get('salidas', Salidas::class)->name('salidas');
 
     Route::get('entradas', Entradas::class)->name('entradas');
+
+    Route::get('comprobantes', Comprobate::class)->name('comprobantes');
 });
