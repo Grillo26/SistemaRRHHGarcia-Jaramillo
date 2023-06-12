@@ -10,6 +10,6 @@
     </x-slot>
 
     <div>
-        <livewire:create-user action="createUser" />
+        <livewire:create-user action="createUser" /> 
     </div>
 </x-app-layout>

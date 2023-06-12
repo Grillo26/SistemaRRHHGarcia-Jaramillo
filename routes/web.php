@@ -1,15 +1,9 @@
 <?php
 
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\TurnoController;
 use Illuminate\Support\Facades\Route;
 
-use App\Http\livewire\Productos;
-use App\Http\livewire\Grupos;
-use App\Http\livewire\Cuentas;
-use App\Http\livewire\Salidas;
-use App\Http\livewire\Unidades;
-use App\Http\livewire\Entradas;
-use App\Http\livewire\Comprobate;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,18 +27,9 @@ Route::group([ "middleware" => ['auth:sanctum', 'verified'] ], function() {
     Route::view('/user/new', "pages.user.user-new")->name('user.new');
     Route::view('/user/edit/{userId}', "pages.user.user-edit")->name('user.edit');
 
-    Route::get('productos', Productos::class)->name('productos');
-    Route::view('/productos/new', "pages.productos.productos-new")->name('productos.new');
+    Route::get('/turno', [ TurnoController::class, "index_view" ])->name('turno');
+    Route::view('/turno/new', "pages.turno.turno-new")->name('turno.new');
+    Route::view('/turno/edit/{turnoId}', "pages.turno.turno-edit")->name('turno.edit');
 
-    Route::get('grupos', Grupos::class)->name('grupos');
-
-    Route::get('cuentas', Cuentas::class)->name('cuentas');
-
-    Route::get('unidades', Unidades::class)->name('unidades');
-
-    Route::get('salidas', Salidas::class)->name('salidas');
-
-    Route::get('entradas', Entradas::class)->name('entradas');
-
-    Route::get('comprobantes', Comprobate::class)->name('comprobantes');
+    
 });

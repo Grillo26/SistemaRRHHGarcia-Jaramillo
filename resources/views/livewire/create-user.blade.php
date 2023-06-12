@@ -8,10 +8,12 @@
             {{ __('Complete los siguientes datos y presione "Submit" para crear nuevos datos de usuario') }}
         </x-slot>
 
+
         <x-slot name="form">
+            
             <div class="form-group col-span-6 sm:col-span-5">
                 <x-jet-label for="name" value="{{ __('Nombre') }}" />
-                <small>Nombres del Usuario a registrar</small>
+                <small>Nombres del Usuario astrar</small>
                 <x-jet-input id="name" type="text" class="mt-1 block w-full form-control shadow-none" wire:model.defer="user.name" />
                 <x-jet-input-error for="user.name" class="mt-2" />
             </div>

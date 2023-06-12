@@ -8,34 +8,6 @@ $links = [
     ],
 
     [
-        "href" => "productos",
-        "text" => "Artículos",
-        "icon" => "fas fa-syringe",
-        "is_multi" => false,
-
-    ],
-    
-    [
-        "href" => [
-            [
-                "section_text" => "Información",
-                "icon" => "fas fa-database",
-                "section_list" => [
-                    ["href" => "salidas", "text" => "Salida de Artículo"],
-                    ["href" => "entradas", "text" => "Entrada de Artículo"],
-                    ["href" => "grupos", "text" => "Grupos"],
-                    ["href" => "cuentas", "text" => "Cuentas"],
-                    ["href" => "unidades", "text" => "Unidades"],
-                    ["href" => "comprobantes", "text" => "Comprobantes"]
-                ]
-    
-            ]
-        ],
-        "text" => "Gestión de Artículos",
-        "is_multi" => true,
-    ],
-
-    [
         "href" => [
             [
                 "section_text" => "Usuarios",
@@ -49,6 +21,12 @@ $links = [
         "text" => "Usuarios",
         "is_multi" => true,
     ],
+    [
+        "href" => "turno",
+        "text" => "Turnos",
+        "icon" => "fas fa-chart-line",
+        "is_multi" => false,
+    ]
 ];
 $navigation_links = array_to_object($links);
 @endphp
@@ -56,11 +34,13 @@ $navigation_links = array_to_object($links);
 <div class="main-sidebar">
     <aside id="sidebar-wrapper">
         <div class="sidebar-brand">
-            <a href="{{ route('dashboard') }}">Administrador</a>
+            <a href="{{ route('dashboard') }}">
+                <img class="d-inline-block" width="70px" height="80px" src="{{URL::asset('img/logosidebar.png')}}" alt="">
+            </a>
         </div>
         <div class="sidebar-brand sidebar-brand-sm">
             <a href="{{ route('dashboard') }}">
-                <img class="d-inline-block" width="32px" height="30.61px" src="{{URL::asset('img/cns.png')}}" alt="">
+                <img class="d-inline-block" width="50px" height="80px" src="{{URL::asset('img/logosidebar.png')}}" alt="">
             </a>
         </div>
         @foreach ($navigation_links as $link)

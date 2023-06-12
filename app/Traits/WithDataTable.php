@@ -26,10 +26,28 @@ trait WithDataTable {
                     ])
                 ];
                 break;
+            case 'turno':
+                $turnos = $this->model::search($this->search)
+                    ->orderBy($this->sortField, $this->sortAsc ? 'asc' : 'desc')
+                    ->paginate($this->perPage);
+
+                return [
+                    "view" => 'livewire.table.turno',
+                    "turnos" => $turnos,
+                    "data" => array_to_object([
+                        'href' => [
+                            'create_new' => route('turno.new'),
+                            'create_new_text' => 'Nuevo Turno',
+                            'export' => '#',
+                            'export_text' => 'Exportar'
+                        ]
+                    ])
+                ];
+                
 
             default:
                 # code...
                 break;
-        }
+        } 
     }
 }

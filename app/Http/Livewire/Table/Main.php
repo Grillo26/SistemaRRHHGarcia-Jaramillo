@@ -17,6 +17,7 @@ class Main extends Component
     public $sortField = "id";
     public $sortAsc = false;
     public $search = '';
+    public $request= 0;
 
     protected $listeners = [ "deleteItem" => "delete_item" ];
 
@@ -52,6 +53,7 @@ class Main extends Component
 
     public function render()
     {
+        
         $data = $this->get_pagination_data();
 
         return view($data['view'], $data);
