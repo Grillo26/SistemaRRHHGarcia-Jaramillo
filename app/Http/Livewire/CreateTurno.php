@@ -14,7 +14,21 @@ class CreateTurno extends Component
     public $button;
 
     
+    protected function getRules()
+    {
+        $rules = ($this->action == "updateTurno") ? [
+            'turno.nombreTurno' => 'required|min:8|',
+            'turno.descripcion' => 'required|min:8|',
+        ] : [
+            'user.password' => 'required|min:8|confirmed',
+            'user.password_confirmation' => 'required' // livewire need this
+        ];
 
+        return array_merge([
+            'turno.nombreTurno' => 'required|min:3',
+            'turno.descripcion' => 'required|min:3'
+        ], $rules);
+    }
     public function createTurno ()
     {
 
@@ -42,7 +56,7 @@ class CreateTurno extends Component
     public function mount ()
     {
         if (!$this->turno && $this->turnoId) {
-            $this->turno = Turno::find($this->turnoId);
+                $this->turno = Turno::find($this->turnoId);
         }
 
         $this->button = create_button($this->action, "Turno");

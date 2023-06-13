@@ -15,12 +15,13 @@
             <div class="form-group col-span-6 sm:col-span-5">
                 <x-jet-label for="nombreTurno" value="{{ __('Nombre Turno') }}" />
                 <small>Nombre de Turno</small>
-                <x-jet-input id="nombreTurno" type="text" class="mt-1 block w-full form-control shadow-none" wire:model.defer="turno.nombreTurno" />
+                <x-jet-input id="nombreTurno" type="text" class="mt-1 block w-full form-control shadow-none"  wire:model.defer="turno.nombreTurno" />
                 <x-jet-input-error for="turno.nombreTurno" class="mt-2" />
+                
             </div>
 
             <div class="form-group col-span-6 sm:col-span-5">
-                <x-jet-label for="descripcion" value="{{ __('Descripcion de Turno') }}" />
+                <x-jet-label for="descripcion" value="{{ __('Descripcion ') }}" />
                 <small>Descripción de Turno</small>
                 <x-jet-input id="descripcion" type="text" class="mt-1 block w-full form-control shadow-none" wire:model.defer="turno.descripcion" />
                 <x-jet-input-error for="turno.descripcion" class="mt-2" />
