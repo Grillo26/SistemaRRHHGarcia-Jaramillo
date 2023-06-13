@@ -4,8 +4,8 @@
         <div class="section-header-breadcrumb">
             
         <div class="breadcrumb-item active"><a href="{{ route('dashboard') }}">Dashboard</a></div>
-        <div class="breadcrumb-item"><a href="#">Usuario</a></div>
-        <div class="breadcrumb-item"><a href="{{ route('turno') }}">Crear Usuario</a></div>
+        <div class="breadcrumb-item"><a href="turno">Turno</a></div>
+        <div class="breadcrumb-item"><a href="{{ route('turno.new') }}">Crear Turno</a></div>
         </div>
     </x-slot>
 
