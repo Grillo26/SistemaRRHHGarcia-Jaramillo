@@ -1,20 +1,38 @@
 <div id="form-create">
     <x-jet-form-section :submit="$action" class="mb-4">
         <x-slot name="title">
-            {{ __('Turnos') }}
+            {{ __('Turnos de Trabajo') }}
 
         </x-slot>
 
         <x-slot name="description">
-            {{ __('Complete los siguientes datos y presione "Submit" para crear nuevos turnos') }} 
+            @if ($action == "createTurno")
+            {{ __('Complete los siguientes datos para registrar un nuevo turno. Nota: lea correctamente los campos y verifique si están escritos de
+                manera adecuada dentro del formulario.') }} 
+            
+            @endif
+
+            @if($action == "updateTurno")
+            {{ __('Complete los siguientes datos para editar el turno que seleccionó. Nota: lea correctamente los campos y verifique  si están escritos de
+                manera adecuada dentro del formulario.') }} 
+            
+            @endif
         </x-slot>
 
 
         <x-slot name="form">
         
             <div class="form-group col-span-6 sm:col-span-5">
+                
                 <x-jet-label for="nombreTurno" value="{{ __('Nombre Turno') }}" />
-                <small>Nombre de Turno</small>
+                
+                @if($action == "updateTurno")
+                <small>Edite el nombre del horario o turno de trabajo</small>
+                @endif
+                @if($action == "createTurno")
+                <small>Ingrese un nombre de horario o turno de trabajo</small>
+                @endif
+                
                 <x-jet-input id="nombreTurno" type="text" class="mt-1 block w-full form-control shadow-none"  wire:model.defer="turno.nombreTurno" />
                 <x-jet-input-error for="turno.nombreTurno" class="mt-2" />
                 
@@ -22,13 +40,11 @@
 
             <div class="form-group col-span-6 sm:col-span-5">
                 <x-jet-label for="descripcion" value="{{ __('Descripcion ') }}" />
-                <small>Descripción de Turno</small>
+                <small>Descripción del turno, en horas minutos, etc.</small>
                 <x-jet-input id="descripcion" type="text" class="mt-1 block w-full form-control shadow-none" wire:model.defer="turno.descripcion" />
                 <x-jet-input-error for="turno.descripcion" class="mt-2" />
             </div>
            
-        
-        
         </x-slot>
 
         <x-slot name="actions">
