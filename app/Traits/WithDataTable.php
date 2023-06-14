@@ -48,13 +48,12 @@ trait WithDataTable {
                 $produccions = $this->model::search($this->search)
                         ->orderBy($this->sortField, $this->sortAsc ? 'asc' : 'desc')
                         ->paginate($this->perPage);
-                $turnos = $this->model::get();
+                $turnos = Turno::get(); //Extrayendo de otra tabla
     
                 return [
                         "view" => 'livewire.table.produccion',
-                        "produccions" => $produccions,[
-                            'turnos'=>Turno::get()
-                        ],
+                        "produccions" => $produccions,
+                        "turnos"=>$turnos,
                         "data" => array_to_object([
                             'href' => [
                                 'create_new' => route('produccion.new'),

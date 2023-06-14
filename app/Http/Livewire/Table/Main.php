@@ -11,10 +11,7 @@ class Main extends Component
     use WithPagination, WithDataTable;
 
     public $model;
-    public $model1;
     public $name;
-    public $name1;
-
     public $perPage = 10;
     public $sortField = "id";
     public $sortAsc = false;
