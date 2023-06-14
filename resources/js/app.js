@@ -11,7 +11,7 @@ function dataTableController (id) {
                 showCancelButton: true,
                 confirmButtonColor: '#0E4D46',
                 cancelButtonColor: '#d33',
-                confirmButtonText: 'Yes, delete it!'
+                confirmButtonText: 'Sí, borrar esto'
             }).then((result) => {
                 if (result.isConfirmed) {
                     Livewire.emit('deleteItem', this.id);
@@ -20,14 +20,14 @@ function dataTableController (id) {
         }
     }
 }
-
+ 
 function dataTableMainController () {
     return {
         setCallback() {
             Livewire.on('deleteResult', (result) => {
                 if (result.status) {
                     Swal.fire(
-                        'Deleted!',
+                        'Eliminado!',
                         result.message,
                         'success'
                     );
