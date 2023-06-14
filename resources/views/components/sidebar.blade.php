@@ -26,6 +26,12 @@ $links = [
         "text" => "Turnos",
         "icon" => "fas fa-chart-line",
         "is_multi" => false,
+    ],
+    [
+        "href" => "produccion",
+        "text" => "Producción",
+        "icon" => "fas fa-chart-line",
+        "is_multi" => false,
     ]
 ];
 $navigation_links = array_to_object($links);

@@ -16,7 +16,7 @@ class Turno extends Model
     ];
 
     //relacion uno a muchos
-    public function productos(){
+    public function produccions(){
         return $this->hasMany('App\Models\Produccion');
     }
     

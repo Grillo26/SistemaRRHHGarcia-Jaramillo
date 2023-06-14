@@ -10,14 +10,27 @@ class Produccion extends Model
     use HasFactory;
     protected $fillable = [
         'id',
-        'codigo_producto',
-        'nombre_producto',
-        'unidad_idUnidad',
-        'grupo_idGrupo',
-        'cuenta_idCuenta'
+        'granoDeSoya',
+        'merma',
+        'idTurno',
+        'fecha',
+        'humedad',
+        'bolsas',
+        'aceite'
     ];
 
-    public function unidads(){
+    public function turnos(){
         return $this->belongsTo('App\Models\Turno');
+    }
+    public static function search($query)
+    {
+        return empty($query) ? static::query()
+            : static::where('granoDeSoya', 'like', '%'.$query.'%')
+                ->orWhere('merma', 'like', '%'.$query.'%')
+                ->orWhere('idTurno', 'like', '%'.$query.'%')
+                ->orWhere('fecha', 'like', '%'.$query.'%')
+                ->orWhere('humedad', 'like', '%'.$query.'%')
+                ->orWhere('bolsas', 'like', '%'.$query.'%')
+                ->orWhere('aceite', 'like', '%'.$query.'%');
     }
 }

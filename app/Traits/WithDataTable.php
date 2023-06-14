@@ -2,7 +2,7 @@
 
 namespace App\Traits;
 
-
+use App\Models\Turno;
 trait WithDataTable {
     
     public function get_pagination_data ()
@@ -43,7 +43,28 @@ trait WithDataTable {
                         ]
                     ])
                 ];
-                
+                break;
+            case 'produccion':
+                $produccions = $this->model::search($this->search)
+                        ->orderBy($this->sortField, $this->sortAsc ? 'asc' : 'desc')
+                        ->paginate($this->perPage);
+                $turnos = $this->model::get();
+    
+                return [
+                        "view" => 'livewire.table.produccion',
+                        "produccions" => $produccions,[
+                            'turnos'=>Turno::get()
+                        ],
+                        "data" => array_to_object([
+                            'href' => [
+                                'create_new' => route('produccion.new'),
+                                'create_new_text' => 'Nueva Produccion',
+                                'export' => '#',
+                                'export_text' => 'Exportar'
+                            ]
+                        ])
+                ];
+
 
             default:
                 # code...
