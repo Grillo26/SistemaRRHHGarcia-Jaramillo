@@ -60,7 +60,7 @@
                     <td>{{ $produccion->fecha }}</td>
                     <td>{{ $produccion->humedad }}</td>
                     <td>{{ $produccion->bolsas }}</td>
-                    <td>{{ $produccion->aceite }}</td>
+                    <td>{{ $produccion->aceite}}</td>
                     <td class="whitespace-no-wrap row-action--icon">
                         <a role="button" href="/produccion/edit/{{ $produccion->id }}" class="mr-3"><i class="fa fa-16px fa-pen"></i></a>
                         <a role="button" x-on:click.prevent="deleteItem" href="#"><i class="fa fa-16px fa-trash text-red-500"></i></a>

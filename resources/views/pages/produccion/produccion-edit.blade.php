@@ -7,12 +7,11 @@
         <div class="section-header-breadcrumb">
         <div class="breadcrumb-item active"><a href="{{ route('dashboard') }}">Dashboard</a></div>
             <div class="breadcrumb-item"><a href="#">Turno</a></div>
-            <div class="breadcrumb-item"><a href="{{ route('produccion') }}">Editar Producción</a></div>
+            <div class="breadcrumb-item"><a href="{{ route('turno') }}">Editar Producción</a></div>
         </div>
     </x-slot>
 
     <div>
-        <!--
-        <livewire:create-produccion action="updateProduccion" :turnoId="request()->produccionId" />-->
+        <livewire:create-produccion action="updateProduccion" :produccionId="request()->produccionId" />
     </div>
 </x-app-layout>

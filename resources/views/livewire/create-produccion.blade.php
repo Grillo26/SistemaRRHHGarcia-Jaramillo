@@ -61,7 +61,7 @@
                      
                     <select class="form-control selectric-items" style="width: 304px;" tabindex="-1" wire:model.defer="produccion.idTurno">
                         <div class="selectric-scroll">
-                            <option value="disabled">Seleccione el turno</option>
+                            <option selected >Seleccione el turno</option>
                             @foreach ( $turnos as $turno )    
                             <option  value="{{$turno->id}}" data-index="0">{{$turno->nombreTurno}}</option>
                             @endforeach 
@@ -73,7 +73,7 @@
                 <div class="form-group col-span-6 sm:col-span-5">
                     <x-jet-label for="fecha" value="{{ __('Fecha') }}" />
                     @if($action == "updateProduccion")
-                    <small>Edite el turno</small>
+                    <small>Edite la fecha</small>
                     @endif
                     @if($action == "createProduccion")
                     <small>Seleccione la fecha</small>

@@ -37,7 +37,7 @@ class createProduccion extends Component
         Produccion::create($this->produccion);
 
         $this->emit('saved');
-        $this->reset('turno'); 
+        $this->reset('produccion'); 
     }
 
     public function updateProduccion ()
@@ -46,13 +46,13 @@ class createProduccion extends Component
         Produccion::query()
             ->where('id', $this->produccionId)
             ->update([
-                "granoDeSoya" => $this->turno->nombreTurno,
-                "merma" => $this->turno->descripcion,
-                "idTurno" => $this->turno->descripcion,
-                "fecha" => $this->turno->descripcion,
-                "humedad" => $this->turno->descripcion,
-                "bolsas" => $this->turno->descripcion,
-                "aceite" => $this->turno->descripcion,
+                "granoDeSoya" => $this->produccion->granoDeSoya,
+                "merma" => $this->produccion->merma,
+                "idTurno" => $this->produccion->idTurno,
+                "fecha" => $this->produccion->fecha,
+                "humedad" => $this->produccion->humedad,
+                "bolsas" => $this->produccion->bolsas,
+                "aceite" => $this->produccion->aceite,
                 
             ]);
 
