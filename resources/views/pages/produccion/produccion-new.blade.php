@@ -12,4 +12,4 @@
     <div>
         <livewire:create-produccion action="createProduccion" /> 
     </div>
-</x-app-layout>
+</x-app-layout> 

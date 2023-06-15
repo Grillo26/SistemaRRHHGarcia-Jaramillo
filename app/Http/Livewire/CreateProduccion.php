@@ -2,16 +2,18 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\Produccion;
 use App\Models\Turno;
 use Illuminate\Support\Facades\Hash;
 use Livewire\Component;
 
-class CreateTurno extends Component
+class createProduccion extends Component
 {
     public $produccion;
     public $produccionId;
     public $action;
     public $button;
+    public $turno;
 
     
     protected function getRules()
@@ -60,7 +62,7 @@ class CreateTurno extends Component
 
     public function mount ()
     {
-        if (!$this->producion && $this->produccionId) {
+        if (!$this->produccion && $this->produccionId) {
                 $this->produccion = Produccion::find($this->produccionId);
         }
 
@@ -69,6 +71,9 @@ class CreateTurno extends Component
 
     public function render()
     {
-        return view('livewire.create-produccion');
+        return view('livewire.create-produccion',[
+            'turnos'=>Turno::get()
+        ]
+    );
     }
 }

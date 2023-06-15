@@ -23,18 +23,105 @@
         <x-slot name="form">
         
             <div class="form-group col-span-6 sm:col-span-5">
-                
-                <x-jet-label for="" value="{{ __('Nombre Turno') }}" />
-                
-                @if($action == "updateProduccion")
-                <small>Edite el nombre del horario o turno de trabajo</small>
-                @endif
-                @if($action == "createProduccion")
-                <small>Ingrese un nombre de horario o turno de trabajo</small>
-                @endif
-                
-                <x-jet-input id="nombreTurno" type="text" class="mt-1 block w-full form-control shadow-none"  wire:model.defer="turno.nombreTurno" />
-                <x-jet-input-error for="turno.nombreTurno" class="mt-2" />
+                <!--GRANO DE SOYA-->
+                <div class="form-group col-span-6 sm:col-span-5">
+                    <x-jet-label for="granoDeSoya" value="{{ __('Grano de Soya') }}" />
+                    @if($action == "updateProduccion")
+                    <small>Edite la cantidad de grano de soya</small>
+                    @endif
+                    @if($action == "createProduccion")
+                    <small>Ingrese cantidad de grano de soya</small>
+                    @endif
+                    <x-jet-input id="granoDeSoya" type="text" class="mt-1 block w- form-control shadow-none"  wire:model.defer="produccion.granoDeSoya" />
+                    <x-jet-input-error for="produccion.granoDeSoya" class="mt-2" />
+                </div>
+
+                <!--MERMA-->
+                <div class="form-group col-span-6 sm:col-span-5">
+                    <x-jet-label for="merma" value="{{ __('Merma') }}" />
+                    @if($action == "updateProduccion")
+                    <small>Edite la cantidad de merma</small>
+                    @endif
+                    @if($action == "createProduccion")
+                    <small>Ingrese cantidad de merma</small>
+                    @endif
+                    <x-jet-input id="merma" type="text" class="mt-1 block w-full form-control shadow-none"  wire:model.defer="produccion.merma" />
+                    <x-jet-input-error for="produccion.merma" class="mt-2" />
+                </div>
+
+                <!--TURNO-->
+                <div class="form-group col-span-6 sm:col-span-5">
+                    <x-jet-label for="turno" value="{{ __('Turno') }}" />
+                    @if($action == "updateProduccion")
+                    <small>Edite el turno</small>
+                    @endif
+                    @if($action == "createProduccion")
+                    <small>Seleccione el turno</small>
+                    @endif
+                     
+                    <select class="form-control selectric-items" style="width: 304px;" tabindex="-1" wire:model.defer="produccion.idTurno">
+                        <div class="selectric-scroll">
+                            <option value="disabled">Seleccione el turno</option>
+                            @foreach ( $turnos as $turno )    
+                            <option  value="{{$turno->id}}" data-index="0">{{$turno->nombreTurno}}</option>
+                            @endforeach 
+                        </div>
+                    </select>
+                </div>
+
+                <!--FECHA-->
+                <div class="form-group col-span-6 sm:col-span-5">
+                    <x-jet-label for="fecha" value="{{ __('Fecha') }}" />
+                    @if($action == "updateProduccion")
+                    <small>Edite el turno</small>
+                    @endif
+                    @if($action == "createProduccion")
+                    <small>Seleccione la fecha</small>
+                    @endif
+                    <input type="date" name="fecha" class="form-control" value="{{ now()->format('Y-m-d') }}" style="width: 304px;" wire:model.defer="produccion.fecha">
+
+                </div>
+
+                <!--HUMEDAD-->
+                <div class="form-group col-span-6 sm:col-span-5">
+                    <x-jet-label for="humedad" value="{{ __('Humedad') }}" />
+                    @if($action == "updateProduccion")
+                    <small>Edite la cantidad de humedad en %</small>
+                    @endif
+                    @if($action == "createProduccion")
+                    <small>Ingrese cantidad de humedad en %</small>
+                    @endif
+                    <x-jet-input id="humedad" type="text" class="mt-1 block w-full form-control shadow-none"  wire:model.defer="produccion.humedad" />
+                    <x-jet-input-error for="produccion.humedad" class="mt-2" />
+                </div>
+
+                <!--BOLSAS-->
+                <div class="form-group col-span-6 sm:col-span-5">
+                    <x-jet-label for="bolsas" value="{{ __('Bolsas') }}" />
+                    @if($action == "updateProduccion")
+                    <small>Edite la cantidad de bolsas</small>
+                    @endif
+                    @if($action == "createProduccion")
+                    <small>Ingrese cantidad de bolsas</small>
+                    @endif
+                    <x-jet-input id="bolsas" type="text" class="mt-1 block w-full form-control shadow-none"  wire:model.defer="produccion.bolsas" />
+                    <x-jet-input-error for="produccion.bolsas" class="mt-2" />
+                </div>
+
+                <!--ACEITE-->
+                <div class="form-group col-span-6 sm:col-span-5">
+                    <x-jet-label for="aceite" value="{{ __('Aceite') }}" />
+                    @if($action == "updateProduccion")
+                    <small>Edite la cantidad de aceite</small>
+                    @endif
+                    @if($action == "createProduccion")
+                    <small>Ingrese cantidad de aceite</small>
+                    @endif
+                    <x-jet-input id="aceite" type="text" class="mt-1 block w-full form-control shadow-none"  wire:model.defer="produccion.aceite" />
+                    <x-jet-input-error for="produccion.aceite" class="mt-2" />
+                </div>
+
+
                 
             </div>
             
