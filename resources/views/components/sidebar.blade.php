@@ -41,12 +41,12 @@ $navigation_links = array_to_object($links);
     <aside id="sidebar-wrapper">
         <div class="sidebar-brand">
             <a href="{{ route('dashboard') }}">
-                <img class="d-inline-block" width="70px" height="80px" src="{{URL::asset('img/logosidebar.png')}}" alt="">
+                <img class="d-inline-block" width="180px" height="" src="{{URL::asset('img/logosidebar.png')}}" alt="">
             </a>
         </div>
         <div class="sidebar-brand sidebar-brand-sm">
             <a href="{{ route('dashboard') }}">
-                <img class="d-inline-block" width="50px" height="80px" src="{{URL::asset('img/logosidebar.png')}}" alt="">
+                <img class="d-inline-block" width="50px" height="80px" src="{{URL::asset('img/logosimple.png')}}" alt="">
             </a>
         </div>
         @foreach ($navigation_links as $link)
