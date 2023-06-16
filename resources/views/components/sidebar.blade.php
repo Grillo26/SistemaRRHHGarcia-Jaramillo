@@ -24,7 +24,7 @@ $links = [
     [
         "href" => "turno",
         "text" => "Turnos",
-        "icon" => "fas fa-chart-line",
+        "icon" => "fas fa-calendar",
         "is_multi" => false,
     ],
     [

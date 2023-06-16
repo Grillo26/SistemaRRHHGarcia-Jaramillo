@@ -50,7 +50,7 @@
                 </div>
             </div>
 
-            <div class=" grid grid-cols-1 gap-4 sm:grid-cols-3">
+            <div class=" grid grid-cols-1 gap-4 sm:grid-cols-3 pt-3">
 
                 <!--TURNO-->
                 <div class="">
@@ -62,7 +62,7 @@
                     <small>Seleccione el turno</small>
                     @endif
                      
-                    <select class="form-control selectric-items" style="width: 304px;" tabindex="-1" wire:model.defer="produccion.idTurno">
+                    <select class="form-control selectric-items"  tabindex="-1" wire:model.defer="produccion.idTurno">
                         <div class="selectric-scroll">
                             <option selected >Seleccione el turno</option>
                             @foreach ( $turnos as $turno )    
@@ -81,7 +81,7 @@
                     @if($action == "createProduccion")
                     <small>Seleccione la fecha</small>
                     @endif
-                    <input type="date" name="fecha" class="form-control" value="{{ now()->format('Y-m-d') }}" style="width: 304px;" wire:model.defer="produccion.fecha">
+                    <input type="date" name="fecha" class="form-control" value="{{ now()->format('Y-m-d') }}"  wire:model.defer="produccion.fecha">
 
                 </div>
 
@@ -99,7 +99,7 @@
                 </div>
             </div>
 
-            <div class=" grid grid-cols-1 gap-4 sm:grid-cols-2">
+            <div class=" grid grid-cols-1 gap-4 sm:grid-cols-2 pt-3">
 
                 <!--BOLSAS-->
                 <div class="">

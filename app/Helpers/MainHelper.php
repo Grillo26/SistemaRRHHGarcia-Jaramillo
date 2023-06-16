@@ -36,7 +36,7 @@ if (!function_exists('create_button')) {
         return [
             'submit_text' => ($action == "update") ? "Actualizar" : "Guardar",
             'submit_response' => ($action == "update") ? "Actualizado." : "Guardado.",
-            'submit_response_notyf' => ($action == "update") ? "El ".$model." ha sido actualizado" : $model." agregado correctamente"
+            'submit_response_notyf' => ($action == "update") ? $model." ha sido actualizado" : $model." agregado correctamente"
         ];
     }
 }
