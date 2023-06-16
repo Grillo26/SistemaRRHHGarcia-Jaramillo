@@ -22,9 +22,9 @@
 
         <x-slot name="form">
         
-            <div class="form-group col-span-6 sm:col-span-5">
+            <div class=" grid grid-cols-1 gap-4 sm:grid-cols-2">
                 <!--GRANO DE SOYA-->
-                <div class="form-group col-span-6 sm:col-span-5">
+                <div class="">
                     <x-jet-label for="granoDeSoya" value="{{ __('Grano de Soya') }}" />
                     @if($action == "updateProduccion")
                     <small>Edite la cantidad de grano de soya</small>
@@ -37,7 +37,7 @@
                 </div>
 
                 <!--MERMA-->
-                <div class="form-group col-span-6 sm:col-span-5">
+                <div class="">
                     <x-jet-label for="merma" value="{{ __('Merma') }}" />
                     @if($action == "updateProduccion")
                     <small>Edite la cantidad de merma</small>
@@ -48,9 +48,12 @@
                     <x-jet-input id="merma" type="text" class="mt-1 block w-full form-control shadow-none"  wire:model.defer="produccion.merma" />
                     <x-jet-input-error for="produccion.merma" class="mt-2" />
                 </div>
+            </div>
+
+            <div class=" grid grid-cols-1 gap-4 sm:grid-cols-3">
 
                 <!--TURNO-->
-                <div class="form-group col-span-6 sm:col-span-5">
+                <div class="">
                     <x-jet-label for="turno" value="{{ __('Turno') }}" />
                     @if($action == "updateProduccion")
                     <small>Edite el turno</small>
@@ -70,7 +73,7 @@
                 </div>
 
                 <!--FECHA-->
-                <div class="form-group col-span-6 sm:col-span-5">
+                <div class="">
                     <x-jet-label for="fecha" value="{{ __('Fecha') }}" />
                     @if($action == "updateProduccion")
                     <small>Edite la fecha</small>
@@ -83,7 +86,7 @@
                 </div>
 
                 <!--HUMEDAD-->
-                <div class="form-group col-span-6 sm:col-span-5">
+                <div class="">
                     <x-jet-label for="humedad" value="{{ __('Humedad') }}" />
                     @if($action == "updateProduccion")
                     <small>Edite la cantidad de humedad en %</small>
@@ -94,9 +97,12 @@
                     <x-jet-input id="humedad" type="text" class="mt-1 block w-full form-control shadow-none"  wire:model.defer="produccion.humedad" />
                     <x-jet-input-error for="produccion.humedad" class="mt-2" />
                 </div>
+            </div>
+
+            <div class=" grid grid-cols-1 gap-4 sm:grid-cols-2">
 
                 <!--BOLSAS-->
-                <div class="form-group col-span-6 sm:col-span-5">
+                <div class="">
                     <x-jet-label for="bolsas" value="{{ __('Bolsas') }}" />
                     @if($action == "updateProduccion")
                     <small>Edite la cantidad de bolsas</small>
@@ -109,7 +115,7 @@
                 </div>
 
                 <!--ACEITE-->
-                <div class="form-group col-span-6 sm:col-span-5">
+                <div class="">
                     <x-jet-label for="aceite" value="{{ __('Aceite') }}" />
                     @if($action == "updateProduccion")
                     <small>Edite la cantidad de aceite</small>
@@ -119,12 +125,9 @@
                     @endif
                     <x-jet-input id="aceite" type="text" class="mt-1 block w-full form-control shadow-none"  wire:model.defer="produccion.aceite" />
                     <x-jet-input-error for="produccion.aceite" class="mt-2" />
-                </div>
-
-
-                
+                </div>         
             </div>
-            
+      
            
         </x-slot>
 
