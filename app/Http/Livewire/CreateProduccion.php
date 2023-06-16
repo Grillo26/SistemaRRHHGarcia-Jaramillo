@@ -21,6 +21,11 @@ class createProduccion extends Component
         $rules = ($this->action == "updateProduccion") ? [
             'produccion.granoDeSoya' => 'required|min:8|',
             'produccion.merma' => 'required|min:8|',
+            'produccion.idTurno' => 'required|min:8|',
+            'produccion.fecha' => 'required|min:8|',
+            'produccion.humedad' => 'required|min:8|',
+            'produccion.bolsas' => 'required|min:8|',
+            'produccion.aceite' => 'required|min:8|',
         ] : [
             'user.password' => 'required|min:8|confirmed',
             'user.password_confirmation' => 'required' // livewire need this
