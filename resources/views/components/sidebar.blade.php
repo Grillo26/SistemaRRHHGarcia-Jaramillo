@@ -6,6 +6,18 @@ $links = [
         "icon" => "fas fa-chart-line",
         "is_multi" => false,
     ],
+    [
+        "href" => "produccion",
+        "text" => "Producción",
+        "icon" => "fas fa-chart-line",
+        "is_multi" => false,
+    ],
+    [
+        "href" => "turno",
+        "text" => "Turnos",
+        "icon" => "fas fa-calendar",
+        "is_multi" => false,
+    ],
 
     [
         "href" => [
@@ -20,19 +32,9 @@ $links = [
         ],
         "text" => "Usuarios",
         "is_multi" => true,
-    ],
-    [
-        "href" => "turno",
-        "text" => "Turnos",
-        "icon" => "fas fa-calendar",
-        "is_multi" => false,
-    ],
-    [
-        "href" => "produccion",
-        "text" => "Producción",
-        "icon" => "fas fa-chart-line",
-        "is_multi" => false,
     ]
+    
+    
 ];
 $navigation_links = array_to_object($links);
 @endphp
