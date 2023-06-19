@@ -1,152 +1,61 @@
 <div class="p-6 sm:px-20 bg-white border-b border-gray-200">
-<div class="row">
-              <div class="col-sm-6 col-lg-3">
-                <div class="card">
-                  <div class="card-body">
-                    <div class="text-value">89.9%</div>
-                    <div>Lorem ipsum...</div>
-                    <div class="progress progress-xs my-2">
-                      <div class="progress-bar bg-success" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                    </div><small class="text-muted">Lorem ipsum dolor sit amet enim.</small>
-                  </div>
-                </div>
-              </div>
-              <!-- /.col-->
-              <div class="col-sm-6 col-lg-3">
-                <div class="card">
-                  <div class="card-body">
-                    <div class="text-value">12.124</div>
-                    <div>Lorem ipsum...</div>
-                    <div class="progress progress-xs my-2">
-                      <div class="progress-bar bg-info" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                    </div><small class="text-muted">Lorem ipsum dolor sit amet enim.</small>
-                  </div>
-                </div>
-              </div>
-              <!-- /.col-->
-              <div class="col-sm-6 col-lg-3">
-                <div class="card">
-                  <div class="card-body">
-                    <div class="text-value">$98.111,00</div>
-                    <div>Lorem ipsum...</div>
-                    <div class="progress progress-xs my-2">
-                      <div class="progress-bar bg-warning" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                    </div><small class="text-muted">Lorem ipsum dolor sit amet enim.</small>
-                  </div>
-                </div>
-              </div>
-              <!-- /.col-->
-              <div class="col-sm-6 col-lg-3">
-                <div class="card">
-                  <div class="card-body">
-                    <div class="text-value">2 TB</div>
-                    <div>Lorem ipsum...</div>
-                    <div class="progress progress-xs my-2">
-                      <div class="progress-bar bg-danger" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                    </div><small class="text-muted">Lorem ipsum dolor sit amet enim.</small>
-                  </div>
-                </div>
-              </div>
-              <!-- /.col-->
-            </div>
+  <div class="row">
 
-            <div class="row">
-              <div class="col-6 col-lg-3">
-                <div class="card">
-                  <div class="card-body p-3 d-flex align-items-center"><i class="fa fa-cogs bg-primary p-3 font-2xl mr-3"></i>
-                    <div>
-                      <div class="text-value-sm text-primary">$1.999,50</div>
-                      <div class="text-muted text-uppercase font-weight-bold small">Income</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <!-- /.col-->
-              <div class="col-6 col-lg-3">
-                <div class="card">
-                  <div class="card-body p-3 d-flex align-items-center"><i class="fa fa-laptop bg-info p-3 font-2xl mr-3"></i>
-                    <div>
-                      <div class="text-value-sm text-info">$1.999,50</div>
-                      <div class="text-muted text-uppercase font-weight-bold small">Income</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <!-- /.col-->
-              <div class="col-6 col-lg-3">
-                <div class="card">
-                  <div class="card-body p-3 d-flex align-items-center"><i class="fa fa-moon-o bg-warning p-3 font-2xl mr-3"></i>
-                    <div>
-                      <div class="text-value-sm text-warning">$1.999,50</div>
-                      <div class="text-muted text-uppercase font-weight-bold small">Income</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <!-- /.col-->
-              <div class="col-6 col-lg-3">
-                <div class="card">
-                  <div class="card-body p-3 d-flex align-items-center"><i class="fa fa-bell bg-danger p-3 font-2xl mr-3"></i>
-                    <div>
-                      <div class="text-value-sm text-danger">$1.999,50</div>
-                      <div class="text-muted text-uppercase font-weight-bold small">Income</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <!-- /.col-->
-              <div class="col-6 col-lg-3">
-                <div class="card">
-                  <div class="card-body p-3 d-flex align-items-center"><i class="fa fa-cogs bg-primary p-3 font-2xl mr-3"></i>
-                    <div>
-                      <div class="text-value-sm text-primary">$1.999,50</div>
-                      <div class="text-muted text-uppercase font-weight-bold small">Income</div>
-                    </div>
-                  </div>
-                  <div class="card-footer px-3 py-2"><a class="btn-block text-muted d-flex justify-content-between align-items-center" href="#"><span class="small font-weight-bold">View More</span><i class="fa fa-angle-right"></i></a></div>
-                </div>
-              </div>
-              <!-- /.col-->
-              <div class="col-6 col-lg-3">
-                <div class="card">
-                  <div class="card-body p-3 d-flex align-items-center"><i class="fa fa-laptop bg-info p-3 font-2xl mr-3"></i>
-                    <div>
-                      <div class="text-value-sm text-info">$1.999,50</div>
-                      <div class="text-muted text-uppercase font-weight-bold small">Income</div>
-                    </div>
-                  </div>
-                  <div class="card-footer px-3 py-2"><a class="btn-block text-muted d-flex justify-content-between align-items-center" href="#"><span class="small font-weight-bold">View More</span><i class="fa fa-angle-right"></i></a></div>
-                </div>
-              </div>
-              <!-- /.col-->
-              <div class="col-6 col-lg-3">
-                <div class="card">
-                  <div class="card-body p-3 d-flex align-items-center"><i class="fa fa-moon-o bg-warning p-3 font-2xl mr-3"></i>
-                    <div>
-                      <div class="text-value-sm text-warning">$1.999,50</div>
-                      <div class="text-muted text-uppercase font-weight-bold small">Income</div>
-                    </div>
-                  </div>
-                  <div class="card-footer px-3 py-2"><a class="btn-block text-muted d-flex justify-content-between align-items-center" href="#"><span class="small font-weight-bold">View More</span><i class="fa fa-angle-right"></i></a></div>
-                </div>
-              </div>
-              <!-- /.col-->
-              <div class="col-6 col-lg-3">
-                <div class="card">
-                  <div class="card-body p-3 d-flex align-items-center"><i class="fa fa-bell bg-danger p-3 font-2xl mr-3"></i>
-                    <div>
-                      <div class="text-value-sm text-danger">$1.999,50</div>
-                      <div class="text-muted text-uppercase font-weight-bold small">Income</div>
-                    </div>
-                  </div>
-                  <div class="card-footer px-3 py-2"><a class="btn-block text-muted d-flex justify-content-between align-items-center" href="#"><span class="small font-weight-bold">View More</span><i class="fa fa-angle-right"></i></a></div>
-                </div>
-              </div>
-              <!-- /.col-->
+    <!--item total producciones-->
+    <div class="col-sm-6 col-lg-3">
+      <div class="card">
+        <div class="card-body">
+          <div class="text-value">89.9%</div> <!--Warning , info, danger-->
+          <div>Producción</div>
+          <div class="progress progress-xs my-2">
+            <div class="progress-bar bg-success" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+          </div><small class="text-muted">Total de producciones en el mes de mayo</small>
+        </div>
+      </div>
+    </div>
 
-              <!--CHARTS ESTADISTICA-->
-              <div class="container">
-    <div class="row">
+    <!--item total producciones-->
+    <div class="col-sm-6 col-lg-3">
+      <div class="card">
+        <div class="card-body">
+          <div class="text-value">89.9%</div> <!--Warning , info, danger-->
+          <div>Producción</div>
+          <div class="progress progress-xs my-2">
+            <div class="progress-bar bg-warning" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+          </div><small class="text-muted">Total de producciones en el mes de mayo</small>
+        </div>
+      </div>
+    </div>
+
+    <!--item total producciones-->
+    <div class="col-sm-6 col-lg-3">
+      <div class="card">
+        <div class="card-body">
+          <div class="text-value">89.9%</div> <!--Warning , info, danger-->
+          <div>Producción</div>
+          <div class="progress progress-xs my-2">
+            <div class="progress-bar bg-info" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+          </div><small class="text-muted">Total de producciones en el mes de mayo</small>
+        </div>
+      </div>
+    </div>
+
+    <!--item total producciones-->
+    <div class="col-sm-6 col-lg-3">
+      <div class="card">
+        <div class="card-body">
+          <div class="text-value">89.9%</div> <!--Warning , info, danger-->
+          <div>Producción</div>
+          <div class="progress progress-xs my-2">
+            <div class="progress-bar bg-danger" role="progressbar" style="width: 80%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+          </div><small class="text-muted">Total de producciones en el mes de mayo</small>
+        </div>
+      </div>
+    </div>
+
+    <!--CHARTS ESTADISTICA-->
+    <div class="container">
+      <div class="row">
         <div class="col-md-6">
             <div class="panel panel-default">
                 <div class="panel-heading">
@@ -155,7 +64,7 @@
                 <div class="panel-body">
                     <div id="chart1"></div>
                 </div>
-            </div>
+            </div> 
         </div>
         <div class="col-md-6">
             <div class="panel panel-default">
@@ -196,7 +105,7 @@
 
 <script type="text/javascript">
     jQuery(function ($) {
-        var data1 = [12, 3, 4, 2, 12, 3, 4, 17, 22, 34, 54, 67];
+        var data1 = [30, 3, 4, 2, 12, 3, 4, 17, 22, 34, 54, 67];
         var data2 = [3, 9, 12, 14, 22, 32, 45, 12, 67, 45, 55, 7];
         var data3 = [23, 19, 11, 134, 242, 352, 435, 22, 637, 445, 555, 57];
         var data4 = [13, 19, 112, 114, 212, 332, 435, 132, 67, 45, 55, 7];

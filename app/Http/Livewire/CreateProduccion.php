@@ -18,27 +18,26 @@ class createProduccion extends Component
     
     protected function getRules()
     {
-        $rules = ($this->action == "updateProduccion") ? [
-            'produccion.granoDeSoya' => 'required|min:8|',
-            'produccion.merma' => 'required|min:8|',
-            'produccion.idTurno' => 'required|min:8|',
-            'produccion.fecha' => 'required|min:8|',
-            'produccion.humedad' => 'required|min:8|',
-            'produccion.bolsas' => 'required|min:8|',
-            'produccion.aceite' => 'required|min:8|',
+        $rules = ($this->action == "updateProduccion". $this->produccionId) ? [ 
+            'produccion.granoDeSoya' => 'required|min:1|',
+            'produccion.merma' => 'required|min:1|'
         ] : [
-            'user.password' => 'required|min:8|confirmed',
-            'user.password_confirmation' => 'required' // livewire need this
+            'produccion.granoDeSoya' => 'required|digits|min:1|',
+            'produccion.merma' => 'required|min:1|',
+            'produccion.idTurno' => 'required|min:1|',
+            'produccion.fecha' => 'required|min:1|',
+            'produccion.humedad' => 'required|min:1|',
+            'produccion.bolsas' => 'required|min:1|',
+            'produccion.aceite' => 'required|min:1|'
         ];
 
         return array_merge([
-            'produccion.granoDeSoya' => 'required|min:3',
-            'produccion.merma' => 'required|min:3'
+            'produccion.granoDeSoya' => 'required|digits|min:1|',
+            'produccion.merma' => 'required|min:1'
         ], $rules);
     }
     public function createProduccion ()
     {
-
         Produccion::create($this->produccion);
 
         $this->emit('saved');
