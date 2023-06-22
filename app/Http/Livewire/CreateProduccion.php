@@ -15,6 +15,7 @@ class createProduccion extends Component
     public $button;
     public $turno;
     public $expeller;
+    public $cantidad;
 
     
     protected function getRules()
@@ -41,21 +42,16 @@ class createProduccion extends Component
             'produccion.merma' => 'required|min:1'
         ], $rules);
     }
-
-    public function guardarExpeller(){
-        $expeller = $this->produccion->bolsas * 50;
-        // Aquí debes almacenar el valor de $expeller en la columna 'produccion' de la tabla correspondiente utilizando el modelo Eloquent.
-
-        // Ejemplo:
-        // $modelo = new Modelo();
-        // $modelo->produccion = $expeller;
-        // $modelo->save();
+    public function updatedCantidad()
+    {
+        $this->expeller = $this->cantidad * 50;
     }
-
-
     public function createProduccion ()
     {
-        Produccion::create($this->produccion);
+        $data = $this->produccion;
+        $data['expeller'] = $this->expeller;
+    
+        Produccion::create($data);
 
         $this->emit('saved');
         $this->reset('produccion'); 
@@ -77,6 +73,7 @@ class createProduccion extends Component
                 "aceite" => $this->produccion->aceite,
                 "grasas" => $this->produccion->grasas,
                 "luz" => $this->produccion->luz,
+                "expeller" => $this->expeller,
                 
             ]);
 

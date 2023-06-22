@@ -138,7 +138,7 @@
                     @if($action == "createProduccion")
                     <small>Ingrese cantidad de bolsas</small>
                     @endif
-                    <x-jet-input id="bolsas" type="text" class="mt-1 block w-full form-control shadow-none"  wire:model.defer="produccion.bolsas" />
+                    <x-jet-input id="bolsas" type="text" class="mt-1 block w-full form-control shadow-none"  wire:model="cantidad" wire:model.defer="produccion.bolsas"/>
                     <x-jet-input-error for="produccion.bolsas" class="mt-2" />
                 </div>
 
@@ -168,6 +168,15 @@
                     <x-jet-input-error for="produccion.luz" class="mt-2" />
                 </div>
                 
+            </div>
+            <div class=" grid grid-cols-1 gap-4 sm:grid-cols-3 pt-3">
+                <!--Expeller-->
+                <div class="">
+                    <x-jet-label for="Expeller" value="{{ __('Expeller') }}" />
+                    <x-jet-input id="expeller" type="text" class="mt-1 block w-full form-control shadow-none"  disabled value="{{$expeller}}"  />
+                    <x-jet-input-error for="produccion.expeller" class="mt-2" />
+                    
+                </div>
             </div>
       
         </x-slot>

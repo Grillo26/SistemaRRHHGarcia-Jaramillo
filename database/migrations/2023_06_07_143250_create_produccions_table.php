@@ -22,9 +22,11 @@ class CreateProduccionsTable extends Migration
             $table->date('fecha')->nullable();
             $table->decimal('humedad',8,2);
             $table->integer('bolsas');
+            $table->integer('expeller');
             $table->decimal('aceite',8,2);
             $table->decimal('grasas',8,2);
             $table->decimal('luz',8,2);
+
 
            
             $table->foreign('idTurno')

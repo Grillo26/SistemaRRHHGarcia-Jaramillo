@@ -17,6 +17,7 @@ class Produccion extends Model
         'fecha',
         'humedad',
         'bolsas',
+        'expeller',
         'aceite',
         'grasas',
         'luz'

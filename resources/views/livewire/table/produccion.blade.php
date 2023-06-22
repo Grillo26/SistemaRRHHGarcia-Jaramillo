@@ -37,6 +37,11 @@
                     @include('components.sort-icon', ['field' => 'bolsas'])
                 </a></th>
 
+                <th><a wire:click.prevent="sortBy('expeller')" role="button" href="#">
+                    Expeller
+                    @include('components.sort-icon', ['field' => 'expeller'])
+                </a></th>
+
                 <th><a wire:click.prevent="sortBy('aceite')" role="button" href="#">
                     Aceite
                     @include('components.sort-icon', ['field' => 'aceite'])
@@ -70,6 +75,7 @@
                     @endforeach
                     <td>{{ $produccion->humedad }}</td>
                     <td>{{ $produccion->bolsas }}</td>
+                    <td>{{ $produccion->expeller }}</td>
                     <td>{{ $produccion->aceite}}</td>
                     <td>{{ $produccion->grasas}}</td>
                     <td>{{ $produccion->luz}}</td>
