@@ -3,7 +3,7 @@ $links = [
     [
         "href" => "dashboard",
         "text" => "Dashboard",
-        "icon" => "fas fa-chart-line",
+        "icon" => "fas fa-chart-pie",
         "is_multi" => false,
     ],
     [
