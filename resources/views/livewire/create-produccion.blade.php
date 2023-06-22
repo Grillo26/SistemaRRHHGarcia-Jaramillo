@@ -21,8 +21,34 @@
 
 
         <x-slot name="form">
-        
-            <div class=" grid grid-cols-1 gap-4 sm:grid-cols-2">
+             <div class=" grid grid-cols-1 gap-4 sm:grid-cols-2">
+                <!--LOTE-->
+                <div class="">
+                    <x-jet-label for="lote" value="{{ __('Lote') }}" />
+                    @if($action == "updateProduccion")
+                    <small>Edite el número del lote</small>
+                    @endif
+                    @if($action == "createProduccion")
+                    <small>Ingrese número del lote</small>
+                    @endif
+                    <x-jet-input id="lote" type="text" class="mt-1 block w- form-control shadow-none"  wire:model.defer="produccion.lote" />
+                    <x-jet-input-error for="produccion.lote" class="mt-2" />
+                </div>
+
+                <!--FECHA-->
+                <div class="">
+                    <x-jet-label for="fecha" value="{{ __('Fecha') }}" />
+                    @if($action == "updateProduccion")
+                    <small>Edite la fecha</small>
+                    @endif
+                    @if($action == "createProduccion")
+                    <small>Seleccione la fecha</small>
+                    @endif
+                    <input type="date" name="fecha" class="form-control" value="{{ now()->format('Y-m-d') }}"  wire:model.defer="produccion.fecha">
+
+                </div>
+            </div>
+            <div class=" grid grid-cols-1 gap-4 sm:grid-cols-2 pt-3">
                 <!--GRANO DE SOYA-->
                 <div class="">
                     <x-jet-label for="granoDeSoya" value="{{ __('Grano de Soya') }}" />
@@ -72,16 +98,18 @@
                     </select>
                 </div>
 
-                <!--FECHA-->
+                <!--GRASAS-->
                 <div class="">
-                    <x-jet-label for="fecha" value="{{ __('Fecha') }}" />
+                    <x-jet-label for="grasas" value="{{ __('Grasa') }}" />
                     @if($action == "updateProduccion")
-                    <small>Edite la fecha</small>
+                    <small>Edite la cantida de grasa</small>
                     @endif
                     @if($action == "createProduccion")
-                    <small>Seleccione la fecha</small>
+                    <small>Ingrese la cantidad de grasas</small>
                     @endif
-                    <input type="date" name="fecha" class="form-control" value="{{ now()->format('Y-m-d') }}"  wire:model.defer="produccion.fecha">
+
+                    <x-jet-input id="grasas" type="text" class="mt-1 block w-full form-control shadow-none"  wire:model.defer="produccion.grasas" />
+                    <x-jet-input-error for="produccion.grasas" class="mt-2" />
 
                 </div>
 
@@ -99,7 +127,7 @@
                 </div>
             </div>
 
-            <div class=" grid grid-cols-1 gap-4 sm:grid-cols-2 pt-3">
+            <div class=" grid grid-cols-1 gap-4 sm:grid-cols-3 pt-3">
 
                 <!--BOLSAS-->
                 <div class="">
@@ -125,10 +153,23 @@
                     @endif
                     <x-jet-input id="aceite" type="text" class="mt-1 block w-full form-control shadow-none"  wire:model.defer="produccion.aceite" />
                     <x-jet-input-error for="produccion.aceite" class="mt-2" />
-                </div>         
+                </div> 
+
+                 <!--LUZ-->
+                 <div class="">
+                    <x-jet-label for="luz" value="{{ __('Luz') }}" />
+                    @if($action == "updateProduccion")
+                    <small>Edite la cantidad de Kwh</small>
+                    @endif
+                    @if($action == "createProduccion")
+                    <small>Ingrese cantidad de Kwh</small>
+                    @endif
+                    <x-jet-input id="luz" type="text" class="mt-1 block w-full form-control shadow-none"  wire:model.defer="produccion.luz" />
+                    <x-jet-input-error for="produccion.luz" class="mt-2" />
+                </div>
+                
             </div>
       
-           
         </x-slot>
 
         <x-slot name="actions">

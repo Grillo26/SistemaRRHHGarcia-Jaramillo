@@ -10,13 +10,16 @@ class Produccion extends Model
     use HasFactory;
     protected $fillable = [
         'id',
+        'lote',
         'granoDeSoya',
         'merma',
         'idTurno',
         'fecha',
         'humedad',
         'bolsas',
-        'aceite'
+        'aceite',
+        'grasas',
+        'luz'
     ];
 
     public function turnos(){

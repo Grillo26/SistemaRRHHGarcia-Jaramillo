@@ -14,21 +14,26 @@ class createProduccion extends Component
     public $action;
     public $button;
     public $turno;
+    public $expeller;
 
     
     protected function getRules()
     {
         $rules = ($this->action == "updateProduccion". $this->produccionId) ? [ 
+            'produccion.lote' => 'required|min:1|',
             'produccion.granoDeSoya' => 'required|min:1|',
             'produccion.merma' => 'required|min:1|'
         ] : [
+            'produccion.lote' => 'required|min:1|',
             'produccion.granoDeSoya' => 'required|digits|min:1|',
             'produccion.merma' => 'required|min:1|',
             'produccion.idTurno' => 'required|min:1|',
             'produccion.fecha' => 'required|min:1|',
             'produccion.humedad' => 'required|min:1|',
             'produccion.bolsas' => 'required|min:1|',
-            'produccion.aceite' => 'required|min:1|'
+            'produccion.aceite' => 'required|min:1|',
+            'produccion.grasas' => 'required|min:1|',
+            'produccion.luz' => 'required|min:1|'
         ];
 
         return array_merge([
@@ -36,6 +41,18 @@ class createProduccion extends Component
             'produccion.merma' => 'required|min:1'
         ], $rules);
     }
+
+    public function guardarExpeller(){
+        $expeller = $this->produccion->bolsas * 50;
+        // Aquí debes almacenar el valor de $expeller en la columna 'produccion' de la tabla correspondiente utilizando el modelo Eloquent.
+
+        // Ejemplo:
+        // $modelo = new Modelo();
+        // $modelo->produccion = $expeller;
+        // $modelo->save();
+    }
+
+
     public function createProduccion ()
     {
         Produccion::create($this->produccion);
@@ -50,6 +67,7 @@ class createProduccion extends Component
         Produccion::query()
             ->where('id', $this->produccionId)
             ->update([
+                "lote" => $this->produccion->lote,
                 "granoDeSoya" => $this->produccion->granoDeSoya,
                 "merma" => $this->produccion->merma,
                 "idTurno" => $this->produccion->idTurno,
@@ -57,6 +75,8 @@ class createProduccion extends Component
                 "humedad" => $this->produccion->humedad,
                 "bolsas" => $this->produccion->bolsas,
                 "aceite" => $this->produccion->aceite,
+                "grasas" => $this->produccion->grasas,
+                "luz" => $this->produccion->luz,
                 
             ]);
 
