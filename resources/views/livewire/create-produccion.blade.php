@@ -87,16 +87,12 @@
                     @if($action == "createProduccion")
                     <small>Seleccione el turno</small>
                     @endif
-                     
-                    
-                    <select class="form-control selectric-items "  tabindex="-1" wire:model.defer="produccion.idTurno">
-                        <div class="selectric-scroll">
-                            <option selected >Seleccione el turno</option>
-                            @foreach ( $turnos as $turno )    
-                            <option  value="{{$turno->id}}" data-index="0">{{$turno->nombreTurno}}</option>
-                            @endforeach 
-                        </div>
-                    </select>
+                    <select wire:model.defer="produccion.idTurno" tabindex="-1" class="form-control ">
+                        <option selected >Seleccione el turno</option>
+                        @foreach ( $turnos as $turno )    
+                        <option  value="{{$turno->id}}" data-index="0">{{$turno->nombreTurno}}</option>
+                        @endforeach 
+                    </select>               
                 </div>
 
                 <!--GRASAS-->
