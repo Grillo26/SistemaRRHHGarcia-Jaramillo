@@ -28,7 +28,7 @@
                 </a></th>
 
                 <th><a wire:click.prevent="sortBy('humedad')" role="button" href="#">
-                    Humedad
+                    Humedad %
                     @include('components.sort-icon', ['field' => 'humedad'])
                 </a></th>
 
@@ -53,7 +53,7 @@
                 </a></th>
 
                 <th><a wire:click.prevent="sortBy('grasas')" role="button" href="#">
-                    Luz
+                    Luz kWh
                     @include('components.sort-icon', ['field' => 'luz'])
                 </a></th>
                 

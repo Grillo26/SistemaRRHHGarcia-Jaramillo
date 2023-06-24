@@ -15,7 +15,6 @@ class createProduccion extends Component
     public $button;
     public $turno;
     public $expeller;
-    public $cantidad;
 
     
     protected function getRules()
@@ -31,10 +30,10 @@ class createProduccion extends Component
             'produccion.idTurno' => 'required|min:1|',
             'produccion.fecha' => 'required|min:1|',
             'produccion.humedad' => 'required|min:1|',
-            'produccion.bolsas' => 'required|min:1|',
             'produccion.aceite' => 'required|min:1|',
             'produccion.grasas' => 'required|min:1|',
-            'produccion.luz' => 'required|min:1|'
+            'produccion.luz' => 'required|min:1|',
+            'produccion.bolsas' => 'required|min:1|'
         ];
 
         return array_merge([
@@ -42,12 +41,10 @@ class createProduccion extends Component
             'produccion.merma' => 'required|min:1'
         ], $rules);
     }
-    public function updatedCantidad()
-    {
-        $this->expeller = $this->cantidad * 50;
-    }
+    
     public function createProduccion ()
     {
+        $this->expeller = $this->produccion['bolsas']*50; //Extraemos del formulario
         $data = $this->produccion;
         $data['expeller'] = $this->expeller;
     
@@ -73,7 +70,8 @@ class createProduccion extends Component
                 "aceite" => $this->produccion->aceite,
                 "grasas" => $this->produccion->grasas,
                 "luz" => $this->produccion->luz,
-                "expeller" => $this->expeller,
+                "bolsas" => $this->produccion->bolsas,
+                "expeller" => $this->produccion['bolsas']*50, //El campo bolsas multiplicamos por 50
                 
             ]);
 
