@@ -166,6 +166,38 @@
                 </div>
                 
             </div>
+
+            <div class="border mt-4 p-3 rounded-lg">
+                <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
+                    
+                    <!--HUMEDAD DE LABORATORIO-->
+                    <div class="">
+                        <x-jet-label for="humedad" value="{{ __('Humedad') }}" />
+                        @if($action == "updateProduccion")
+                        <small>Edite la cantidad de aceite</small>
+                        @endif
+                        @if($action == "createProduccion")
+                        <small>Ingrese cantidad de humedad obtenido de Laboratorio</small>
+                        @endif
+                        <x-jet-input id="humedad" type="text" class="mt-1 block w-full form-control shadow-none"  wire:model.defer="produccion.humedadLab" />
+                        <x-jet-input-error for="produccion.humedadLab" class="mt-2" />
+                    </div> 
+
+                    <!--GRASA DE LABORATORIO-->
+                    <div class="">
+                        <x-jet-label for="grasa" value="{{ __('Grasa') }}" />
+                        @if($action == "updateProduccion")
+                        <small>Edite la cantidad de Kwh</small>
+                        @endif
+                        @if($action == "createProduccion")
+                        <small>Ingrese cantidad de grasa obtenida del Laboratorio</small>
+                        @endif
+                        <x-jet-input id="grasa" type="text" class="mt-1 block w-full form-control shadow-none"  wire:model.defer="produccion.grasaLab" />
+                        <x-jet-input-error for="produccion.grasaLab" class="mt-2" />
+                    </div>
+                </div>
+            </div>
+
             
       
         </x-slot>

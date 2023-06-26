@@ -20,7 +20,11 @@ class Produccion extends Model
         'expeller',
         'aceite',
         'grasas',
-        'luz'
+        'luz',
+        'humedadLab',
+        'grasaLab',
+        'secado',
+        'agua'
     ];
 
     public function turnos(){

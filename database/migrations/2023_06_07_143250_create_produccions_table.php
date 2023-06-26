@@ -27,6 +27,13 @@ class CreateProduccionsTable extends Migration
             $table->decimal('grasas',8,2);
             $table->decimal('luz',8,2);
 
+            $table->decimal('humedadLab',8,2);
+            $table->decimal('grasaLab',8,2);
+            $table->decimal('secado',8,2);
+
+            $table->decimal('agua',8,2);
+
+            
 
            
             $table->foreign('idTurno')

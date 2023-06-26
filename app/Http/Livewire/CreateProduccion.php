@@ -15,6 +15,7 @@ class createProduccion extends Component
     public $button;
     public $turno;
     public $expeller;
+    public $a, $b, $d, $e;
 
     
     protected function getRules()
@@ -44,9 +45,22 @@ class createProduccion extends Component
     
     public function createProduccion ()
     {
+        //Calculo del expeller dependiendo de las bolsas ingresadas en el fomulario
         $this->expeller = $this->produccion['bolsas']*50; //Extraemos del formulario
         $data = $this->produccion;
+
+        //Calculo de balance 
+        //a: Saranda b:merma e:secado d:agua
+        $this->a = $this->produccion['granoDeSoya']*(1-$this->produccion['humedad']-$this->produccion['grasas']);
+        $this->b = $this->produccion['merma'];
+        $this->e = ($this->a-$this->b)/(1-$this->produccion['humedadLab']-$this->produccion['grasaLab']) ;
+        $this->d = $this->a - $this->b - $this->e;
+
         $data['expeller'] = $this->expeller;
+        $data['secado'] = $this->e;
+        $data['agua'] = $this->d;
+        
+
     
         Produccion::create($data);
 
