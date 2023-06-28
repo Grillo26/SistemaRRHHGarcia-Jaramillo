@@ -16,22 +16,22 @@ class CreateProduccionsTable extends Migration
         Schema::create('produccions', function (Blueprint $table) {
             $table->id();
             $table->integer('lote');
-            $table->decimal('granoDeSoya',8,2);
-            $table->decimal('merma',8,2);
+            $table->decimal('granoDeSoya',8,3);
+            $table->decimal('merma',8,3);
             $table->unsignedBigInteger('idTurno')->nullable();
             $table->date('fecha')->nullable();
-            $table->decimal('humedad',8,2);
+            $table->decimal('humedad',8,3);
             $table->integer('bolsas');
             $table->integer('expeller');
-            $table->decimal('aceite',8,2);
-            $table->decimal('grasas',8,2);
-            $table->decimal('luz',8,2);
+            $table->decimal('aceite',8,3);
+            $table->decimal('grasas',8,3);
+            $table->decimal('luz',8,3);
 
-            $table->decimal('humedadLab',8,2);
-            $table->decimal('grasaLab',8,2);
-            $table->decimal('secado',8,2);
+            $table->decimal('humedadLab',8,3);
+            $table->decimal('grasaLab',8,3);
+            $table->decimal('secado',8,3);
 
-            $table->decimal('agua',8,2);
+            $table->decimal('agua',8,3);
 
             
 

@@ -1,16 +1,9 @@
 <x-app-layout>
     <x-slot name="header_content">
-        <style> 
-            a:link{
-                text-decoration:none
-            }
-            a:visited{
-                text-decoration:none
-            }
-        </style>
-        <h1>{{ __('Editar Turno ') }}   
-            <h5  class="pt-2 pl-2"><a href="{{ route('turno') }}"><i class="fa fa-angle-double-left"></i>Volver</h5>
-        </h1>
+        <div class="section-header-back">
+              <a href="{{ route('turno') }}" class="btn btn-icon"><i class="fas fa-arrow-left"></i></a>
+        </div>
+        <h1>{{ __('Editar Turno ') }}</h1>
         
         <div class="section-header-breadcrumb">
         <div class="breadcrumb-item active"><a href="{{ route('dashboard') }}">Dashboard</a></div>

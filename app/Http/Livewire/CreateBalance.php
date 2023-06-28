@@ -7,7 +7,7 @@ use App\Models\Turno;
 use Illuminate\Support\Facades\Hash;
 use Livewire\Component;
 
-class createProduccion extends Component
+class createBalance extends Component
 {
     public $produccion;
     public $produccionId;
