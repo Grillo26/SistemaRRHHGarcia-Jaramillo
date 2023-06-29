@@ -13,6 +13,6 @@
     </x-slot>
 
     <div>
-        <livewire:create-balance action="updateProduccion" :produccionId="request()->produccionId" />
+        <livewire:create-balance  :produccionId="request()->produccionId" />
     </div>
 </x-app-layout>

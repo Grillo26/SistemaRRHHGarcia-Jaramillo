@@ -50,7 +50,8 @@ class createProduccion extends Component
         $data = $this->produccion;
 
         //Calculo de balance 
-        //a: Saranda b:merma e:secado d:agua
+        //Formula = (GranoDeSoya X %MermaSeca - Merma)/ % MermaSecado
+        //ax: Saranda bx:merma  
         $this->x= 1-$this->produccion['humedad']-$this->produccion['grasas'];
         $this->ax = $this->produccion['granoDeSoya']*$this->x;
 
@@ -59,6 +60,7 @@ class createProduccion extends Component
         $this->e = 1-$this->produccion['humedadLab']-$this->produccion['grasaLab'];
         $this->secado = ($this->ax-$this->bx)/$this->e;
 
+        //Formula Agua = GranoDeSoya - Merma - Secado
         $this->agua = $this->produccion['granoDeSoya'] - $this->produccion['merma'] - $this->secado;
 
         $data['expeller'] = $this->expeller;

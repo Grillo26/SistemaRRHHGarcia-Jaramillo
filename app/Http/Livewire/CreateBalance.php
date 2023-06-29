@@ -14,92 +14,12 @@ class createBalance extends Component
     public $action;
     public $button;
     public $turno;
-    public $expeller;
-    public $ax, $bx, $agua, $e, $x, $secado;
-
-    
-    protected function getRules()
-    {
-        $rules = ($this->action == "updateProduccion". $this->produccionId) ? [ 
-            'produccion.lote' => 'required|min:1|',
-            'produccion.granoDeSoya' => 'required|min:1|',
-            'produccion.merma' => 'required|min:1|'
-        ] : [
-            'produccion.lote' => 'required|min:1|',
-            'produccion.granoDeSoya' => 'required|digits|min:1|',
-            'produccion.merma' => 'required|min:1|',
-            'produccion.idTurno' => 'required|min:1|',
-            'produccion.fecha' => 'required|min:1|',
-            'produccion.humedad' => 'required|min:1|',
-            'produccion.aceite' => 'required|min:1|',
-            'produccion.grasas' => 'required|min:1|',
-            'produccion.luz' => 'required|min:1|',
-            'produccion.bolsas' => 'required|min:1|'
-        ];
-
-        return array_merge([
-            'produccion.granoDeSoya' => 'required|digits|min:1|',
-            'produccion.merma' => 'required|min:1'
-        ], $rules);
-    }
-    
-    public function createProduccion ()
-    {
-        //Calculo del expeller dependiendo de las bolsas ingresadas en el fomulario
-        $this->expeller = $this->produccion['bolsas']*50; //Extraemos del formulario
-        $data = $this->produccion;
-
-        //Calculo de balance 
-        //a: Saranda b:merma e:secado d:agua
-        $this->x= 1-$this->produccion['humedad']-$this->produccion['grasas'];
-        $this->ax = $this->produccion['granoDeSoya']*$this->x;
-
-        $this->bx = $this->produccion['merma'];
-
-        $this->e = 1-$this->produccion['humedadLab']-$this->produccion['grasaLab'];
-        $this->secado = ($this->ax-$this->bx)/$this->e;
-
-        $this->agua = $this->produccion['granoDeSoya'] - $this->produccion['merma'] - $this->secado;
-
-        $data['expeller'] = $this->expeller;
-        $data['secado'] = $this->secado;
-        $data['agua'] = round($this->agua);
-        
-
-    
-        Produccion::create($data);
-
-        $this->emit('saved');
-        $this->reset('produccion'); 
-    }
-
-    public function updateProduccion ()
-    {
-        
-        Produccion::query()
-            ->where('id', $this->produccionId)
-            ->update([
-                "lote" => $this->produccion->lote,
-                "granoDeSoya" => $this->produccion->granoDeSoya,
-                "merma" => $this->produccion->merma,
-                "idTurno" => $this->produccion->idTurno,
-                "fecha" => $this->produccion->fecha,
-                "humedad" => $this->produccion->humedad,
-                "bolsas" => $this->produccion->bolsas,
-                "aceite" => $this->produccion->aceite,
-                "grasas" => $this->produccion->grasas,
-                "luz" => $this->produccion->luz,
-                "bolsas" => $this->produccion->bolsas,
-                "expeller" => $this->produccion['bolsas']*50, //El campo bolsas multiplicamos por 50
-                
-            ]);
-
-        $this->emit('saved');
-    }
+    public $secado, $granoDeSoya, $merma, $agua;
+    public $secadoP, $mermaP, $aguaP;
 
 
-    public function mount ()
-    {
+
+    public function mount (){
         if (!$this->produccion && $this->produccionId) {
                 $this->produccion = Produccion::find($this->produccionId);
         }
@@ -107,9 +27,29 @@ class createBalance extends Component
         $this->button = create_button($this->action, "Produccion");
     }
 
-    public function render()
-    {
-        return view('livewire.create-produccion',[
+    public function render(){
+
+        $balances = Produccion::all();
+
+        //Extraemos los datos de la tabla produccion y los asignamos en la variable balances, de ahí los derivamos en sus variables respectivas
+        foreach ($balances as $balance) {
+        $this->granoDeSoya = $balance->granoDeSoya;
+        $this->merma = $balance->merma;
+        $this->agua = $balance->agua;
+        $this->secado = $balance->secado;
+        }
+
+        //a cada variable decimal le damos un formato de 3 digitos despues del punto 0.000
+        $this->mermaP = ($this->merma*100)/$this->granoDeSoya;
+        $this->mermaP = number_format($this->mermaP, 3);
+
+        $this->aguaP = ($this->agua*100)/$this->granoDeSoya;
+        $this->aguaP = number_format($this->aguaP, 3);
+
+        $this->secadoP = ($this->secado*100)/$this->granoDeSoya;
+        $this->secadoP = number_format($this->secadoP, 3);
+
+        return view('livewire.create-balance',[
             'turnos'=>Turno::get()
         ]
     );
