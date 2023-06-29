@@ -62,10 +62,11 @@ class createProduccion extends Component
 
         //Formula Agua = GranoDeSoya - Merma - Secado
         $this->agua = $this->produccion['granoDeSoya'] - $this->produccion['merma'] - $this->secado;
+    
 
         $data['expeller'] = $this->expeller;
         $data['secado'] = $this->secado;
-        $data['agua'] = round($this->agua);
+        $data['agua'] = $this->agua;
         
 
     

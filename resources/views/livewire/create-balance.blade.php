@@ -1,27 +1,25 @@
 <div id="form-create">
     <x-jet-form-section :submit="$action" class="mb-4">
         <x-slot name="title">
-            {{ __('Producción') }}
+           
 
         </x-slot>
 
         <x-slot name="description">
-            @if ($action == "createProduccion")
-            {{ __('Complete los siguientes datos para registrar una nueva producción. Nota: lea correctamente los campos y verifique si están escritos de
-                manera adecuada dentro del formulario. El formato de los campos con decimales es de X.XXX Tres decimales.') }} 
-            
-            @endif
+           
 
-            @if($action == "updateProduccion")
-            {{ __('Complete los siguientes datos para editar la producción que seleccionó. Nota: lea correctamente los campos y verifique  si están escritos de
-                manera adecuada dentro del formulario.') }} 
             
-            @endif
         </x-slot>
 
 
         <x-slot name="form">
-            <div class="card-body">
+            
+            <div class="card shadow-none">
+                <div class="card-header">
+                    <h3 class="p-2">Fecha: </h3>{{$fecha}}
+                    <h3 class="p-2">Lote: </h3>{{$lote}}
+                </div>
+                <div class="card-body">
                 <div class="table-responsive">
                     <table class="table table-bordered table-md">
                         <tbody><tr>
@@ -48,7 +46,7 @@
                             <td>3</td>
                             <td>Agua</td>
                             <td>{{$agua}}</td>
-                            <td>{{$aguaP}}</td>
+                            <td>{{$aguaP}}%</td>
                             </tr>
                             <tr>
                             <td>4</td>
@@ -60,6 +58,8 @@
                     </table>
                 </div>
             </div>
+       
+            
 
             <div class="card-body">
                 <div class="table-responsive">

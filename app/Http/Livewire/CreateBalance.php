@@ -16,6 +16,7 @@ class createBalance extends Component
     public $turno;
     public $secado, $granoDeSoya, $merma, $agua;
     public $secadoP, $mermaP, $aguaP;
+    public $fecha, $lote;
 
 
 
@@ -37,6 +38,8 @@ class createBalance extends Component
         $this->merma = $balance->merma;
         $this->agua = $balance->agua;
         $this->secado = $balance->secado;
+        $this->fecha = $balance->fecha;
+        $this->lote = $balance->lote;
         }
 
         //a cada variable decimal le damos un formato de 3 digitos despues del punto 0.000
