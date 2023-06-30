@@ -11,17 +11,38 @@
             
             <div class="card shadow-none">
                 <div class="card-header">
-                    <h3 class="p-2">Fecha: </h3>{{$fecha}}
-                    <h3 class="p-2">Lote: </h3>{{$lote}}
+                    <!--<div class="flex pb-4 -ml-3">
+                        <h3 class="p-2">Fecha: </h3>{{$fecha}}
+                        <h3 class="p-2">Lote: </h3>{{$lote}}
+
+                        <a href="#" class="ml-2 btn btn-success shadow-none">
+                            <span class="fas fa-file-export"></span> Exportar
+                        </a>
+
+                    </div>*-->
+                    <div class="flex pb-4 ">
+                        <a href="#"  class="-ml- btn btn-primary shadow-none">
+                            <span class="fas fa-plus"></span> Exportar
+                        </a>
+                        <a href="#" class="ml-2 btn btn-success shadow-none">
+                            <span class="fas fa-file-export"></span> Exportar
+                        </a>
+
+                    </div>
                 </div>
+                
                 <div class="card-body">
                 <div class="table-responsive">
                     <table class="table table-bordered table-md">
-                        <tbody><tr>
-                            <th>#</th>
-                            <th>Materia</th>
-                            <th>KG</th>
-                            <th>%</th>
+                        <tbody>
+                            <tr>
+                                <th colspan="4" class="text-center">%RENDIMIENTO</th>
+                            </tr>
+                            <tr>
+                                <th>#</th>
+                                <th>MATERIA</th>
+                                <th>KG</th>
+                                <th>%</th>
                             
                             </tr>
                             <tr>
@@ -29,8 +50,6 @@
                             <td>Soya</td>
                             <td>{{$granoDeSoya}}</td>
                             <td>100%</td>
-{{$produccionId}}
-{{$balance}}
                             </tr>
                             <tr>
                             <td>2</td>
@@ -54,49 +73,6 @@
                     </table>
                 </div>
             </div>
-       
-            
-
-            <div class="card-body">
-                <div class="table-responsive">
-                    <table class="table table-bordered table-md">
-                        <tbody><tr>
-                            <th>#</th>
-                            <th>Materia</th>
-                            <th>KG</th>
-                            <th>%</th>
-                            
-                            </tr>
-                            <tr>
-                            <td>1</td>
-                            <td>Soya</td>
-                            <td>2017-01-09</td>
-                            <td></td>
-
-                            </tr>
-                            <tr>
-                            <td>2</td>
-                            <td>Merma</td>
-                            <td>2017-01-09</td>
-                            <td></td>
-                            </tr>
-                            <tr>
-                            <td>3</td>
-                            <td>Agua</td>
-                            <td>2017-01-11</td>
-                            <td></td>
-                            </tr>
-                            <tr>
-                            <td>4</td>
-                            <td>Soya Final</td>
-                            <td>2017-01-11</td>
-                            <td></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-
 
         </x-slot>
 
