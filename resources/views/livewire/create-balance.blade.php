@@ -10,25 +10,9 @@
         <x-slot name="form">
             
             <div class="card shadow-none">
-                <div class="card-header">
-                    <!--<div class="flex pb-4 -ml-3">
-                        <h3 class="p-2">Fecha: </h3>{{$fecha}}
-                        <h3 class="p-2">Lote: </h3>{{$lote}}
-
-                        <a href="#" class="ml-2 btn btn-success shadow-none">
-                            <span class="fas fa-file-export"></span> Exportar
-                        </a>
-
-                    </div>*-->
-                    <div class="flex pb-4 ">
-                        <a href="#"  class="-ml- btn btn-primary shadow-none">
-                            <span class="fas fa-plus"></span> Exportar
-                        </a>
-                        <a href="#" class="ml-2 btn btn-success shadow-none">
-                            <span class="fas fa-file-export"></span> Exportar
-                        </a>
-
-                    </div>
+                <div class="card-header">     
+                    <h1 class="p-2">Fecha: </h1>{{$fecha}}
+                    <h1 class="p-2">Lote: </h1>{{$lote}}                   
                 </div>
                 
                 <div class="card-body">
@@ -77,13 +61,11 @@
         </x-slot>
 
         <x-slot name="actions">
-            <x-jet-action-message class="mr-3" on="saved">
-                {{ __($button['submit_response']) }}
-            </x-jet-action-message>
+        <div class="flex pb-4 ">
+                <a href="/produccion/balance/{{ $produccion->id }}"  class="-ml- btn btn-primary shadow-none"><span class="fas fa-plus"></span> Ver</a>
+                <a href="#" class="ml-2 btn btn-success shadow-none"><span class="fas fa-file-export"></span> Exportar</a>
 
-            <x-jet-button>
-                {{ __($button['submit_text']) }}
-            </x-jet-button>
+            </div>
         </x-slot>
     </x-jet-form-section>
 
