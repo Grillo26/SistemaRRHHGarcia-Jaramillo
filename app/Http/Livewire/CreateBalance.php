@@ -16,7 +16,7 @@ class createBalance extends Component
     public $turno;
     public $secado, $granoDeSoya, $merma, $agua;
     public $secadoP, $mermaP, $aguaP;
-    public $fecha, $lote;
+    public $fecha, $lote, $balance;
 
 
 
@@ -28,19 +28,18 @@ class createBalance extends Component
         $this->button = create_button($this->action, "Produccion");
     }
 
+    
     public function render(){
+        $balance = Produccion::find($this->produccionId);
 
-        $balances = Produccion::all();
-
-        //Extraemos los datos de la tabla produccion y los asignamos en la variable balances, de ahí los derivamos en sus variables respectivas
-        foreach ($balances as $balance) {
+        //Extraemos los datos de la tabla produccion y los asignamos en la variable balances, de ahí los derivamos en sus variables respectivas    
         $this->granoDeSoya = $balance->granoDeSoya;
         $this->merma = $balance->merma;
         $this->agua = $balance->agua;
         $this->secado = $balance->secado;
         $this->fecha = $balance->fecha;
         $this->lote = $balance->lote;
-        }
+      
 
         //a cada variable decimal le damos un formato de 3 digitos despues del punto 0.000
         $this->mermaP = ($this->merma*100)/$this->granoDeSoya;

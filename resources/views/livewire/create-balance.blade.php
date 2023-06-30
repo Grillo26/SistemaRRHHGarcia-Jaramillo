@@ -1,14 +1,9 @@
 <div id="form-create">
     <x-jet-form-section :submit="$action" class="mb-4">
-        <x-slot name="title">
-           
-
+        <x-slot name="title">    
         </x-slot>
 
-        <x-slot name="description">
-           
-
-            
+        <x-slot name="description">          
         </x-slot>
 
 
@@ -34,7 +29,8 @@
                             <td>Soya</td>
                             <td>{{$granoDeSoya}}</td>
                             <td>100%</td>
-
+{{$produccionId}}
+{{$balance}}
                             </tr>
                             <tr>
                             <td>2</td>
