@@ -6,6 +6,7 @@ use App\Models\Produccion;
 use App\Models\Turno;
 use Illuminate\Support\Facades\Hash;
 use Livewire\Component;
+use Dompdf\Dompdf;
 
 class createBalance extends Component
 {
@@ -53,7 +54,24 @@ class createBalance extends Component
 
         return view('livewire.create-balance',[
             'turnos'=>Turno::get()
-        ]
-    );
+        ]);
+    }
+
+    public function generatePdf()
+    {
+        // Crea una instancia de Dompdf
+        $dompdf = new Dompdf();
+
+        // Renderiza la vista en HTML
+        $html = view('pages.produccion.pdf', ['secado' => $this->secadoP])->render();
+
+        // Carga el HTML en Dompdf
+        $dompdf->loadHtml($html);
+
+        // Renderiza el PDF
+        $dompdf->render();
+
+        // Descarga el PDF en el navegador
+        $dompdf->stream('archivo.pdf');
     }
 }
