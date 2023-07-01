@@ -16,7 +16,7 @@ class CreateProduccionsTable extends Migration
         Schema::create('produccions', function (Blueprint $table) {
             $table->id();
             $table->integer('lote');
-            $table->decimal('granoDeSoya',8,3);
+            $table->integer('granoDeSoya');
             $table->decimal('merma',8,3);
             $table->unsignedBigInteger('idTurno')->nullable();
             $table->date('fecha')->nullable();

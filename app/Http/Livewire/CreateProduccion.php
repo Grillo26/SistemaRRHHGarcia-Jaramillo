@@ -34,7 +34,15 @@ class createProduccion extends Component
             'produccion.aceite' => 'required|min:1|',
             'produccion.grasas' => 'required|min:1|',
             'produccion.luz' => 'required|min:1|',
-            'produccion.bolsas' => 'required|min:1|'
+            'produccion.bolsas' => 'required|min:1|',
+            'produccion.expeller' => 'required|min:1|',
+            'produccion.aceite' => 'required|min:1|',
+            'produccion.grasas' => 'required|min:1|',
+            'produccion.luz' => 'required|min:1|',
+            'produccion.humedadLab' => 'required|min:1|',
+            'produccion.grasaLab' => 'required|min:1|',
+            'produccion.secado' => 'required|min:1|',
+            'produccion.agua' => 'required|min:1|',
         ];
 
         return array_merge([
