@@ -15,10 +15,4 @@ class ProduccionController extends Controller
         'produccion' => Produccion::class
         ]);
     }
-
-    public function pdf(){
-        $produccion = Produccion::get();
-        $pdf = Pdf::loadView('pages.produccion.pdf', compact('produccion'));
-        return $pdf->stream();
-    }
 }

@@ -6,7 +6,8 @@ use App\Models\Produccion;
 use App\Models\Turno;
 use Illuminate\Support\Facades\Hash;
 use Livewire\Component;
-use Dompdf\Dompdf;
+
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class createBalance extends Component
 {
@@ -51,27 +52,22 @@ class createBalance extends Component
 
         $this->secadoP = ($this->secado*100)/$this->granoDeSoya;
         $this->secadoP = number_format($this->secadoP, 3);
-
-        return view('livewire.create-balance',[
-            'turnos'=>Turno::get()
+        
+        
+        $pdf = Pdf::loadView('pages.produccion.pdf', [
+            'mermaP' => 2
         ]);
-    }
+
+        return view('livewire.create-balance');
+        return $pdf->stream();
+    } 
 
     public function generatePdf()
     {
-        // Crea una instancia de Dompdf
-        $dompdf = new Dompdf();
-
-        // Renderiza la vista en HTML
-        $html = view('pages.produccion.pdf', ['secado' => $this->secadoP])->render();
-
-        // Carga el HTML en Dompdf
-        $dompdf->loadHtml($html);
-
-        // Renderiza el PDF
-        $dompdf->render();
-
-        // Descarga el PDF en el navegador
-        $dompdf->stream('archivo.pdf');
+        
+        $pdf = Pdf::loadView('pages.produccion.pdf', [
+                'mermaP' => 1
+        ]);
+        return $pdf->stream();
     }
 }
