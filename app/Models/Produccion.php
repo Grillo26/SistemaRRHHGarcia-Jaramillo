@@ -24,7 +24,10 @@ class Produccion extends Model
         'humedadLab',
         'grasaLab',
         'secado',
-        'agua'
+        'agua',
+        'mermaP',
+        'aguaP',
+        'secadoP'
     ];
 
     public function turnos(){

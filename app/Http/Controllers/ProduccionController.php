@@ -6,6 +6,7 @@ use App\Models\Turno;
 use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade\Pdf;
 
+
 class ProduccionController extends Controller
 {
     public function index_view ()

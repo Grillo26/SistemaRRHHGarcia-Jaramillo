@@ -16,6 +16,7 @@ class createProduccion extends Component
     public $turno;
     public $expeller;
     public $ax, $bx, $agua, $e, $x, $secado;
+    public $secadoP, $mermaP, $aguaP;
 
     
     protected function getRules()
@@ -70,11 +71,25 @@ class createProduccion extends Component
 
         //Formula Agua = GranoDeSoya - Merma - Secado
         $this->agua = $this->produccion['granoDeSoya'] - $this->produccion['merma'] - $this->secado;
+
+        //a cada variable decimal le damos un formato de 3 digitos despues del punto 0.000 y almacenamos en la base de datos
+        $this->mermaP = ($this->produccion['merma']*100)/$this->produccion['granoDeSoya'];
+        $this->mermaP = number_format($this->mermaP, 3);
+
+        $this->aguaP = ($this->agua*100)/$this->produccion['granoDeSoya'];
+        $this->aguaP = number_format($this->aguaP, 3);
+
+        $this->secadoP = ($this->secado*100)/$this->produccion['granoDeSoya'];
+        $this->secadoP = number_format($this->secadoP, 3);
     
+
 
         $data['expeller'] = $this->expeller;
         $data['secado'] = $this->secado;
         $data['agua'] = $this->agua;
+        $data['mermaP'] = $this->mermaP;
+        $data['aguaP'] = $this->aguaP;
+        $data['secadoP'] = $this->secadoP;
         
 
     

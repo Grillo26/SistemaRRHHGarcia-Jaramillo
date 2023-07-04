@@ -41,33 +41,15 @@ class createBalance extends Component
         $this->secado = $balance->secado;
         $this->fecha = $balance->fecha;
         $this->lote = $balance->lote;
-      
-
-        //a cada variable decimal le damos un formato de 3 digitos despues del punto 0.000
-        $this->mermaP = ($this->merma*100)/$this->granoDeSoya;
-        $this->mermaP = number_format($this->mermaP, 3);
-
-        $this->aguaP = ($this->agua*100)/$this->granoDeSoya;
-        $this->aguaP = number_format($this->aguaP, 3);
-
-        $this->secadoP = ($this->secado*100)/$this->granoDeSoya;
-        $this->secadoP = number_format($this->secadoP, 3);
-        
-        
-        $pdf = Pdf::loadView('pages.produccion.pdf', [
-            'mermaP' => 2
-        ]);
 
         return view('livewire.create-balance');
-        return $pdf->stream();
     } 
 
     public function generatePdf()
-    {
-        
-        $pdf = Pdf::loadView('pages.produccion.pdf', [
-                'mermaP' => 1
-        ]);
-        return $pdf->stream();
+    {        
+        $produccions = Produccion::all();
+
+        $pdf = Pdf::loadView('pages.produccion.pdf', compact('produccions'));
+        return $pdf->setPaper('A4')->stream('balance.pdf');
     }
 }

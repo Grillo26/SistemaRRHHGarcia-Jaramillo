@@ -33,7 +33,10 @@ class CreateProduccionsTable extends Migration
 
             $table->decimal('agua',8,3);
 
-            
+            //Porcentajes
+            $table->decimal('mermaP',8,3); 
+            $table->decimal('aguaP',8,3);
+            $table->decimal('secadoP',8,3);
 
            
             $table->foreign('idTurno')
