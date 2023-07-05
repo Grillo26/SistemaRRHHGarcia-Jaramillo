@@ -55,31 +55,30 @@
     <h3 class="subtitle">Balance de Rendimiento</h3>
 
     <div class="fields">
-        <p>Lote: Número de lote</p>
+        <p>Lote: {{$produccionId}}</p>
         <p>Fecha: Fecha del balance</p>
     </div>
 
     <table class="default">
-    <tr>
-        <th></th>
-        <th colspan="2">Mike</th>
-        <th colspan="2">Tara</th>
-    </tr>
+    
     <tr>
         <th></th>
         <th>Primera prueba</th>
+ 
 
-        <th>Segunda prueba</th>
-
-        <th>Primera prueba</th>
+     
 
         <th>Segunda prueba</th>
 
     </tr>
+
     @foreach ($produccions as $produccion)
     <tr>
-        <td>{{ $produccion->lote }}</td>
+        <td>{{ $produccion->humedad }}</td>
+        <td>{{ $produccion->bolsas }}</td>
 
+       
+      
     </tr>
     @endforeach
     </table>

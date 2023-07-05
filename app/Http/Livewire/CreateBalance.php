@@ -47,9 +47,10 @@ class createBalance extends Component
 
     public function generatePdf()
     {        
-        $produccions = Produccion::all();
+        $produccionId = $this->produccionId; //<-- Aqui tendria que cargar 
+        $produccions = Produccion::get();
 
-        $pdf = Pdf::loadView('pages.produccion.pdf', compact('produccions'));
+        $pdf = Pdf::loadView('pages.produccion.pdf', compact('produccions','produccionId'));
         return $pdf->setPaper('A4')->stream('balance.pdf');
     }
 }
