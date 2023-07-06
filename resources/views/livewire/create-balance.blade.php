@@ -56,7 +56,6 @@
                         </tbody>
                     </table>
                 </div>
-                {{$granoDeSoya}}
             </div>
 
         </x-slot>
@@ -64,7 +63,7 @@
         <x-slot name="actions">
         <div class="flex pb-4 ">
                 <a href="/produccion/edit/{{ $produccion->id }}"  class="-ml- btn btn-primary shadow-none"><span class="fas fa-plus"></span> Ver</a>
-                <a href="/produccion/balance/pdf/{{$produccion->id}}" class="ml-2 btn btn-success shadow-none"><span class="fas fa-file-export"></span> Exportar</a>
+                <a href="/produccion/pdf/{{ $produccion->id }}" class="ml-2 btn btn-success shadow-none"><span class="fas fa-file-export"></span> Exportar</a>
 
             </div>
         </x-slot>

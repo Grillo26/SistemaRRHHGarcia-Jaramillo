@@ -13,6 +13,6 @@
     </x-slot>
 
     <div>
-        <livewire:create-balance  :produccionId="request()->produccionId" />
+        <livewire:create-balance action="generatePdf" :produccionId="request()->produccionId" />
     </div>
 </x-app-layout>

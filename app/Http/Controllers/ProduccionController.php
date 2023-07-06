@@ -9,6 +9,7 @@ use Barryvdh\DomPDF\Facade\Pdf;
 
 class ProduccionController extends Controller
 {
+    
     public function index_view ()
     {
         return view('pages.produccion.produccion-data', [
@@ -16,4 +17,5 @@ class ProduccionController extends Controller
         'produccion' => Produccion::class
         ]);
     }
+    
 }

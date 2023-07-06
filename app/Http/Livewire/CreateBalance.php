@@ -15,12 +15,9 @@ class createBalance extends Component
     public $produccionId;
     public $action;
     public $button;
-    public $turno;
     public $secado, $granoDeSoya, $merma, $agua;
     public $secadoP, $mermaP, $aguaP;
     public $fecha, $lote, $balance;
-
-
 
     public function mount (){
         if (!$this->produccion && $this->produccionId) {
@@ -28,6 +25,7 @@ class createBalance extends Component
         }
 
         $this->button = create_button($this->action, "Produccion");
+
     }
 
     
@@ -41,16 +39,14 @@ class createBalance extends Component
         $this->secado = $balance->secado;
         $this->fecha = $balance->fecha;
         $this->lote = $balance->lote;
-
         return view('livewire.create-balance');
     } 
 
-    public function generatePdf()
-    {        
-        $produccionId = $this->produccionId; //<-- Aqui tendria que cargar 
-        $produccions = Produccion::get();
+    public function generatePdf($produccionId){
 
-        $pdf = Pdf::loadView('pages.produccion.pdf', compact('produccions','produccionId'));
+        $exports = Produccion::find($produccionId);
+
+        $pdf = Pdf::loadView('pages.produccion.pdf', compact('exports'));
         return $pdf->setPaper('A4')->stream('balance.pdf');
     }
 }

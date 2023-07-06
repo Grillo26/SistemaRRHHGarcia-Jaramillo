@@ -55,33 +55,46 @@
     <h3 class="subtitle">Balance de Rendimiento</h3>
 
     <div class="fields">
-        <p>Lote: {{$produccionId}}</p>
-        <p>Fecha: Fecha del balance</p>
+        <p>Lote:  {{$exports->lote}}</p>
+        <p>Fecha: {{$exports->fecha}}</p>
     </div>
 
     <table class="default">
-    
     <tr>
-        <th></th>
-        <th>Primera prueba</th>
- 
-
-     
-
-        <th>Segunda prueba</th>
-
-    </tr>
-
-    @foreach ($produccions as $produccion)
-    <tr>
-        <td>{{ $produccion->humedad }}</td>
-        <td>{{ $produccion->bolsas }}</td>
-
-       
-      
-    </tr>
-    @endforeach
-    </table>
+        <th colspan="4" class="text-center">%RENDIMIENTO</th></tr>
+                            <tr>
+                                <th>#</th>
+                                <th>MATERIA</th>
+                                <th>KG</th>
+                                <th>%</th>
+                            
+                            </tr>
+                            <tr>
+                            <td>1</td>
+                            <td>Soya</td>
+                            <td>{{$exports->granoDeSoya}}</td>
+                            <td>100%</td>
+                            </tr>
+                            <tr>
+                            <td>2</td>
+                            <td>Merma</td>
+                            <td>{{$exports->merma}}</td>
+                            <td>{{$exports->mermaP}}%</td>
+                            </tr>
+                            <tr>
+                            <td>3</td>
+                            <td>Agua</td>
+                            <td>{{$exports->agua}}</td>
+                            <td>{{$exports->aguaP}}%</td>
+                            </tr>
+                            <tr>
+                            <td>4</td>
+                            <td>Soya Final</td>
+                            <td>{{$exports->secado}}</td>
+                            <td>{{$exports->secadoP}}%</td>
+                            </tr>
+                        </tbody>
+                    </table>
     
         
 </body>
