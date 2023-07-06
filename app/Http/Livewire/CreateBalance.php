@@ -39,6 +39,10 @@ class createBalance extends Component
         $this->secado = $balance->secado;
         $this->fecha = $balance->fecha;
         $this->lote = $balance->lote;
+        $this->mermaP = $balance->mermaP;
+        $this->aguaP = $balance->aguaP;
+        $this->secadoP = $balance->secadoP;
+
         return view('livewire.create-balance');
     } 
 
