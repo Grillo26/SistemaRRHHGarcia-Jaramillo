@@ -44,12 +44,21 @@
         .fields p {
             margin: 0;
         }
+        /* Estilos del apartado de firma */
+        .firma {
+            margin-top: 440px;
+            text-align: center;
+        }
+
+        .firma p {
+            margin: 0;
+        }
     </style>
 </head>
 
 <body>
     <div class="header">
-        <img class="" src="{{ public_path('images/logo.png') }}" alt="Logo">
+        <img src="{{$imagePath}}" width="100px" height="90px" >
         <h1 class="title">Planta Industrial Garcia y Jaramillo SRL</h1>
     </div>
     <h3 class="subtitle">Balance de Rendimiento</h3>
@@ -60,41 +69,46 @@
     </div>
 
     <table class="default">
-    <tr>
-        <th colspan="4" class="text-center">%RENDIMIENTO</th></tr>
-                            <tr>
-                                <th>#</th>
-                                <th>MATERIA</th>
-                                <th>KG</th>
-                                <th>%</th>
-                            
-                            </tr>
-                            <tr>
-                            <td>1</td>
-                            <td>Soya</td>
-                            <td>{{$exports->granoDeSoya}}</td>
-                            <td>100%</td>
-                            </tr>
-                            <tr>
-                            <td>2</td>
-                            <td>Merma</td>
-                            <td>{{$exports->merma}}</td>
-                            <td>{{$exports->mermaP}}%</td>
-                            </tr>
-                            <tr>
-                            <td>3</td>
-                            <td>Agua</td>
-                            <td>{{$exports->agua}}</td>
-                            <td>{{$exports->aguaP}}%</td>
-                            </tr>
-                            <tr>
-                            <td>4</td>
-                            <td>Soya Final</td>
-                            <td>{{$exports->secado}}</td>
-                            <td>{{$exports->secadoP}}%</td>
-                            </tr>
-                        </tbody>
-                    </table>
+        <tr>
+            <th colspan="4" class="text-center">%RENDIMIENTO</th>
+        </tr>
+        <tr>
+            <th>#</th>
+            <th>MATERIA</th>
+            <th>KG</th>
+            <th>%</th>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>Soya</td>
+            <td>{{$exports->granoDeSoya}}</td>
+            <td>100%</td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>Merma</td>
+            <td>{{$exports->merma}}</td>
+            <td>{{$exports->mermaP}}%</td>
+        </tr>
+        <tr>
+            <td>3</td>
+            <td>Agua</td>
+            <td>{{$exports->agua}}</td>
+            <td>{{$exports->aguaP}}%</td>
+        </tr>
+        <tr>
+            <td>4</td>
+            <td>Soya Final</td>
+            <td>{{$exports->secado}}</td>
+            <td>{{$exports->secadoP}}%</td>
+        </tr>
+        </tbody>
+    </table>
+
+    <div class="firma">
+        <p>Carlos Enrique Mamani</p>
+        <p>Encargado de Planta</p>
+    </div>
     
         
 </body>

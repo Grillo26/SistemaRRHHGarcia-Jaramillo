@@ -18,6 +18,7 @@ class createBalance extends Component
     public $secado, $granoDeSoya, $merma, $agua;
     public $secadoP, $mermaP, $aguaP;
     public $fecha, $lote, $balance;
+    public $imagePath;
 
     public function mount (){
         if (!$this->produccion && $this->produccionId) {
@@ -48,9 +49,10 @@ class createBalance extends Component
 
     public function generatePdf($produccionId){
 
+        $this->imagePath = public_path('img/logo.png');
         $exports = Produccion::find($produccionId);
 
-        $pdf = Pdf::loadView('pages.produccion.pdf', compact('exports'));
+        $pdf = Pdf::loadView('pages.produccion.pdf', compact('exports'),['imagePath' => $this->imagePath]);
         return $pdf->setPaper('A4')->stream('balance.pdf');
     }
 }
