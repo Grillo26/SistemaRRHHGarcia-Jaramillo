@@ -50,7 +50,7 @@ class createProduccion extends Component
             'produccion.granoDeSoya' => 'required|digits|min:1|',
             'produccion.merma' => 'required|min:1'
         ], $rules);
-    }
+    } 
     
     public function createProduccion ()
     {

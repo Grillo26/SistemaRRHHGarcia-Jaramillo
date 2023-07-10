@@ -19,9 +19,9 @@
             @endif
         </x-slot>
 
-
+        
         <x-slot name="form">
-             <div class=" grid grid-cols-1 gap-4 sm:grid-cols-2">
+             <div class=" grid grid-cols-1 gap-4 sm:grid-cols-3">
                 <!--LOTE-->
                 <div class="">
                     <x-jet-label for="lote" value="{{ __('Lote') }}" />
@@ -47,7 +47,30 @@
                     <input type="date" name="fecha" class="form-control" value="{{ now()->format('Y-m-d') }}"  wire:model.defer="produccion.fecha">
 
                 </div>
+
+                <!--TURNO-->
+                <div class="">
+                    <x-jet-label for="turno" value="{{ __('Turno') }}" />
+                    @if($action == "updateProduccion")
+                    <small>Edite el turno</small>
+                    @endif
+                    @if($action == "createProduccion")
+                    <small>Seleccione el turno</small>
+                    @endif
+                    <select wire:model.defer="produccion.idTurno" tabindex="-1" class="form-control ">
+                        <option selected >Seleccione el turno</option>
+                        @foreach ( $turnos as $turno )    
+                        <option  value="{{$turno->id}}" data-index="0">{{$turno->nombreTurno}}</option>
+                        @endforeach 
+                    </select>               
+                </div>
             </div>
+
+            <!----Img de proceso--->
+            <div class=" grid grid-cols-1 gap-4">
+                <img class="d-inline-block"   src="{{URL::asset('img/pproduccion.jpg')}}" alt="">
+            </div>
+
             <div class=" grid grid-cols-1 gap-4 sm:grid-cols-3 pt-3">
                 <!--GRANO DE SOYA-->
                 <div class="">
@@ -58,7 +81,7 @@
                     @if($action == "createProduccion")
                     <small>Ingrese cantidad de grano de soya</small>
                     @endif
-                    <x-jet-input id="granoDeSoya" type="text" class="mt-1 block w- form-control shadow-none"  wire:model.defer="produccion.granoDeSoya" />
+                    <x-jet-input id="granoDeSoya" type="text" class="mt-1 block w- form-control shadow-none"   wire:model.defer="produccion.granoDeSoya" />
                     <x-jet-input-error for="produccion.granoDeSoya" class="mt-2" />
                 </div>
 
@@ -85,32 +108,16 @@
                     <small>Ingrese la cantidad de grasas</small>
                     @endif
 
-                    <x-jet-input id="grasas" type="text" class="mt-1 block w-full form-control shadow-none"  wire:model.defer="produccion.grasas" />
+                    <x-jet-input id="grasas" type="text" class="mt-1 block w-full form-control shadow-none" wire:model.defer="produccion.grasas" />
                     <x-jet-input-error for="produccion.grasas" class="mt-2" />
 
                 </div>
-
                 
             </div>
 
-            <div class=" grid grid-cols-1 gap-4 sm:grid-cols-2 pt-3">
+            <div class=" grid grid-cols-1 gap-4 sm:grid-cols-2 pt-1">
 
-                <!--TURNO-->
-                <div class="">
-                    <x-jet-label for="turno" value="{{ __('Turno') }}" />
-                    @if($action == "updateProduccion")
-                    <small>Edite el turno</small>
-                    @endif
-                    @if($action == "createProduccion")
-                    <small>Seleccione el turno</small>
-                    @endif
-                    <select wire:model.defer="produccion.idTurno" tabindex="-1" class="form-control ">
-                        <option selected >Seleccione el turno</option>
-                        @foreach ( $turnos as $turno )    
-                        <option  value="{{$turno->id}}" data-index="0">{{$turno->nombreTurno}}</option>
-                        @endforeach 
-                    </select>               
-                </div>
+                
 
                 <!--MERMA-->
                 <div class="">
