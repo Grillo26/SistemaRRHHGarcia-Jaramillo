@@ -14,11 +14,14 @@ class createProduccion extends Component
     public $action;
     public $button;
     public $turno;
-    public $expeller;
+    public $expeller, $granoDeSoya, $merma;
     public $ax, $bx, $agua, $e, $x, $secado;
     public $secadoP, $mermaP, $aguaP;
 
-    
+    public $humedad, $grasa, $resultado;
+    public $humedadLab, $grasaLab, $mermaSecado;
+    protected $listeners = ['calcular'];
+
     protected function getRules()
     {
         $rules = ($this->action == "updateProduccion". $this->produccionId) ? [ 
@@ -50,7 +53,28 @@ class createProduccion extends Component
             'produccion.granoDeSoya' => 'required|digits|min:1|',
             'produccion.merma' => 'required|min:1'
         ], $rules);
-    } 
+    }
+
+    public function calcular(){ //metodo para calcular y enviar al input disabled
+        $this->resultado = 1 - $this->humedad - $this->grasa;
+        $this->resultado = number_format($this->resultado, 3);
+
+        $this->mermaSecado = 1 - $this->humedadLab - $this->grasaLab;
+        $this->mermaSecado = number_format($this->mermaSecado, 3);
+
+
+        //ax: Saranda 
+        $this->ax = $this->granoDeSoya *$this->resultado;
+
+        $this->agua = $this->granoDeSoya - $this->merma - $this->secado;
+        $this->agua = number_format($this->agua, 3);
+
+        $this->secado = ($this->ax - $this->merma)/$this->mermaSecado;
+        $this->secado = number_format($this->secado, 3);
+
+
+
+    }
     
     public function createProduccion ()
     {
@@ -60,11 +84,7 @@ class createProduccion extends Component
 
         //Calculo de balance 
         //Formula = (GranoDeSoya X %MermaSeca - Merma)/ % MermaSecado
-        //ax: Saranda bx:merma  
-        $this->x= 1-$this->produccion['humedad']-$this->produccion['grasas'];
-        $this->ax = $this->produccion['granoDeSoya']*$this->x;
-
-        $this->bx = $this->produccion['merma'];
+        
 
         $this->e = 1-$this->produccion['humedadLab']-$this->produccion['grasaLab'];
         $this->secado = ($this->ax-$this->bx)/$this->e;
@@ -131,6 +151,8 @@ class createProduccion extends Component
         }
 
         $this->button = create_button($this->action, "Produccion");
+        $this->calcular();
+
     }
 
     public function render()
