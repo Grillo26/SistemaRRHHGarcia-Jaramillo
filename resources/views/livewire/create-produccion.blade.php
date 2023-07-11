@@ -17,6 +17,46 @@
                 manera adecuada dentro del formulario.') }} 
             
             @endif
+
+            <div class="table-responsive">
+                <table class="table table-bordered table-md">
+                    <tbody>
+                        <tr>
+                            <th colspan="4" class="text-center">%RENDIMIENTO</th>
+                        </tr>
+                        <tr>
+                            <th>#</th>
+                            <th>MATERIA</th>
+                            <th>KG</th>
+                            <th>%</th>        
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td>Soya</td>
+                            <td>{{$granoDeSoya}}</td>
+                            <td>100%</td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>Merma</td>
+                            <td>{{$merma}}</td>
+                            <td>{{$mermaP}}%</td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>Agua</td>
+                            <td>{{$agua}}</td>
+                            <td>{{$aguaP}}%</td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td>Soya Final</td>
+                            <td>{{$secado}}</td>
+                            <td>{{$secadoP}}%</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </x-slot>
 
         
@@ -137,7 +177,7 @@
                     @if($action == "createProduccion")
                     <small>Ingrese cantidad de merma</small>
                     @endif
-                    <x-jet-input id="merma" type="text" class="mt-1 block w-full form-control shadow-none"  wire:model="merma" wire:model.defer="produccion.merma" />
+                    <x-jet-input id="merma" type="text" class="mt-1 block w-full form-control shadow-none"  wire:model="merma" wire:change="$emit('calcular')" wire:model.defer="produccion.merma" />
                     <x-jet-input-error for="produccion.merma" class="mt-2" />
                 </div>
 

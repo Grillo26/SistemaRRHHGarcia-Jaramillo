@@ -20,6 +20,8 @@ class createProduccion extends Component
 
     public $humedad, $grasa, $resultado;
     public $humedadLab, $grasaLab, $mermaSecado;
+
+    public $resultado1, $secado1, $agua1;
     protected $listeners = ['calcular'];
 
     protected function getRules()
@@ -57,22 +59,33 @@ class createProduccion extends Component
 
     public function calcular(){ //metodo para calcular y enviar al input disabled
         $this->resultado = 1 - $this->humedad - $this->grasa;
-        $this->resultado = number_format($this->resultado, 3);
+        //$this->resultado1 = number_format($this->resultado, 3,'.', '');
+        $this->resultado = round($this->resultado, 3);
 
         $this->mermaSecado = 1 - $this->humedadLab - $this->grasaLab;
-        $this->mermaSecado = number_format($this->mermaSecado, 3);
-
 
         //ax: Saranda 
         $this->ax = $this->granoDeSoya *$this->resultado;
 
-        $this->agua = $this->granoDeSoya - $this->merma - $this->secado;
-        $this->agua = number_format($this->agua, 3);
-
         $this->secado = ($this->ax - $this->merma)/$this->mermaSecado;
-        $this->secado = number_format($this->secado, 3);
+        //$this->secado1 = number_format($this->secado, 3,'.', '');
+        $this->secado = round($this->secado, 3);
 
-
+        $this->agua = $this->granoDeSoya - $this->merma - $this->secado;
+        //$this->agua1 = number_format($this->agua, 3,'.', '');
+        $this->agua = round($this->agua, 3);
+        
+        //a cada variable decimal le damos un formato de 3 digitos despues del punto 0.000 y almacenamos en la base de datos
+        if ($this->granoDeSoya != 0) {
+            $this->mermaP = number_format(($this->merma * 100) / $this->granoDeSoya, 3);
+            $this->aguaP = number_format(($this->agua *100)/ $this->granoDeSoya,3);
+            $this->secadoP = number_format(($this->secado*100)/$this->granoDeSoya,3);
+        } else {
+            $this->mermaP = null;
+            $this->aguaP = null;
+            $this->secadoP = null;
+        }
+    
 
     }
     
@@ -82,15 +95,6 @@ class createProduccion extends Component
         $this->expeller = $this->produccion['bolsas']*50; //Extraemos del formulario
         $data = $this->produccion;
 
-        //Calculo de balance 
-        //Formula = (GranoDeSoya X %MermaSeca - Merma)/ % MermaSecado
-        
-
-        $this->e = 1-$this->produccion['humedadLab']-$this->produccion['grasaLab'];
-        $this->secado = ($this->ax-$this->bx)/$this->e;
-
-        //Formula Agua = GranoDeSoya - Merma - Secado
-        $this->agua = $this->produccion['granoDeSoya'] - $this->produccion['merma'] - $this->secado;
 
         //a cada variable decimal le damos un formato de 3 digitos despues del punto 0.000 y almacenamos en la base de datos
         $this->mermaP = ($this->produccion['merma']*100)/$this->produccion['granoDeSoya'];
