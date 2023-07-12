@@ -45,6 +45,9 @@ class createProduccion extends Component
             'produccion.grasaLab' => 'required|min:1|',
             'produccion.secado' => 'required|min:1|',
             'produccion.agua' => 'required|min:1|',
+            'produccion.mermaP' => 'required|min:1|',
+            'produccion.aguaP' => 'required|min:1|',
+            'produccion.secadoP' => 'required|min:1|',
         ];
 
         return array_merge([
@@ -121,9 +124,8 @@ class createProduccion extends Component
                 "aceite" => $this->produccion->aceite,
                 "grasas" => $this->produccion->grasas,
                 "luz" => $this->produccion->luz,
-                "bolsas" => $this->produccion->bolsas,
-                "expeller" => $this->produccion['bolsas']*50, //El campo bolsas multiplicamos por 50
-                
+                "expeller" => $this->produccion['bolsas']*50, //El campo bolsas multiplicamos por 50  
+                "mermaP" => $this->produccion->mermaP,              
             ]);
 
         $this->emit('saved');
