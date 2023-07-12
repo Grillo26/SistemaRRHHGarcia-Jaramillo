@@ -15,13 +15,12 @@ class createProduccion extends Component
     public $button;
     public $turno;
     public $expeller, $granoDeSoya, $merma;
-    public $ax, $bx, $agua, $e, $x, $secado;
+    public $ax, $agua,  $secado;
     public $secadoP, $mermaP, $aguaP;
 
     public $humedad, $grasa, $resultado;
     public $humedadLab, $grasaLab, $mermaSecado;
 
-    public $resultado1, $secado1, $agua1;
     protected $listeners = ['calcular'];
 
     protected function getRules()
@@ -42,9 +41,6 @@ class createProduccion extends Component
             'produccion.luz' => 'required|min:1|',
             'produccion.bolsas' => 'required|min:1|',
             'produccion.expeller' => 'required|min:1|',
-            'produccion.aceite' => 'required|min:1|',
-            'produccion.grasas' => 'required|min:1|',
-            'produccion.luz' => 'required|min:1|',
             'produccion.humedadLab' => 'required|min:1|',
             'produccion.grasaLab' => 'required|min:1|',
             'produccion.secado' => 'required|min:1|',
@@ -59,20 +55,19 @@ class createProduccion extends Component
 
     public function calcular(){ //metodo para calcular y enviar al input disabled
         $this->resultado = 1 - $this->humedad - $this->grasa;
-        //$this->resultado1 = number_format($this->resultado, 3,'.', '');
         $this->resultado = round($this->resultado, 3);
 
         $this->mermaSecado = 1 - $this->humedadLab - $this->grasaLab;
+        $this->mermaSecado = round($this->mermaSecado, 3);
+
 
         //ax: Saranda 
         $this->ax = $this->granoDeSoya *$this->resultado;
 
         $this->secado = ($this->ax - $this->merma)/$this->mermaSecado;
-        //$this->secado1 = number_format($this->secado, 3,'.', '');
         $this->secado = round($this->secado, 3);
 
         $this->agua = $this->granoDeSoya - $this->merma - $this->secado;
-        //$this->agua1 = number_format($this->agua, 3,'.', '');
         $this->agua = round($this->agua, 3);
         
         //a cada variable decimal le damos un formato de 3 digitos despues del punto 0.000 y almacenamos en la base de datos
@@ -95,22 +90,9 @@ class createProduccion extends Component
         $this->expeller = $this->produccion['bolsas']*50; //Extraemos del formulario
         $data = $this->produccion;
 
-
-        //a cada variable decimal le damos un formato de 3 digitos despues del punto 0.000 y almacenamos en la base de datos
-        $this->mermaP = ($this->produccion['merma']*100)/$this->produccion['granoDeSoya'];
-        $this->mermaP = number_format($this->mermaP, 3);
-
-        $this->aguaP = ($this->agua*100)/$this->produccion['granoDeSoya'];
-        $this->aguaP = number_format($this->aguaP, 3);
-
-        $this->secadoP = ($this->secado*100)/$this->produccion['granoDeSoya'];
-        $this->secadoP = number_format($this->secadoP, 3);
-    
-
-
         $data['expeller'] = $this->expeller;
-        $data['secado'] = $this->secado;
         $data['agua'] = $this->agua;
+        $data['secado'] = $this->secado;
         $data['mermaP'] = $this->mermaP;
         $data['aguaP'] = $this->aguaP;
         $data['secadoP'] = $this->secadoP;
