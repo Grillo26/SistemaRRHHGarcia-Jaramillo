@@ -21,6 +21,8 @@ class createProduccion extends Component
     public $humedad, $grasa, $resultado;
     public $humedadLab, $grasaLab, $mermaSecado;
 
+    public $aguaEx;
+
     protected $listeners = ['calcular'];
 
     protected function getRules()
@@ -83,6 +85,9 @@ class createProduccion extends Component
             $this->aguaP = null;
             $this->secadoP = null;
         }
+
+        //<------- proceso 2------>
+        $this->aguaEx = 0;
     
 
     }
