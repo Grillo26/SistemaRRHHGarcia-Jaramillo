@@ -80,8 +80,8 @@
                     <td>{{ $produccion->grasas}}</td>
                     <td>{{ $produccion->luz}}</td>
                     <td class="whitespace-no-wrap row-action--icon"> 
-                        <a role="button" href="/produccion/balance/{{ $produccion->id }}" class="mr-3"><i class="fa fa-box-open text-green-600"></i></a>
-                        <a role="button" href="/produccion/edit/{{ $produccion->id }}" class="mr-3"><i class="fa fa-16px text-green-500 fa-pen"></i></a>
+                        <a role="button" href="/produccion/balance/{{ $produccion->id }}" class="mr-3"><i class="fa fa-file-export text-green-500"></i></a>
+                        <!--<a role="button" href="/produccion/edit/{{ $produccion->id }}" class="mr-3"><i class="fa fa-16px text-green-500 fa-pen"></i></a>-->
                         <a role="button" x-on:click.prevent="deleteItem" href="#"><i class="fa fa-16px fa-trash text-red-500"></i></a>
                         
                     </td>

@@ -38,6 +38,7 @@ class Produccion extends Model
         return empty($query) ? static::query()
             : static::where('granoDeSoya', 'like', '%'.$query.'%')
                 ->orWhere('merma', 'like', '%'.$query.'%')
+                ->orWhere('lote', 'like', '%'.$query.'%')
                 ->orWhere('idTurno', 'like', '%'.$query.'%')
                 ->orWhere('fecha', 'like', '%'.$query.'%')
                 ->orWhere('humedad', 'like', '%'.$query.'%')

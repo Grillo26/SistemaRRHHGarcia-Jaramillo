@@ -89,6 +89,7 @@ class createProduccion extends Component
     
     public function createProduccion ()
     {
+        
         //Calculo del expeller dependiendo de las bolsas ingresadas en el fomulario
         $this->expeller = $this->produccion['bolsas']*50; //Extraemos del formulario
         $data = $this->produccion;
@@ -106,6 +107,7 @@ class createProduccion extends Component
 
         $this->emit('saved');
         $this->reset('produccion'); 
+        $this->limpiarCampos();
     }
 
     public function updateProduccion ()
@@ -149,5 +151,22 @@ class createProduccion extends Component
             'turnos'=>Turno::get()
         ]
     );
+    }
+
+    public function limpiarCampos(){
+        $this->granoDeSoya = '';
+        $this->humedad = '';
+        $this->grasa = '';
+        $this->merma ='';
+        $this->humedadLab= '';
+        $this->grasaLab= '';
+        $this->agua= '';
+        $this->resultado= '';
+        $this->mermaSecado= '';
+        $this->secado= '';
+        $this->mermaP= '';
+        $this->secadoP= '';
+        $this->aguaP= '';
+
     }
 }
