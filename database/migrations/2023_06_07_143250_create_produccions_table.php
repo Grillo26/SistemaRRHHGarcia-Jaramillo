@@ -20,10 +20,11 @@ class CreateProduccionsTable extends Migration
             $table->decimal('merma',8,3);
             $table->unsignedBigInteger('idTurno')->nullable();
             $table->date('fecha')->nullable();
+
             $table->decimal('humedad',8,3);
             $table->integer('bolsas');
             $table->integer('expeller');
-            $table->decimal('aceite',8,3);
+           
             $table->decimal('grasas',8,3);
             $table->decimal('luz',8,3);
 
@@ -37,6 +38,15 @@ class CreateProduccionsTable extends Migration
             $table->decimal('mermaP',8,3); 
             $table->decimal('aguaP',8,3);
             $table->decimal('secadoP',8,3);
+
+            $table->decimal('aceite',8,3);
+            $table->decimal('humedadAce',8,3);
+            $table->decimal('grasaAce',8,3);
+
+            $table->decimal('harina');
+            $table->decimal('humedadHarina');
+            $table->decimal('grasaHarina');
+
 
            
             $table->foreign('idTurno')

@@ -90,6 +90,80 @@
                     </tbody>
                 </table>
             </div>
+
+
+            <div class="table-responsive">
+                <table class="table table-bordered table-md">
+                    <tbody>
+                        <tr>
+                            <th colspan="4" class="text-center">%RENDIMIENTO</th>
+                        </tr>
+                        <tr>
+                            <th>#</th>
+                            <th>MATERIA</th>
+                            <th>KG</th>
+                            <th>%</th>        
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td>Grano de Soya</td>
+                            @if ($action == "createProduccion")
+                            <td> {{$secado}}</td>
+                            @endif
+
+                            @if ($action == "updateProduccion")
+                            <td>{{$produccion->granoDeSoya}}</td>
+                            @endif
+
+                            <td>100%</td>
+
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>Agua</td>
+
+                            @if( $action == "createProduccion")
+                            <td>{{$agua2}}</td>
+                            <td>{{$aguaP2}}%</td>
+                            @endif
+
+                            @if($action == "updateProduccion")
+                            <td> {{$produccion->merma}}</td>
+                            <td> {{$produccion->mermaP}}%</td>
+                            @endif
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>Aceite</td>
+
+                            @if($action == "createProduccion")
+                            <td>{{$aceite}}</td>
+                            <td>{{$aceiteP}}%</td>
+                            @endif
+
+                            @if($action == "updateProduccion")
+                            <td> {{$produccion->agua}}</td>
+                            <td> {{$produccion->aguaP}}%</td>
+                            @endif
+                            
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td>Solvente</td>
+
+                            @if($action == "createProduccion")
+                            <td>{{$harina}}</td>
+                            <td>{{$solventeP}}%</td>
+                            @endif
+                            
+                            @if($action == "updateProduccion")
+                            <td>{{$produccion->secado}}</td>
+                            <td>{{$produccion->secadoP}}%</td>
+                            @endif
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </x-slot>
 
         
@@ -197,7 +271,7 @@
                 <!--%MERMA SECA-->
                 <div class="">
                     <x-jet-label for="grasas" value="{{ __('% Merma Seca') }}" />          
-                    <small>Edite la cantida de grasa</small>
+                    <small>Cantidad de grasa</small>
                     <!--x-jet-input id="grasas" type="text" class="mt-1 block w-full form-control shadow-none" wire:model.defer="produccion.grasas" />-->
                     <x-jet-input id="mermaSeca" type="text" class="mt-1 block w-full form-control shadow-none" disabled wire:model="resultado" />
                     <x-jet-input-error for="produccion.mermaSeca" class="mt-2" />
@@ -240,6 +314,21 @@
 
             <div class="border mt-4 p-3 rounded-lg">
                 <div class="grid grid-cols-1 gap-4 sm:grid-cols-4">
+                    <!--SECADO-->
+                    <div class="">
+                        <x-jet-label for="secado" value="{{ __('Secado') }}" />  
+                        @if($action == "updateProduccion")        
+                        <small>Total del proceso de secado </small>
+                        <x-jet-input id="secado" type="text" class="mt-1 block w-full form-control shadow-none" disabled  wire:model.defer="produccion.secado"/>
+
+                        @endif
+                        @if($action == "createProduccion")
+                        <small>Valor total del proceso de secado </small>
+                        <x-jet-input id="secado" type="text" class="mt-1 block w-full form-control shadow-none" disabled wire:model="secado" wire:model.defer="produccion.secado"/>
+                        @endif
+                        <x-jet-input-error for="produccion.secado" class="mt-2" />
+
+                    </div>
                     
                     <!--HUMEDAD DE LABORATORIO-->
                     <div class="">
@@ -283,26 +372,138 @@
 
                     </div>
 
-                    <!--SECADO-->
-                    <div class="">
-                        <x-jet-label for="secado" value="{{ __('Secado') }}" />  
-                        @if($action == "updateProduccion")        
-                        <small>Total del proceso de secado </small>
-                        <x-jet-input id="secado" type="text" class="mt-1 block w-full form-control shadow-none" disabled  wire:model.defer="produccion.secado"/>
-
-                        @endif
-                        @if($action == "createProduccion")
-                        <small>Valor total del proceso de secado </small>
-                        <x-jet-input id="secado" type="text" class="mt-1 block w-full form-control shadow-none" disabled wire:model="secado" wire:model.defer="produccion.secado"/>
-                        @endif
-                        <x-jet-input-error for="produccion.secado" class="mt-2" />
-
-                    </div>
-
                 </div>
             </div>
 
+            <div class=" grid grid-cols-1 gap-4 sm:grid-cols-4 pt-3">
+                <!--ACEITE-->
+                <div class="">
+                    <x-jet-label for="aceite" value="{{ __('Aceite') }}" />
+                    @if($action == "updateProduccion")
+                    <small>Edite la cantidad de aceite</small>
+                    @endif
+                    @if($action == "createProduccion")
+                    <small>Ingrese cantidad de aceite</small>
+                    @endif
+                    <x-jet-input id="aceite" type="text" class="mt-1 block w-full form-control shadow-none"  wire:model="aceite" wire:model.defer="produccion.aceite" required />
+                    <x-jet-input-error for="produccion.aceite" class="mt-2" />
+                </div> 
+
+                <!--HUMEDAD DE ACEITES-->
+                <div class="">
+                    <x-jet-label for="humedadAce" value="{{ __('Humedad ') }}" />
+                    @if($action == "updateProduccion")
+                    <small>Edite la cantidad de humedad de aceite</small>
+                    <x-jet-input id="humedadAce" type="text" class="mt-1 block w-full form-control shadow-none"  wire:model.defer="produccion.humedadAce" />
+
+                    @endif
+                    @if($action == "createProduccion")
+                    <small>Humedad obtenida de Laboratorio</small>
+                    <x-jet-input id="humedadAce" class="mt-1 block w-full form-control shadow-none" type="text" wire:model="humedadAce" wire:change="$emit('calcular')" wire:model.defer="produccion.humedadAce" required/>
+
+                    @endif
+                    <x-jet-input-error for="produccion.humedadAce" class="mt-2" />
+                    </div> 
+
+                <!--GRASA DE LABORATORIO de-->
+                <div class="">
+                    <x-jet-label for="grasaAce" value="{{ __('Grasa') }}" />
+                    @if($action == "updateProduccion")
+                    <small>Edite la cantidad de Grasa</small>
+                    <x-jet-input id="grasaAce" class="mt-1 block w-full form-control shadow-none" type="text" wire:change="$emit('calcular')" wire:model.defer="produccion.grasaAce"/>
+
+                     @endif
+                    @if($action == "createProduccion")
+                    <small>Cantidad de grasa obtenida del Laboratorio</small>
+                    <x-jet-input id="grasaAce" type="text" class="mt-1 block w-full form-control shadow-none" wire:model="grasaAce" wire:change="$emit('calcular')" wire:model.defer="produccion.grasaAce" required/>
+
+                    @endif
+                    <x-jet-input-error for="produccion.grasaAce" class="mt-2" />
+                </div>
+
+                <!--%MERMA SECA EN SECADO-->
+                <div class="">
+                    <x-jet-label for="mermaAce" value="{{ __('% Merma Seca') }}" />          
+                    <small>Total de merma seca en porcentaje </small>
+                    <!--x-jet-input id="grasas" type="text" class="mt-1 block w-full form-control shadow-none" wire:model.defer="produccion.grasas" />-->
+                    <x-jet-input id="mermaAce" type="text" class="mt-1 block w-full form-control shadow-none" disabled wire:model="mermaAce" />
+                    <x-jet-input-error for="produccion.mermaAce" class="mt-2" />
+
+                </div>
+
+            </div>
+
+            <div class=" grid grid-cols-1 gap-4 sm:grid-cols-4 pt-3">
+                <!--HARINA SOLVENTE-->
+                <div class="">
+                    <x-jet-label for="harina" value="{{ __('Harina Solvente') }}" />
+                    @if($action == "updateProduccion")
+                    <small>Edite la cantidad de harina</small>
+                    @endif
+                    @if($action == "createProduccion")
+                    <small>Ingrese cantidad de harina</small>
+                    @endif
+                    <x-jet-input id="harina" type="text" class="mt-1 block w-full form-control shadow-none"  wire:model="harina" required />
+                    <x-jet-input-error for="produccion.harina" class="mt-2" />
+                </div> 
+
+                <!--HUMEDAD DE HARINA-->
+                <div class="">
+                    <x-jet-label for="humedadHarina" value="{{ __('Humedad ') }}" />
+                    @if($action == "updateProduccion")
+                    <small>Edite la cantidad de humedad de aceite</small>
+                    <x-jet-input id="humedadHarina" type="text" class="mt-1 block w-full form-control shadow-none"  wire:model.defer="produccion.humedadHarina" />
+
+                    @endif
+                    @if($action == "createProduccion")
+                    <small>Humedad obtenida de Laboratorio</small>
+                    <x-jet-input id="humedadHarina" class="mt-1 block w-full form-control shadow-none" type="text" wire:model="humedadHarina" wire:change="$emit('calcular')" wire:model.defer="produccion.humedadHarina" required/>
+
+                    @endif
+                    <x-jet-input-error for="produccion.humedadHarina" class="mt-2" />
+                    </div> 
+
+                <!--GRASA DE LABORATORIO HARINA-->
+                <div class="">
+                    <x-jet-label for="grasaHarina" value="{{ __('Grasa') }}" />
+                    @if($action == "updateProduccion")
+                    <small>Edite la cantidad de Grasa</small>
+                    <x-jet-input id="grasaHarina" class="mt-1 block w-full form-control shadow-none" type="text" wire:change="$emit('calcular')" wire:model.defer="produccion.grasaACe"/>
+
+                     @endif
+                    @if($action == "createProduccion")
+                    <small>Cantidad de grasa obtenida del Laboratorio</small>
+                    <x-jet-input id="grasaHarina" type="text" class="mt-1 block w-full form-control shadow-none" wire:model="grasaHarina" wire:change="$emit('calcular')" wire:model.defer="produccion.grasaHarina" required/>
+
+                    @endif
+                    <x-jet-input-error for="produccion.grasaHarina" class="mt-2" />
+                </div>
+
+                <!--%MERMA SECA HARINA-->
+                <div class="">
+                    <x-jet-label for="mermaHarina" value="{{ __('% Merma Seca') }}" />          
+                    <small>Total de merma seca en porcentaje </small>
+                    <!--x-jet-input id="grasas" type="text" class="mt-1 block w-full form-control shadow-none" wire:model.defer="produccion.grasas" />-->
+                    <x-jet-input id="mermaHarina" type="text" class="mt-1 block w-full form-control shadow-none" disabled wire:model="mermaHarina" />
+                    <x-jet-input-error for="produccion.mermaHarina" class="mt-2" />
+                </div>
+
+            </div>
+            
             <div class=" grid grid-cols-1 gap-4 sm:grid-cols-3 pt-3">
+                <!--AGUA 2-->
+                <div class="">
+                    <x-jet-label for="agua2" value="{{ __('Agua') }}" />
+                    @if($action == "updateProduccion")
+                    <small>Cantidad de agua final</small>
+                    @endif
+                    @if($action == "createProduccion")
+                    <small>Cantidad de Agua Final</small>
+                    @endif
+                    <x-jet-input id="agua2" type="text" class="mt-1 block w-full form-control shadow-none"  wire:model="agua2" disabled/>
+                    <x-jet-input-error for="produccion.agua2" class="mt-2" />
+                </div>
+
                 <!--BOLSAS-->
                 <div class="">
                     <x-jet-label for="bolsas" value="{{ __('Bolsas') }}" />
@@ -315,19 +516,6 @@
                     <x-jet-input id="bolsas" type="text" class="mt-1 block w-full form-control shadow-none"  wire:model.defer="produccion.bolsas" required/>
                     <x-jet-input-error for="produccion.bolsas" class="mt-2" />
                 </div>
-
-                <!--ACEITE-->
-                <div class="">
-                    <x-jet-label for="aceite" value="{{ __('Aceite') }}" />
-                    @if($action == "updateProduccion")
-                    <small>Edite la cantidad de aceite</small>
-                    @endif
-                    @if($action == "createProduccion")
-                    <small>Ingrese cantidad de aceite</small>
-                    @endif
-                    <x-jet-input id="aceite" type="text" class="mt-1 block w-full form-control shadow-none"  wire:model.defer="produccion.aceite" required />
-                    <x-jet-input-error for="produccion.aceite" class="mt-2" />
-                </div> 
 
                  <!--LUZ-->
                  <div class="">
@@ -342,11 +530,6 @@
                     <x-jet-input-error for="produccion.luz" class="mt-2" />
                 </div>
             </div>
-
-            <div class=" grid grid-cols-1 gap-4 sm:grid-cols-2 pt-1">
-                
-            </div>
-
             
       
         </x-slot>

@@ -16,12 +16,13 @@ class createProduccion extends Component
     public $turno;
     public $expeller, $granoDeSoya, $merma;
     public $ax, $agua,  $secado;
-    public $secadoP, $mermaP, $aguaP;
+    //Porcentajes
+    public $secadoP, $mermaP, $aguaP, $aguaP2, $aceiteP , $solventeP;
 
     public $humedad, $grasa, $resultado;
     public $humedadLab, $grasaLab, $mermaSecado;
 
-    public $aguaEx;
+    public $agua2, $aceite, $humedadAce, $grasaAce, $mermaAce, $harina, $humedadHarina, $grasaHarina, $mermaHarina;
 
     protected $listeners = ['calcular'];
 
@@ -75,7 +76,7 @@ class createProduccion extends Component
         $this->agua = $this->granoDeSoya - $this->merma - $this->secado;
         $this->agua = round($this->agua, 3);
         
-        //a cada variable decimal le damos un formato de 3 digitos despues del punto 0.000 y almacenamos en la base de datos
+        //TABLA RENDIMIENTO 1
         if ($this->granoDeSoya != 0) {
             $this->mermaP = number_format(($this->merma * 100) / $this->granoDeSoya, 3);
             $this->aguaP = number_format(($this->agua *100)/ $this->granoDeSoya,3);
@@ -86,8 +87,32 @@ class createProduccion extends Component
             $this->secadoP = null;
         }
 
-        //<------- proceso 2------>
-        $this->aguaEx = 0;
+        //<------- PROCESO 2------>
+        //Aceite
+        $this->mermaAce = 1 - $this->humedadAce - $this->grasaAce;
+        $this->mermaAce = round($this->mermaAce, 3);
+
+        //Harina
+        $this->mermaHarina = 1 - $this->humedadHarina - $this->grasaHarina;
+        $this->mermaHarina = round($this->mermaHarina, 3);
+
+        $this->agua2 = $this->secado - $this->aceite - $this->harina;
+        $this->agua2 = round($this->agua2, 3);
+
+        //TABLA RENDIMIENTO 2
+        if ($this->granoDeSoya != 0) {
+            $this->aguaP2 = number_format(($this->agua2*100)/ $this->secado,3);
+            $this->aceiteP = number_format(($this->aceite*100)/$this->secado,3);
+            $this->solventeP = number_format(($this->harina*100) / $this->secado, 3);
+
+        } else {
+            $this->aguaP2 = null;
+            $this->aceiteP = null;
+            $this->solventeP = null;
+        }
+
+
+        
     
 
     }

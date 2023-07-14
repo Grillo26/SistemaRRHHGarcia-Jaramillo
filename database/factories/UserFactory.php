@@ -23,13 +23,7 @@ class UserFactory extends Factory
     public function definition()
     {
         return [
-            'name' => 'Carlos Enrique',
-            'lastname' => 'Mamani Torrez',
-            'username' => 'grillo26',
-            'email' => 'carlsenrmt26@gmail.com',
-            'email_verified_at' => now(),
-            'password' => 'kuynva26101997', // password
-            'remember_token' => Str::random(10),
+            
         ];
     }
 }
