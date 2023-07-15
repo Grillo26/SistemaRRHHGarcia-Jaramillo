@@ -46,6 +46,7 @@ class CreateProduccionsTable extends Migration
             $table->decimal('harina');
             $table->decimal('humedadHarina');
             $table->decimal('grasaHarina');
+            $table->decimal('agua2');
 
 
            

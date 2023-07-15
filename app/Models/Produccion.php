@@ -9,25 +9,9 @@ class Produccion extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'id',
-        'lote',
-        'granoDeSoya',
-        'merma',
-        'idTurno',
-        'fecha',
-        'humedad',
-        'bolsas',
-        'expeller',
-        'aceite',
-        'grasas',
-        'luz',
-        'humedadLab',
-        'grasaLab',
-        'secado',
-        'agua',
-        'mermaP',
-        'aguaP',
-        'secadoP'
+        'id','lote','granoDeSoya','merma','idTurno','fecha','humedad','bolsas',
+        'expeller','aceite','grasas','luz','humedadLab','grasaLab','secado','agua',
+        'mermaP','aguaP','secadoP','humedadAce','grasaAce','harina','humedadHarina','grasaHarina','agua2'
     ];
 
     public function turnos(){

@@ -425,7 +425,6 @@
                 <div class="">
                     <x-jet-label for="mermaAce" value="{{ __('% Merma Seca') }}" />          
                     <small>Total de merma seca en porcentaje </small>
-                    <!--x-jet-input id="grasas" type="text" class="mt-1 block w-full form-control shadow-none" wire:model.defer="produccion.grasas" />-->
                     <x-jet-input id="mermaAce" type="text" class="mt-1 block w-full form-control shadow-none" disabled wire:model="mermaAce" />
                     <x-jet-input-error for="produccion.mermaAce" class="mt-2" />
 

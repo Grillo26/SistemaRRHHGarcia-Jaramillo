@@ -130,6 +130,15 @@ class createProduccion extends Component
         $data['mermaP'] = $this->mermaP;
         $data['aguaP'] = $this->aguaP;
         $data['secadoP'] = $this->secadoP;
+        $data['aceite'] = $this->aceite;
+        
+        $data['humedadAce'] = $this->humedadAce;
+        $data['grasaAce'] = $this->grasaAce;
+        $data['harina'] = $this->harina;
+        $data['humedadHarina'] = $this->humedadHarina;
+        $data['grasaHarina'] = $this->grasaHarina;
+        $data['agua2'] = $this->agua2;
+
         
 
     
