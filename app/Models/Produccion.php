@@ -11,7 +11,8 @@ class Produccion extends Model
     protected $fillable = [
         'id','lote','granoDeSoya','merma','idTurno','fecha','humedad','bolsas',
         'expeller','aceite','grasas','luz','humedadLab','grasaLab','secado','agua',
-        'mermaP','aguaP','secadoP','humedadAce','grasaAce','harina','humedadHarina','grasaHarina','agua2'
+        'mermaP','aguaP','secadoP','humedadAce','grasaAce','harina','humedadHarina','grasaHarina','agua2',
+        'aguaP2', 'aceiteP', 'solventeP'
     ];
 
     public function turnos(){

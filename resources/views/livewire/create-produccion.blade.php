@@ -1,28 +1,15 @@
 <div id="form-create">
     <x-jet-form-section :submit="$action" class="mb-4">
         <x-slot name="title">
-            {{ __('Añadir Nueva Producción') }}
-
+            {{ __('') }}
         </x-slot>
 
         <x-slot name="description">
-            @if ($action == "createProduccion")
-            {{ __('Complete los siguientes datos para registrar una nueva producción. Nota: lea correctamente los campos y verifique si están escritos de
-                manera adecuada dentro del formulario. El formato de los campos con decimales es de X.XXX (Tres decimales.)') }} 
-            
-            @endif
-
-            @if($action == "updateProduccion")
-            {{ __('Complete los siguientes datos para editar la producción que seleccionó. Nota: lea correctamente los campos y verifique  si están escritos de
-                manera adecuada dentro del formulario.') }} 
-            
-            @endif
-
             <div class="table-responsive">
                 <table class="table table-bordered table-md">
                     <tbody>
                         <tr>
-                            <th colspan="4" class="text-center">%RENDIMIENTO</th>
+                            <th colspan="4" class="text-center">%PORCENTAJE DE RENDIMIENTO</th>
                         </tr>
                         <tr>
                             <th>#</th>
@@ -91,12 +78,12 @@
                 </table>
             </div>
 
-
+            
             <div class="table-responsive">
                 <table class="table table-bordered table-md">
                     <tbody>
                         <tr>
-                            <th colspan="4" class="text-center">%RENDIMIENTO</th>
+                            <th colspan="4" class="text-center">RESUMEN DE PROCESO</th>
                         </tr>
                         <tr>
                             <th>#</th>
@@ -163,7 +150,24 @@
                         </tr>
                     </tbody>
                 </table>
+            </div>  
             </div>
+
+
+            
+            <div class="card-body">
+            @if ($action == "createProduccion")
+            {{ __('Complete los siguientes datos para registrar una nueva producción. Nota: lea correctamente los campos y verifique si están escritos de
+                manera adecuada dentro del formulario. El formato de los campos con decimales es de X.XXX (Tres decimales.)') }} 
+            
+            @endif
+
+            @if($action == "updateProduccion")
+            {{ __('Complete los siguientes datos para editar la producción que seleccionó. Nota: lea correctamente los campos y verifique  si están escritos de
+                manera adecuada dentro del formulario.') }} 
+            
+            @endif
+        </div>
         </x-slot>
 
         

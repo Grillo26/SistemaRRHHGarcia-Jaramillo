@@ -15,9 +15,7 @@ class createBalance extends Component
     public $produccionId;
     public $action;
     public $button;
-    public $secado, $granoDeSoya, $merma, $agua;
-    public $secadoP, $mermaP, $aguaP;
-    public $fecha, $lote, $balance;
+    public $secado, $agua2, $aguaP2, $aceite, $aceiteP, $harina, $solventeP, $fecha, $lote;
     public $imagePath;
 
     public function mount (){
@@ -33,17 +31,17 @@ class createBalance extends Component
     public function render(){
         $balance = Produccion::find($this->produccionId);
 
-        //Extraemos los datos de la tabla produccion y los asignamos en la variable balances, de ahí los derivamos en sus variables respectivas    
-        $this->granoDeSoya = $balance->granoDeSoya;
-        $this->merma = $balance->merma;
-        $this->agua = $balance->agua;
-        $this->secado = $balance->secado;
+        //Extraemos los datos de la tabla produccion y los asignamos en la variable balances, de ahí los derivamos en sus variables respectivas   
         $this->fecha = $balance->fecha;
         $this->lote = $balance->lote;
-        $this->mermaP = $balance->mermaP;
-        $this->aguaP = $balance->aguaP;
-        $this->secadoP = $balance->secadoP;
-
+        $this->secado = $balance->secado;
+        $this->agua2 = $balance->agua2;
+        $this->aguaP2 = $balance->aguaP2;
+        $this->aceite = $balance->aceite;
+        $this->aceiteP = $balance->aceiteP;
+        $this->harina = $balance->harina;
+        $this->solventeP = $balance->solventeP;
+    
         return view('livewire.create-balance');
     } 
 

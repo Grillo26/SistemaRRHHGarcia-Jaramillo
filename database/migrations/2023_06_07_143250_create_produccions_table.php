@@ -48,6 +48,11 @@ class CreateProduccionsTable extends Migration
             $table->decimal('grasaHarina');
             $table->decimal('agua2');
 
+            //Porcentaje
+            $table->decimal('aguaP2');
+            $table->decimal('aceiteP');
+            $table->decimal('solventeP');
+
 
            
             $table->foreign('idTurno')

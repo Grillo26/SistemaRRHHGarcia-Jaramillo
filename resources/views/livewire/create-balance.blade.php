@@ -32,26 +32,26 @@
                             <tr>
                             <td>1</td>
                             <td>Soya</td>
-                            <td>{{$granoDeSoya}}</td>
+                            <td>{{$secado}}</td>
                             <td>100%</td>
                             </tr>
                             <tr>
                             <td>2</td>
-                            <td>Merma</td>
-                            <td>{{$merma}}</td>
-                            <td>{{$mermaP}}%</td>
+                            <td>Agua</td>
+                            <td>{{$agua2}}</td>
+                            <td>{{$aguaP2}}%</td>
                             </tr>
                             <tr>
                             <td>3</td>
-                            <td>Agua</td>
-                            <td>{{$agua}}</td>
-                            <td>{{$aguaP}}%</td>
+                            <td>Aceite</td>
+                            <td>{{$aceite}}</td>
+                            <td>{{$aceiteP}}%</td>
                             </tr>
                             <tr>
                             <td>4</td>
-                            <td>Soya Final</td>
-                            <td>{{$secado}}</td>
-                            <td>{{$secadoP}}%</td>
+                            <td>Harina</td>
+                            <td>{{$harina}}</td>
+                            <td>{{$solventeP}}%</td>
                             </tr>
                         </tbody>
                     </table>
