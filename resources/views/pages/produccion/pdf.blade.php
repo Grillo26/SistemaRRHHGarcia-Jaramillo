@@ -69,39 +69,40 @@
     </div>
 
     <table class="default">
-        <tr>
-            <th colspan="4" class="text-center">%RENDIMIENTO</th>
-        </tr>
-        <tr>
-            <th>#</th>
-            <th>MATERIA</th>
-            <th>KG</th>
-            <th>%</th>
-        </tr>
-        <tr>
-            <td>1</td>
-            <td>Soya</td>
-            <td>{{$exports->granoDeSoya}}</td>
-            <td>100%</td>
-        </tr>
-        <tr>
-            <td>2</td>
-            <td>Merma</td>
-            <td>{{$exports->merma}}</td>
-            <td>{{$exports->mermaP}}%</td>
-        </tr>
-        <tr>
-            <td>3</td>
-            <td>Agua</td>
-            <td>{{$exports->agua}}</td>
-            <td>{{$exports->aguaP}}%</td>
-        </tr>
-        <tr>
-            <td>4</td>
-            <td>Soya Final</td>
-            <td>{{$exports->secado}}</td>
-            <td>{{$exports->secadoP}}%</td>
-        </tr>
+        <tbody>
+            <tr>
+                <th colspan="4" class="text-center">%RENDIMIENTO</th>
+            </tr>
+            <tr>
+                <th>#</th>
+                <th>MATERIA</th>
+                <th>KG</th>
+                <th>%</th>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>Soya</td>
+                <td>{{$exports->secado}}</td>
+                <td>100%</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>Agua</td>
+                <td>{{$exports->agua2}}</td>
+                <td>{{$exports->aguaP2}}%</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>Aceite</td>
+                <td>{{$exports->aceite}}</td>
+                <td>{{$exports->aceiteP}}%</td>
+            </tr>
+            <tr>
+                <td>4</td>
+                <td>Harina</td>
+                <td>{{$exports->harina}}</td>
+                <td>{{$exports->solventeP}}%</td>
+            </tr>
         </tbody>
     </table>
 

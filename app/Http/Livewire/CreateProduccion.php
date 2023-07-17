@@ -51,6 +51,12 @@ class createProduccion extends Component
             'produccion.mermaP' => 'required|min:1|',
             'produccion.aguaP' => 'required|min:1|',
             'produccion.secadoP' => 'required|min:1|',
+            'produccion.humedadAce' => 'required|min:1|',
+            'produccion.grasaAce' => 'required|min:1|',
+            'produccion.harina' => 'required|min:1|',
+            'produccion.humedadHarina' => 'required|min:1|',
+            'produccion.grasaHarina' => 'required|min:1|',
+            'produccion.agua2' => 'required|min:1|',
         ];
 
         return array_merge([
