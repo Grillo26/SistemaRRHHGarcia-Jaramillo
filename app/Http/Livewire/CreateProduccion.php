@@ -22,7 +22,7 @@ class createProduccion extends Component
     public $humedad, $grasa, $resultado;
     public $humedadLab, $grasaLab, $mermaSecado;
 
-    public $agua2, $aceite, $humedadAce, $grasaAce, $mermaAce, $harina, $humedadHarina, $grasaHarina, $mermaHarina;
+    public $agua2, $aceite, $humedadAce, $grasaAce, $mermaAce, $harina, $humedadHarina, $grasaHarina, $mermaHarina, $inicio=1;
 
     protected $listeners = ['calcular'];
 
@@ -66,10 +66,10 @@ class createProduccion extends Component
     }
 
     public function calcular(){ //metodo para calcular y enviar al input disabled
-        $this->resultado = 1 - $this->humedad - $this->grasa;
+        $this->resultado = $this->inicio - $this->humedad - $this->grasa;
         $this->resultado = round($this->resultado, 3);
 
-        $this->mermaSecado = 1 - $this->humedadLab - $this->grasaLab;
+        $this->mermaSecado = $this->inicio - $this->humedadLab - $this->grasaLab;
         $this->mermaSecado = round($this->mermaSecado, 3);
 
 
@@ -99,7 +99,7 @@ class createProduccion extends Component
         $this->mermaAce = round($this->mermaAce, 3);
 
         //Harina
-        $this->mermaHarina = 1 - $this->humedadHarina - $this->grasaHarina;
+        $this->mermaHarina = $this->inicio - $this->humedadHarina - $this->grasaHarina;
         $this->mermaHarina = round($this->mermaHarina, 3);
 
         $this->agua2 = $this->secado - $this->aceite - $this->harina;
@@ -116,10 +116,6 @@ class createProduccion extends Component
             $this->aceiteP = null;
             $this->solventeP = null;
         }
-
-
-        
-    
 
     }
     
@@ -155,7 +151,7 @@ class createProduccion extends Component
 
         $this->emit('saved');
         $this->reset('produccion'); 
-        $this->limpiarCampos();
+     
     }
 
     public function updateProduccion ()
@@ -215,6 +211,18 @@ class createProduccion extends Component
         $this->mermaP= '';
         $this->secadoP= '';
         $this->aguaP= '';
+        $this->humedadAce= '';
+        $this->grasaAce= '';
+        $this->harina= '';
+        $this->humedadHarina= '';
+        $this->grasaHarina= '';
+        $this->agua2= '';
+        $this->aguaP2= '';
+        $this->aceiteP= '';
+        $this->solventeP= '';
+        $this->mermaHarina= '';
+        $this->mermaAce= '';
+        $this->aceite= '';
 
     }
 }

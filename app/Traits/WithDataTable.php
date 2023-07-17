@@ -57,7 +57,7 @@ trait WithDataTable {
                         "data" => array_to_object([
                             'href' => [
                                 'create_new' => route('produccion.new'),
-                                'create_new_text' => 'Nueva Produccion',
+                                'create_new_text' => 'Nuevo Balance',
                                 'export' => '#',
                                 'export_text' => 'Exportar'
                             ]

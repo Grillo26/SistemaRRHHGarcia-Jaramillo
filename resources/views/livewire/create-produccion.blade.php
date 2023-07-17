@@ -168,9 +168,20 @@
             
             @endif
         </div>
-        </x-slot>
 
+        <div class="d-flex justify-content-center align-items-center pt-3">
+            <x-jet-action-message class="mr-3" on="saved">
+                    {{ __($button['submit_response']) }}
+                </x-jet-action-message>
+            <x-jet-button>
+                    {{ __($button['submit_text']) }}
+            </x-jet-button>
+        </div>
+       
+
+        </x-slot>
         
+
         <x-slot name="form">
              <div class=" grid grid-cols-1 gap-4 sm:grid-cols-3">
                 <!--LOTE-->
@@ -245,7 +256,7 @@
                     <x-jet-label for="humedad" value="{{ __('Humedad') }}" />
                     @if($action == "updateProduccion")
                     <small>Edite la cantidad de humedad en %</small>
-                    <x-jet-input id="humedad" type="text" class="mt-1 block w-full form-control shadow-none"  wire:model.defer="produccion.humedad" />
+                    <x-jet-input id="humedad" type="text" class="mt-1 block w-full form-control shadow-none" wire:change="$emit('calcular')"  wire:model.defer="produccion.humedad" />
 
                     @endif
                     @if($action == "createProduccion")
@@ -260,7 +271,7 @@
                     <x-jet-label for="grasas" value="{{ __('Grasa') }}" />
                     @if($action == "updateProduccion")
                     <small>Edite la cantida de grasa</small>
-                    <x-jet-input id="grasas" type="text" class="mt-1 block w-full form-control shadow-none" wire:model.defer="produccion.grasas" />
+                    <x-jet-input id="grasas" type="text" class="mt-1 block w-full form-control shadow-none" wire:change="$emit('calcular')" wire:model.defer="produccion.grasas" />
 
                     @endif
                     @if($action == "createProduccion")
@@ -554,6 +565,5 @@
             </x-jet-button>
         </x-slot>
     </x-jet-form-section>
-
     <x-notify-message on="saved" type="success" :message="__($button['submit_response_notyf'])" />
 </div>
