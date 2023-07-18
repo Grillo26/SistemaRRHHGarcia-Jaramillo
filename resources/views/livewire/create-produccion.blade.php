@@ -334,7 +334,7 @@
                         <x-jet-label for="secado" value="{{ __('Secado') }}" />  
                         @if($action == "updateProduccion")        
                         <small>Total del proceso de secado </small>
-                        <x-jet-input id="secado" type="text" class="mt-1 block w-full form-control shadow-none" disabled  wire:model.defer="produccion.secado"/>
+                        <x-jet-input id="secado" type="text" class="mt-1 block w-full form-control shadow-none" disabled wire:model.defer="produccion.secado"/>
 
                         @endif
                         @if($action == "createProduccion")

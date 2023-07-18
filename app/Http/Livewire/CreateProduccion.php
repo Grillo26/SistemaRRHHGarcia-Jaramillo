@@ -151,6 +151,8 @@ class createProduccion extends Component
 
         $this->emit('saved');
         $this->reset('produccion'); 
+        $this->limpiarCampos();
+
      
     }
 
@@ -198,31 +200,31 @@ class createProduccion extends Component
     }
 
     public function limpiarCampos(){
-        $this->granoDeSoya = '';
-        $this->humedad = '';
-        $this->grasa = '';
-        $this->merma ='';
-        $this->humedadLab= '';
-        $this->grasaLab= '';
-        $this->agua= '';
-        $this->resultado= '';
-        $this->mermaSecado= '';
-        $this->secado= '';
-        $this->mermaP= '';
-        $this->secadoP= '';
-        $this->aguaP= '';
-        $this->humedadAce= '';
-        $this->grasaAce= '';
-        $this->harina= '';
-        $this->humedadHarina= '';
-        $this->grasaHarina= '';
-        $this->agua2= '';
-        $this->aguaP2= '';
-        $this->aceiteP= '';
-        $this->solventeP= '';
-        $this->mermaHarina= '';
-        $this->mermaAce= '';
-        $this->aceite= '';
+        $this->granoDeSoya = null;
+        $this->humedad = null;
+        $this->grasa = null;
+        $this->merma = 1;
+        $this->humedadLab=null;
+        $this->grasaLab= null;
+        $this->agua= null;
+        $this->resultado= null;
+        $this->mermaSecado= 1;
+        $this->secado=0;
+        $this->mermaP= null;
+        $this->secadoP=null;
+        $this->aguaP= null;
+        $this->humedadAce= null;
+        $this->grasaAce= null;
+        $this->harina= null;
+        $this->humedadHarina= null;
+        $this->grasaHarina= null;
+        $this->agua2= 0;
+        $this->aguaP2= null;
+        $this->aceiteP= null;
+        $this->solventeP= null;
+        $this->mermaHarina= 1;
+        $this->mermaAce= 1;
+        $this->aceite= null;
 
     }
 }

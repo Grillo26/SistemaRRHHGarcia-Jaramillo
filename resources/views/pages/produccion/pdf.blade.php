@@ -107,7 +107,7 @@
     </table>
 
     <div class="firma">
-        <p>Carlos Enrique Mamani</p>
+        <p>Oracio</p>
         <p>Encargado de Planta</p>
     </div>
     

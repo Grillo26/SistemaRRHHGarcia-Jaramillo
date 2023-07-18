@@ -57,11 +57,19 @@
                     </table>
                 </div>
             </div>
+            <div class="d-flex justify-content-center align-items-center pt-3">
+            <div class="flex pb-4 ">
+                <a href="/produccion/edit/{{ $produccion->id }}"  class="-ml- btn btn-primary shadow-none"><span class="fas fa-plus"></span> Ver</a>
+                <a href="/produccion/pdf/{{ $produccion->id }}" class="ml-2 btn btn-success shadow-none" target="_blank"><span class="fas fa-file-export"></span> Exportar</a>
+            </div>
+            </div>
+            
 
         </x-slot>
+       
 
         <x-slot name="actions">
-        <div class="flex pb-4 ">
+            <div class="flex pb-4 ">
                 <a href="/produccion/edit/{{ $produccion->id }}"  class="-ml- btn btn-primary shadow-none"><span class="fas fa-plus"></span> Ver</a>
                 <a href="/produccion/pdf/{{ $produccion->id }}" class="ml-2 btn btn-success shadow-none" target="_blank"><span class="fas fa-file-export"></span> Exportar</a>
             </div>

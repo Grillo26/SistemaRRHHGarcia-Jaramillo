@@ -53,6 +53,13 @@
                 <x-jet-input-error for="user.password_confirmation" class="mt-2" />
             </div>
             @endif
+            <x-jet-action-message class="mr-3" on="saved">
+                {{ __($button['submit_response']) }}
+            </x-jet-action-message>
+
+            <x-jet-button>
+                {{ __($button['submit_text']) }}
+            </x-jet-button>
         </x-slot>
 
         <x-slot name="actions">

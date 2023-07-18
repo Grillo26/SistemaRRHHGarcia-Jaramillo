@@ -44,6 +44,14 @@
                 <x-jet-input id="descripcion" type="text" class="mt-1 block w-full form-control shadow-none" wire:model.defer="turno.descripcion" />
                 <x-jet-input-error for="turno.descripcion" class="mt-2" />
             </div>
+
+            <x-jet-action-message class="mr-3" on="saved">
+                {{ __($button['submit_response']) }}
+            </x-jet-action-message>
+
+            <x-jet-button>
+                {{ __($button['submit_text']) }}
+            </x-jet-button>
            
         </x-slot>
 
