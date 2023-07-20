@@ -295,7 +295,7 @@
                 
             </div>
 
-            <div class=" grid grid-cols-1 gap-4 sm:grid-cols-2 pt-1">
+            <div class=" grid grid-cols-1 gap-4 sm:grid-cols-2 pt-3">
                 <!--MERMA-->
                 <div class="">
                     <x-jet-label for="merma" value="{{ __('Merma') }}" />
@@ -327,8 +327,7 @@
                 </div>
             </div>
 
-            <div class="border mt-4 p-3 rounded-lg">
-                <div class="grid grid-cols-1 gap-4 sm:grid-cols-4">
+                <div class="grid grid-cols-1 gap-4 sm:grid-cols-4 pt-3">
                     <!--SECADO-->
                     <div class="">
                         <x-jet-label for="secado" value="{{ __('Secado') }}" />  
@@ -388,7 +387,7 @@
                     </div>
 
                 </div>
-            </div>
+        
 
             <div class=" grid grid-cols-1 gap-4 sm:grid-cols-4 pt-3">
                 <!--ACEITE-->

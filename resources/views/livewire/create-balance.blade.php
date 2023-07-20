@@ -10,9 +10,10 @@
         <x-slot name="form">
             
             <div class="card shadow-none">
-                <div class="card-header">     
-                    <h1 class="p-2">Fecha: </h1>{{$fecha}}
-                    <h1 class="p-2">Lote: </h1>{{$lote}}                   
+                <div class="card-header">   
+                    <h1 class="p-2">Lote: </h1>{{$lote}}   
+                    <h1 class="p-2">Fecha: </h1>{{$fecha}}                  
+                    <h1 class="p-2">Hora: </h1>{{$hora}}                   
                 </div>
                 
                 <div class="card-body">

@@ -6,7 +6,7 @@ use App\Models\Produccion;
 use App\Models\Turno;
 use Illuminate\Support\Facades\Hash;
 use Livewire\Component;
-
+use Carbon\Carbon;
 use Barryvdh\DomPDF\Facade\Pdf;
 
 class createBalance extends Component
@@ -15,7 +15,7 @@ class createBalance extends Component
     public $produccionId;
     public $action;
     public $button;
-    public $secado, $agua2, $aguaP2, $aceite, $aceiteP, $harina, $solventeP, $fecha, $lote;
+    public $secado, $agua2, $aguaP2, $aceite, $aceiteP, $harina, $solventeP, $fecha, $lote, $hora;
     public $imagePath;
 
     public function mount (){
@@ -41,14 +41,28 @@ class createBalance extends Component
         $this->aceiteP = $balance->aceiteP;
         $this->harina = $balance->harina;
         $this->solventeP = $balance->solventeP;
+
+        $this->hora = Carbon::parse($balance->created_at)->format('H:i:s');
     
         return view('livewire.create-balance');
     } 
+    public function obtenerDatos()
+{
+    $producciones = Produccion::all();
+
+    foreach ($producciones as $produccion) {
+        // Formatear la fecha y obtener solo la hora
+        $produccion->hora_creacion = Carbon::parse($produccion->created_at)->format('H:i:s');
+    }
+
+    return view('livewire.tu-vista', compact('producciones'));
+}
 
     public function generatePdf($produccionId){
 
         $this->imagePath = public_path('img/logo.png');
         $exports = Produccion::find($produccionId);
+       
 
         $pdf = Pdf::loadView('pages.produccion.pdf', compact('exports'),['imagePath' => $this->imagePath]);
         return $pdf->setPaper('A4')->stream('balance.pdf');

@@ -14,10 +14,17 @@ $links = [
     ],
     [
         "href" => "turno",
+        "text" => "Mantenimiento",
+        "icon" => "fas fa-industry",
+        "is_multi" => false,
+    ],
+    [
+        "href" => "turno",
         "text" => "Turnos",
         "icon" => "fas fa-calendar",
         "is_multi" => false,
     ],
+    
 
     [
         "href" => [
