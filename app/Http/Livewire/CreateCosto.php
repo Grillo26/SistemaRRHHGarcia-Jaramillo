@@ -8,10 +8,10 @@ use App\Models\Turno;
 use Illuminate\Support\Facades\Hash;
 use Livewire\Component;
 
-class createProduccion extends Component
+class createCosto extends Component
 {
-    public $produccion;
-    public $produccionId;
+    public $costo;
+    public $costoId;
     public $action;
     public $button;
 
@@ -32,29 +32,29 @@ class createProduccion extends Component
 
     protected function getRules()
     {
-        $rules = ($this->action == "updateProduccion". $this->produccionId) ? [ 
-            'produccion.lote' => 'required|min:1|',
-            'produccion.granoDeSoya' => 'required|min:1|',
-            'produccion.merma' => 'required|min:1|'
+        $rules = ($this->action == "updateProduccion". $this->costoId) ? [ 
+            'costo.lote' => 'required|min:1|',
+            'costo.granoDeSoya' => 'required|min:1|',
+            'costo.merma' => 'required|min:1|'
         ] : [
-            'produccion.lote' => 'required|min:1|',
-            'produccion.granoDeSoya' => 'required|digits|min:1|', 'produccion.humedadGrano' => 'required|min:1|','produccion.grasaGrano' => 'required|min:1|','produccion.mSecaGrano' => 'required|min:1|',
-            'produccion.merma' => 'required|min:1|',
-            'produccion.secado' => 'required|min:1|','produccion.humedadSecado' => 'required|min:1|', 'produccion.grasaSecado' => 'required|min:1|', 'produccion.mSecaSecado' => 'required|min:1|',
-            'produccion.agua' => 'required|min:1|',
-            'produccion.mermaP' => 'required|min:1|','produccion.aguaP' => 'required|min:1|','produccion.secadoP' => 'required|min:1|',
-            'produccion.idTurno' => 'required|min:1|',
-            'produccion.fecha' => 'required|min:1|',
-            'produccion.bolsas' => 'required|min:1|',
-            'produccion.expeller' => 'required|min:1|',
+            'costo.lote' => 'required|min:1|',
+            'costo.granoDeSoya' => 'required|digits|min:1|', 'costo.humedadGrano' => 'required|min:1|','costo.grasaGrano' => 'required|min:1|','costo.mSecaGrano' => 'required|min:1|',
+            'costo.merma' => 'required|min:1|',
+            'costo.secado' => 'required|min:1|','costo.humedadSecado' => 'required|min:1|', 'costo.grasaSecado' => 'required|min:1|', 'costo.mSecaSecado' => 'required|min:1|',
+            'costo.agua' => 'required|min:1|',
+            'costo.mermaP' => 'required|min:1|','costo.aguaP' => 'required|min:1|','costo.secadoP' => 'required|min:1|',
+            'costo.idTurno' => 'required|min:1|',
+            'costo.fecha' => 'required|min:1|',
+            'costo.bolsas' => 'required|min:1|',
+            'costo.expeller' => 'required|min:1|',
 
-            'produccion.aceite' => 'required|min:1|', 'produccion.humedadAceite' => 'required|min:1|', 'produccion.grasaAceite' => 'required|min:1|', 'produccion.mSecaAceite' => 'required|min:1|', 
-            'produccion.harina' => 'required|min:1|', 'produccion.humedadHarina' => 'required|min:1|', 'produccion.grasaHarina' => 'required|min:1|', 'produccion.mSecaHarina' => 'required|min:1|', 
+            'costo.aceite' => 'required|min:1|', 'costo.humedadAceite' => 'required|min:1|', 'costo.grasaAceite' => 'required|min:1|', 'costo.mSecaAceite' => 'required|min:1|', 
+            'costo.harina' => 'required|min:1|', 'costo.humedadHarina' => 'required|min:1|', 'costo.grasaHarina' => 'required|min:1|', 'costo.mSecaHarina' => 'required|min:1|', 
         ];
 
         return array_merge([
-            'produccion.granoDeSoya' => 'required|digits|min:1|',
-            'produccion.merma' => 'required|min:1'
+            'costo.granoDeSoya' => 'required|digits|min:1|',
+            'costo.merma' => 'required|min:1'
         ], $rules);
     }
 
@@ -103,12 +103,12 @@ class createProduccion extends Component
             $this->mSecaHarina = 1 - $this->humedadHarina - $this->grasaHarina;
             $this->mSecaHarina = round($this->mSecaHarina, 3);
 
-            $this->agua2 = $this->produccion['secado'] - $this->aceite - $this->harina;
+            $this->agua2 = $this->costo['secado'] - $this->aceite - $this->harina;
             $this->agua2 = round($this->agua2, 3);
 
-            $this->aguaP2 = number_format(($this->agua2 * 100) / $this->produccion['secado'], 3);
-            $this->aceiteP = number_format(($this->aceite * 100) / $this->produccion['secado'], 3);
-            $this->solventeP = number_format(($this->harina * 100) / $this->produccion['secado'], 3);
+            $this->aguaP2 = number_format(($this->agua2 * 100) / $this->costo['secado'], 3);
+            $this->aceiteP = number_format(($this->aceite * 100) / $this->costo['secado'], 3);
+            $this->solventeP = number_format(($this->harina * 100) / $this->costo['secado'], 3);
         } 
         else {
             $this->mSecaAceite = null;
@@ -120,11 +120,11 @@ class createProduccion extends Component
         }
     }
     
-    public function createProduccion ()
+    public function createCosto ()
     {
         //Calculo del expeller dependiendo de las bolsas ingresadas en el fomulario
-        $this->expeller = $this->produccion['bolsas']*50; //Extraemos del formulario
-        $data = $this->produccion;
+        $this->expeller = $this->costo['bolsas']*50; //Extraemos del formulario
+        $data = $this->costo;
 
         $data['granoDeSoya'] = $this->granoDeSoya;
         $data['humedadGrano'] = $this->humedadGrano;
@@ -165,14 +165,14 @@ class createProduccion extends Component
         Produccion::create($data);
 
         $this->emit('saved');
-        $this->reset('produccion'); 
+        $this->reset('costo'); 
         $this->limpiarCampos();
     }
 
     public function updateProduccion ()
     {
         Produccion::query()
-            ->where('id', $this->produccionId)
+            ->where('id', $this->costoId)
             ->update([
                 'agua2' => $this->agua2,
                 'aceite' => $this->aceite,
@@ -198,8 +198,8 @@ class createProduccion extends Component
 
     public function mount ()
     {
-        if (!$this->produccion && $this->produccionId) {
-                $this->produccion = Produccion::find($this->produccionId);
+        if (!$this->costo && $this->costoId) {
+                $this->costo = Produccion::find($this->costoId);
         }
 
         $this->button = create_button($this->action, "Produccion");
@@ -209,7 +209,7 @@ class createProduccion extends Component
 
     public function render()
     {
-        return view('livewire.create-produccion',[
+        return view('livewire.create-costo',[
             'turnos'=>Turno::get()
         ]
     );

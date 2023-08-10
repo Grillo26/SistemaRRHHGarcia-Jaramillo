@@ -27,13 +27,18 @@
                     @include('components.sort-icon', ['field' => 'idTurno'])
                 </a></th>
 
-                <th><a wire:click.prevent="sortBy('humedad')" role="button" href="#">
+                <th><a wire:click.prevent="sortBy('humedadGrano')" role="button" href="#">
                     Humedad %
-                    @include('components.sort-icon', ['field' => 'humedad'])
+                    @include('components.sort-icon', ['field' => 'humedadGrano'])
+                </a></th>
+
+                <th><a wire:click.prevent="sortBy('grasaGrano')" role="button" href="#">
+                    Grasa %
+                    @include('components.sort-icon', ['field' => 'grasaGrano'])
                 </a></th>
 
                 <th><a wire:click.prevent="sortBy('bolsas')" role="button" href="#">
-                    Bolsas
+                    Cant. Bolsas
                     @include('components.sort-icon', ['field' => 'bolsas'])
                 </a></th>
 
@@ -41,23 +46,7 @@
                     Expeller
                     @include('components.sort-icon', ['field' => 'expeller'])
                 </a></th>
-
-                <th><a wire:click.prevent="sortBy('aceite')" role="button" href="#">
-                    Aceite
-                    @include('components.sort-icon', ['field' => 'aceite'])
-                </a></th>
-
-                <th><a wire:click.prevent="sortBy('grasas')" role="button" href="#">
-                    Grasa
-                    @include('components.sort-icon', ['field' => 'grasas'])
-                </a></th>
-
-                <th><a wire:click.prevent="sortBy('grasas')" role="button" href="#">
-                    Luz kWh
-                    @include('components.sort-icon', ['field' => 'luz'])
-                </a></th>
                 
-
                 <th>Acciones</th>
             </tr>
         </x-slot>
@@ -73,15 +62,15 @@
                         <td>{{ $turno->nombreTurno}}</td>
                         @endif
                     @endforeach
-                    <td>{{ $produccion->humedad }}</td>
+                    <td>{{ $produccion->humedadGrano }}</td>
+                    <td>{{ $produccion->grasaGrano}}</td>
                     <td>{{ $produccion->bolsas }}</td>
                     <td>{{ $produccion->expeller }}</td>
-                    <td>{{ $produccion->aceite}}</td>
-                    <td>{{ $produccion->grasas}}</td>
-                    <td>{{ $produccion->luz}}</td>
+                    
                     <td class="whitespace-no-wrap row-action--icon"> 
-                        <a role="button" href="/produccion/balance/{{ $produccion->id }}" class="mr-3"><i class="fa fa-file-export text-green-500"></i></a>
-                        <!--<a role="button" href="/produccion/edit/{{ $produccion->id }}" class="mr-3"><i class="fa fa-16px text-green-500 fa-pen"></i></a>-->
+                        <!-- Vista producciones.blade.php -->
+                        <a role="button" href="/produccion/pdf/{{ $produccion->id }}" class="mr-3"><i class="fa fa-16px text-blue-500 fa-file-pdf"></i></a>
+                        <a role="button" href="/produccion/edit/{{ $produccion->id }}" class="mr-3"><i class="fa fa-16px text-green-500 fa-pen"></i></a>
                         <a role="button" x-on:click.prevent="deleteItem" href="#"><i class="fa fa-16px fa-trash text-red-500"></i></a>
                         
                     </td>

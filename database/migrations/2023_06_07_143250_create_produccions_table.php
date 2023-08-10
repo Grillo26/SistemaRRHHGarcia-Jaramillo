@@ -17,42 +17,49 @@ class CreateProduccionsTable extends Migration
             $table->id();
             $table->integer('lote');
             $table->integer('granoDeSoya');
+            $table->decimal('humedadGrano',8,3);
+            $table->decimal('grasaGrano',8,3);
+            $table->decimal('mSecaGrano',8,3);
+
             $table->decimal('merma',8,3);
-            $table->unsignedBigInteger('idTurno')->nullable();
-            $table->date('fecha')->nullable();
 
-            $table->decimal('humedad',8,3);
-            $table->integer('bolsas');
-            $table->integer('expeller');
-           
-            $table->decimal('grasas',8,3);
-            $table->decimal('luz',8,3);
+            //Rendimiento1
 
-            $table->decimal('humedadLab',8,3);
-            $table->decimal('grasaLab',8,3);
-            $table->decimal('secado',8,3);
+            $table->decimal('secado',8,3); //Soya Final
+            $table->decimal('humedadSecado',8,3);
+            $table->decimal('grasaSecado',8,3);
+            $table->decimal('mSecaSecado',8,3);
 
             $table->decimal('agua',8,3);
-
+            
             //Porcentajes
             $table->decimal('mermaP',8,3); 
             $table->decimal('aguaP',8,3);
             $table->decimal('secadoP',8,3);
 
-            $table->decimal('aceite',8,3);
-            $table->decimal('humedadAce',8,3);
-            $table->decimal('grasaAce',8,3);
+            $table->unsignedBigInteger('idTurno')->nullable();
+            $table->date('fecha')->nullable();
 
-            $table->decimal('harina');
-            $table->decimal('humedadHarina');
-            $table->decimal('grasaHarina');
-            $table->decimal('agua2');
+            $table->integer('bolsas');
+            $table->integer('expeller');
 
-            //Porcentaje
-            $table->decimal('aguaP2');
-            $table->decimal('aceiteP');
-            $table->decimal('solventeP');
+            //Rendimiento 2
+            $table->decimal('agua2',8,3)->nullable();
 
+            $table->decimal('aceite',8,3)->nullable();
+            $table->decimal('humedadAceite',8,3)->nullable();
+            $table->decimal('grasaAceite',8,3)->nullable();
+            $table->decimal('mSecaAceite',8,3)->nullable();
+
+            $table->decimal('harina',8,3)->nullable();
+            $table->decimal('humedadHarina',8,3)->nullable();
+            $table->decimal('grasaHarina',8,3)->nullable();
+            $table->decimal('mSecaHarina',8,3)->nullable();
+
+            //Porcentajes
+            $table->decimal('aguaP2',8,3)->nullable();
+            $table->decimal('aceiteP',8,3)->nullable();
+            $table->decimal('solventeP',8,3)->nullable();
 
            
             $table->foreign('idTurno')

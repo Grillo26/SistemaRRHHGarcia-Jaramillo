@@ -3,8 +3,12 @@
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\TurnoController;
 use App\Http\Controllers\ProduccionController;
+use App\Http\Controllers\CostoController;
+use App\Http\Controllers\BalanceController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\CreateBalance;
+use App\Http\Livewire\Costos;
+
 
 
 /*
@@ -37,8 +41,20 @@ Route::group([ "middleware" => ['auth:sanctum', 'verified'] ], function() {
     Route::view('/produccion/new', "pages.produccion.produccion-new")->name('produccion.new');
     Route::view('/produccion/edit/{produccionId}', "pages.produccion.produccion-edit")->name('produccion.edit');
     Route::view('/produccion/balance/{produccionId}', "pages.produccion.produccion-balance")->name('produccion.balance');      
-    Route::view('/produccion/pdf/{produccionId}', "pages.produccion.pdf")->name('produccion.pdf');      
+    Route::view('/produccion/pdf/{produccionId}', "pages.produccion.pdf")->name('produccion.pdf');   
+       
     Route::get('/produccion/pdf/{produccionId}', [ CreateBalance::class, 'generatePdf' ]);
+
+    Route::get('/balance', [ BalanceController::class, "index_view" ])->name('balance');
+    Route::view('/balance/new/{produccionId}', "pages.balance.balance-new")->name('balance.new');
+
+    Route::get('/costo', [ CostoController::class, "index_view" ])->name('costo');
+    Route::view('/costo/new', "pages.costo.costo-new")->name('costo.new');
+    Route::view('/costo/edit/{turnoId}', "pages.costo.costo-edit")->name('costo.edit');
+
+
+
+
 
     
 });

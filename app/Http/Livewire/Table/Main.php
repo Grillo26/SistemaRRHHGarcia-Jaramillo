@@ -46,7 +46,7 @@ class Main extends Component
         $data->delete();
         $this->emit("deleteResult", [
             "status" => true,
-            "message" => "El ". $this->name . " fué eliminado con éxito"
+            "message" => "eliminado con éxito"
         ]);
     }
 

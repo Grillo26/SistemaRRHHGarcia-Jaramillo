@@ -3,6 +3,9 @@
 namespace App\Traits;
 
 use App\Models\Turno;
+use App\Models\Produccion;
+use App\Models\Balance;
+use App\Models\Costo;
 trait WithDataTable {
     
     public function get_pagination_data ()
@@ -57,12 +60,53 @@ trait WithDataTable {
                         "data" => array_to_object([
                             'href' => [
                                 'create_new' => route('produccion.new'),
+                                'create_new_text' => 'Nueva Producción',
+                                'export' => '#',
+                                'export_text' => 'Exportar'
+                            ]
+                        ])
+                ];
+                break;
+
+            case 'balance':
+                $balances = $this->model::search($this->search)
+                        ->orderBy($this->sortField, $this->sortAsc ? 'asc' : 'desc')
+                        ->paginate($this->perPage);
+                $produccions = Produccion::get(); //Extrayendo de otra tabla
+                return [
+                        "view" => 'livewire.table.balance',
+                        "balances" => $balances,
+                        "produccions" => $produccions,
+                        "data" => array_to_object([
+                            'href' => [
+                                'create_new' => route('produccion.new'),
                                 'create_new_text' => 'Nuevo Balance',
                                 'export' => '#',
                                 'export_text' => 'Exportar'
                             ]
                         ])
                 ];
+                break;
+                
+            case 'costo':
+                $costos = $this->model::search($this->search)
+                        ->orderBy($this->sortField, $this->sortAsc ? 'asc' : 'desc')
+                        ->paginate($this->perPage);
+                $produccions = Produccion::get(); //Extrayendo de otra tabla
+                return [
+                        "view" => 'livewire.table.costo',
+                        "costos" => $costos,
+                        "produccions" => $produccions,
+                        "data" => array_to_object([
+                            'href' => [
+                                'create_new' => route('costo.new'),
+                                'create_new_text' => 'Nuevo Costo',
+                                'export' => '#',
+                                'export_text' => 'Exportar'
+                            ]
+                        ])
+                ];
+                break;
 
 
             default:

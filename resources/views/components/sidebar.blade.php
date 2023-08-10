@@ -13,6 +13,12 @@ $links = [
         "is_multi" => false,
     ],
     [
+        "href" => "costo",
+        "text" => "Costos",
+        "icon" => "fas fa-money-bill",
+        "is_multi" => false,
+    ],
+    [
         "href" => "turno",
         "text" => "Mantenimiento",
         "icon" => "fas fa-industry",

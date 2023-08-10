@@ -9,25 +9,36 @@ class Produccion extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'id','lote','granoDeSoya','merma','idTurno','fecha','humedad','bolsas',
-        'expeller','aceite','grasas','luz','humedadLab','grasaLab','secado','agua',
-        'mermaP','aguaP','secadoP','humedadAce','grasaAce','harina','humedadHarina','grasaHarina','agua2',
+        'lote', 
+        'granoDeSoya', 'humedadGrano', 'grasaGrano', 'mSecaGrano',
+        'merma', 'agua',
+        'secado', 'humedadSecado', 'grasaSecado', 'mSecaSecado', 
+        'mermaP', 'aguaP', 'secadoP', 
+        'idTurno', 'fecha', 'bolsas', 'expeller',
+
+        'agua2','aceite','humedadAceite','grasaAceite','mSecaAceite',
+        'harina','humedadHarina', 'grasaHarina', 'mSecaHarina',
         'aguaP2', 'aceiteP', 'solventeP'
     ];
 
     public function turnos(){
         return $this->belongsTo('App\Models\Turno');
     }
+    public function balances(){
+        return $this->hasOne(Balance::class);
+    }
+
+
     public static function search($query)
     {
         return empty($query) ? static::query()
             : static::where('granoDeSoya', 'like', '%'.$query.'%')
-                ->orWhere('merma', 'like', '%'.$query.'%')
+                ->orWhere('humedadGrano', 'like', '%'.$query.'%')
                 ->orWhere('lote', 'like', '%'.$query.'%')
-                ->orWhere('idTurno', 'like', '%'.$query.'%')
-                ->orWhere('fecha', 'like', '%'.$query.'%')
-                ->orWhere('humedad', 'like', '%'.$query.'%')
-                ->orWhere('bolsas', 'like', '%'.$query.'%')
-                ->orWhere('aceite', 'like', '%'.$query.'%');
+                ->orWhere('grasaGrano', 'like', '%'.$query.'%')
+                ->orWhere('mSecaGrano', 'like', '%'.$query.'%')
+                ->orWhere('secado', 'like', '%'.$query.'%')
+                ->orWhere('expeller', 'like', '%'.$query.'%')
+                ->orWhere('bolsas', 'like', '%'.$query.'%');
     }
 }

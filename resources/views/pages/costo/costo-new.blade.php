@@ -3,16 +3,15 @@
         <div class="section-header-back">
               <a href="{{ route('produccion') }}" class="btn btn-icon"><i class="fas fa-arrow-left"></i></a>
         </div>
-        <h1>{{ __('Añadir Balance') }}</h1>
-        
+        <h1>{{ __('Añadir Costo a Producción') }}</h1>
         <div class="section-header-breadcrumb">
+            
         <div class="breadcrumb-item active"><a href="{{ route('dashboard') }}">Dashboard</a></div>
-            <div class="breadcrumb-item active"><a href="{{ route('produccion') }}">Producción</a></div>
-            <div class="breadcrumb-item"><a href="#">Añadir Balance</a></div>
+        <div class="breadcrumb-item"><a href="#">Añadir Costo</a></div>
         </div>
     </x-slot>
 
     <div>
-        <livewire:create-produccion action="updateProduccion" :produccionId="request()->produccionId" />
+        <livewire:create-costo action="createCosto" /> 
     </div>
-</x-app-layout>
+</x-app-layout> 

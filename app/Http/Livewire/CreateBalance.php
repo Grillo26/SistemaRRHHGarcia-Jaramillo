@@ -4,6 +4,7 @@ namespace App\Http\Livewire;
 
 use App\Models\Produccion;
 use App\Models\Turno;
+use App\Models\Balance;
 use Illuminate\Support\Facades\Hash;
 use Livewire\Component;
 use Carbon\Carbon;
@@ -13,23 +14,26 @@ class createBalance extends Component
 {
     public $produccion;
     public $produccionId;
+    public $balance;
+    public $balanceId;
     public $action;
     public $button;
-    public $secado, $agua2, $aguaP2, $aceite, $aceiteP, $harina, $solventeP, $fecha, $lote, $hora;
-    public $imagePath;
-
+    public $imagePath; 
+    public $loteId;
+ 
     public function mount (){
-        if (!$this->produccion && $this->produccionId) {
-                $this->produccion = Produccion::find($this->produccionId);
+        if (!$this->balance && $this->balanceId) {
+                $this->balance = Balance::find($this->balanceId);
         }
 
-        $this->button = create_button($this->action, "Produccion");
+        $this->button = create_button($this->action, "Balance");
 
     }
 
+
     
     public function render(){
-        $balance = Produccion::find($this->produccionId);
+        $balance = Balance::find($this->balanceId);
 
         //Extraemos los datos de la tabla produccion y los asignamos en la variable balances, de ahí los derivamos en sus variables respectivas   
         $this->fecha = $balance->fecha;
