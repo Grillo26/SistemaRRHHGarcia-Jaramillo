@@ -5,6 +5,7 @@
         </x-slot>
 
         <x-slot name="description">
+
         @if ($action == "createCosto")
             <div class="table-responsive">
                 <table class="table table-bordered table-md">
@@ -19,73 +20,31 @@
                             <th>%</th>        
                         </tr>
                         <tr>
-                            <td>1</td>
-                            <td>Soya</td>
-                            <td> {{$granoDeSoya}}</td>
-                            <td>100%</td>
-
-                        </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>Merma</td>
-                            <td>{{$merma}}</td>
-                            <td>{{$mermaP}}%</td>
-                        </tr>
-                        <tr>
-                            <td>3</td>
-                            <td>Agua</td>
-                            <td>{{$agua}}</td>
-                            <td>{{$aguaP}}%</td>            
-                        </tr>
-                        <tr>
-                            <td>4</td>
-                            <td>Soya Final</td>
-                            <td>{{$secado}}</td>
-                            <td>{{$secadoP}}%</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        @endif
-
-        @if ($action == "updateProduccion")
-            <div class="table-responsive">
-                <table class="table table-bordered table-md">
-                    <tbody>
-                        <tr>
-                            <th colspan="4" class="text-center">%RENDIMIENTO</th>
-                        </tr>
-                        <tr>
-                            <th>#</th>
-                            <th>MATERIA</th>
-                            <th>KG</th>
-                            <th>%</th>        
-                        </tr>
-                        <tr>
+                        @if ($producciones)
                             <td>1</td>
                             <td>Grano de Soya</td>
-                            <td> {{$produccion->secado}}</td>
+                            <td>{{$producciones->secado}}</td>
                             <td>100%</td>
-
                         </tr>
                         <tr>
                             <td>2</td>
                             <td>Agua</td>
-                            <td>{{$agua2}}</td>
-                            <td>{{$aguaP2}}%</td>
+                            <td>{{$producciones->agua2}}</td>
+                            <td>{{$producciones->aguaP2}}%</td>
                         </tr>
                         <tr>
                             <td>3</td>
                             <td>Aceite</td>
-                            <td>{{$aceite}}</td>
-                            <td>{{$aceiteP}}%</td>            
+                            <td>{{$producciones->aceite}}</td>
+                            <td>{{$producciones->aceiteP}}%</td>            
                         </tr>
                         <tr>
                             <td>4</td>
                             <td>Solvente</td>
-                            <td>{{$harina}}</td>
-                            <td>{{$solventeP}}%</td>
+                            <td>{{$producciones->harina}}</td>
+                            <td>{{$producciones->solventeP}}%</td>
                         </tr>
+                        @endif
                     </tbody>
                 </table>
             </div>
@@ -123,22 +82,30 @@
                 <!--PRODUCCION ID-->
                 <div class="">
                     <x-jet-label for="produccion.lote" value="{{ __('N° LOTE') }}" />
-                    <select wire:model.defer="produccion.lote" tabindex="-1" class="form-control " required>
+                    
+                    <select wire:model="selectedId" tabindex="-1" class="form-control " wire:change="$emit('calcular')"  required>
                         <option selected >Seleccione Lote</option>
                         @foreach ( $produccions as $produccion )    
                         <option  value="{{$produccion->id}}" data-index="0">{{$produccion->lote}}</option>
                         @endforeach 
                     </select>    
                 </div>
-
+                <!--En este codigo podemos capturar dependiendo del id seleccionado desde el select-->
+                @if ($producciones)
                 <div class="">
-                    <x-jet-label for="bolsas" value="{{ __('Bolsas') }}" />
-                    @if($action == "updateCosto")
-                    <small>Edite la cantidad de bolsas</small>
-                    @endif
-                    <x-jet-input id="bolsas" type="text" class="mt-1 block w-full form-control shadow-none"  wire:model.defer="produccion.bolsas" required/>
-                    <x-jet-input-error for="produccion.bolsas" class="mt-2" />
+                    <x-jet-label for="bolsas" value="{{ __('Cargado') }}" />
+                    <x-jet-input id="bolsas" type="text" class="mt-1 block w-full form-control shadow-none" disabled value=" " />
                 </div>
+                <div class="">
+                    <x-jet-label for="bolsas" value="{{ __('Fecha') }}" />
+                    <x-jet-input id="bolsas" type="text" class="mt-1 block w-full form-control shadow-none" disabled value="{{ $producciones->fecha}}" />
+                </div>
+                <div class="">
+                    <x-jet-label for="bolsas" value="{{ __('merma') }}" />
+                    <x-jet-input id="bolsas" type="text" class="mt-1 block w-full form-control shadow-none" disabled value="{{ $producciones->merma}}" />
+                    
+                </div>
+                @endif
             </div>
 
             <div class=" grid grid-cols-1 gap-4 sm:grid-cols-3 pt-2">

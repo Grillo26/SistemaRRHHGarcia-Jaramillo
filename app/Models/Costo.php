@@ -24,6 +24,7 @@ class Costo extends Model
     {
         return $this->belongsTo(Produccion::class);
     }
+    
 
     public static function search($query)
     {

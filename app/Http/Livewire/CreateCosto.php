@@ -13,21 +13,14 @@ class createCosto extends Component
     public $costoId;
     public $produccionId;
     public $produccion;
+
+    public $producciones;
+    public $selectedId;
+
     public $action;
     public $button;
 
-    //Variables
-    public $granoDeSoya, $humedadGrano, $grasaGrano, $mSecaGrano;
-    public $merma;
-    public $secado, $humedadSecado, $grasaSecado, $mSecaSecado;
-    public $agua, $agua2;
-
-    public $aceite, $humedadAceite, $grasaAceite, $mSecaAceite;
-    public $harina, $humedadHarina, $grasaHarina, $mSecaHarina;
-
-    //Porcentajes
-    public $mermaP, $aguaP, $secadoP;
-    public $aguaP1, $aceiteP, $solventeP;
+  
 
     protected $listeners = ['calcular'];
 
@@ -50,10 +43,14 @@ class createCosto extends Component
     }
 
     public function calcular(){ //metodo para calcular y enviar al input disabled
-        $this->ax = $this->granoDeSoya *$this->mSecaGrano;
+        $this->producciones = Produccion::find($this->selectedId);
        
     }
-
+    public function loadSelectedData()
+    {
+        // Carga los datos según el ID seleccionado
+        $this->producciones = Produccion::find($this->selectedId);
+    }
 
     public function createCosto ()
     {
@@ -63,8 +60,7 @@ class createCosto extends Component
 
         $data['granoDeSoya'] = $this->granoDeSoya;
         $data['humedadGrano'] = $this->humedadGrano;
-        $data['grasaGrano'] = $this->grasaGrano;
-        $data['mSecaGrano'] = $this->mSecaGrano;
+  
         
         Costo::create($data);
 
@@ -80,18 +76,6 @@ class createCosto extends Component
             ->update([
                 'agua2' => $this->agua2,
                 'aceite' => $this->aceite,
-                'humedadAceite' => $this->humedadAceite,
-                'grasaAceite' => $this->grasaAceite,
-                'mSecaAceite' => $this->mSecaAceite,
-
-                'harina' => $this->harina,
-                'humedadHarina' => $this->humedadHarina,
-                'grasaHarina' => $this->grasaHarina,
-                'mSecaHarina' => $this->mSecaHarina,
-
-                'aguaP2' => $this->aguaP2,
-                'aceiteP' => $this->aceiteP,
-                'solventeP' => $this->solventeP,
             ]);
 
         $this->emit('saved');
@@ -107,6 +91,7 @@ class createCosto extends Component
         }
 
         $this->button = create_button($this->action, "Costo");
+        
 
     }
 
@@ -121,17 +106,7 @@ class createCosto extends Component
 
     public function limpiarCampos(){
         $this->granoDeSoya = null;
-        $this->humedadGrano = null;
-        $this->grasaGrano = null;
-        $this->mSecaGrano = null;
-        $this->merma = null;
-        $this->agua = null;
-        $this->secado = null;
-        $this->humedadSecado = null;
-        $this->grasaSecado = null;
-        $this->mSecaSecado = null;
-        $this->mermaP = null;
-        $this->aguaP = null;
+
         $this->secadoP = null;
 
     }
