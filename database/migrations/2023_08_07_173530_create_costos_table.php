@@ -16,11 +16,22 @@ class CreateCostosTable extends Migration
         Schema::create('costos', function (Blueprint $table) {
             $table->id();
             $table->float('soya');
-            $table->float('aceite');
             $table->float('gasLicuado');
+            $table->float('gasLicuado');
+            $table->float('gasLicuado');
+
             $table->float('personal');
+            $table->float('personal');
+            $table->float('personal');
+
             $table->float('electricidad');
+            $table->float('electricidad');
+            $table->float('electricidad');
+
             $table->float('bolsas');
+            $table->float('bolsas');
+            $table->float('bolsas');
+            
             $table->float('costo_total');
             $table->unsignedBigInteger('produccion_id');
             $table->foreign('produccion_id')->references('id')->on('produccions')->onDelete('cascade');

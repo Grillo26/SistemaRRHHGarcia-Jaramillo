@@ -24,8 +24,8 @@ class Produccion extends Model
     public function turnos(){
         return $this->belongsTo('App\Models\Turno');
     }
-    public function balances(){
-        return $this->hasOne(Balance::class);
+    public function costos(){
+        return $this->hasOne('App\Models\Costo');
     }
 
 

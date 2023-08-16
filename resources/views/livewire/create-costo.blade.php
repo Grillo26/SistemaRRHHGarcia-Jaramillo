@@ -93,8 +93,7 @@
 
             <div class="card-body">
             @if ($action == "createCosto")
-            {{ __('Complete los siguientes datos para registrar una nueva producción. Nota: lea correctamente los campos y verifique si están escritos de
-                manera adecuada dentro del formulario. El formato de los campos con decimales es de X.XXX (Tres decimales.)') }} 
+            {{ __('Complete los siguientes datos en el formulario para agregar un nuevo costo de la producción. Los precios estan calculados en Bolivianos 00/100') }} 
             @endif
             
 
@@ -123,13 +122,13 @@
                 
                 <!--PRODUCCION ID-->
                 <div class="">
-                    <x-jet-label for="turno" value="{{ __('N° LOTE') }}" />
-                    <select wire:model.defer="produccion.idTurno" tabindex="-1" class="form-control " required>
-                        <option selected >Seleccione el turno</option>
-                        @foreach ( $turnos as $turno )    
-                        <option  value="{{$turno->id}}" data-index="0">{{$turno->nombreTurno}}</option>
+                    <x-jet-label for="produccion.lote" value="{{ __('N° LOTE') }}" />
+                    <select wire:model.defer="produccion.lote" tabindex="-1" class="form-control " required>
+                        <option selected >Seleccione Lote</option>
+                        @foreach ( $produccions as $produccion )    
+                        <option  value="{{$produccion->id}}" data-index="0">{{$produccion->lote}}</option>
                         @endforeach 
-                    </select>               
+                    </select>    
                 </div>
 
                 <div class="">
@@ -146,7 +145,7 @@
                 <!--GRANO DE SOYA-->
                 <div class="">
                     <x-jet-label for="soya" value="{{ __('Soya en Grano') }}" />
-                    <x-jet-input id="soya" type="number" class="mt-1 block w- form-control shadow-none"   wire:model="soya" wire:model.defer="costo.soya" required />
+                    <x-jet-input id="soya" type="number" class="mt-1 block w- form-control shadow-none" placeholder="Cantidad Kg"  wire:model="soya" wire:model.defer="costo.soya" required />
                     @if($action == "updateCosto")
                     <small>Edite la cantidad de grano de soya</small>
                     <x-jet-input id="soya" type="text" class="mt-1 block w- form-control shadow-none"  wire:model.defer="costo.soya" />
@@ -166,7 +165,7 @@
 
                 <!--COSTO TOTAL DE GRANO SOYA-->
                 <div class="">
-                    <x-jet-label for="costoSoya" value="{{ __('Costo') }}" />
+                    <x-jet-label for="costoSoya" value="{{ __('Costo Bs.') }}" />
                     @if($action == "updateCosto")
                     <x-jet-input id="costoSoya" type="text" class="mt-1 block w-full form-control shadow-none" wire:change="$emit('calcular')"  wire:model.defer="costo.costoSoya" />
                     @endif
@@ -179,7 +178,7 @@
                 <!--GAS LICUADO-->
                 <div class="">
                     <x-jet-label for="gasLicuado" value="{{ __('Gas Licuado') }}" />
-                    <x-jet-input id="gasLicuado" type="number" class="mt-1 block w- form-control shadow-none"   wire:model="gasLicuado" wire:model.defer="costo.gasLicuado" required />
+                    <x-jet-input id="gasLicuado" type="number" class="mt-1 block w- form-control shadow-none" placeholder="Cantidad Kg"  wire:model="gasLicuado" wire:model.defer="costo.gasLicuado" required />
                     @if($action == "updateCosto")
                     <small>Edite la cantidad de grano de soya</small>
                     <x-jet-input id="gasLicuado" type="text" class="mt-1 block w- form-control shadow-none"  wire:model.defer="costo.gasLicuado" />
@@ -198,9 +197,9 @@
                     <x-jet-input-error for="costo.precioGasLicuado" class="mt-2" />
                 </div>
 
-                <!--Costo-->
+                <!--Costo Bs.-->
                 <div class="">
-                    <x-jet-label for="costoGasLicuado" value="{{ __('Costo') }}" />
+                    <x-jet-label for="costoGasLicuado" value="{{ __('Costo Bs.') }}" />
                     @if($action == "updateCosto")
                     <small>Edite la cantidad de costoGasLicuado en %</small>
                     <x-jet-input id="costoGasLicuado" type="text" class="mt-1 block w-full form-control shadow-none" wire:change="$emit('calcular')"  wire:model.defer="costo.costoGasLicuado" />
@@ -214,7 +213,7 @@
                 <!--ELECTRICIDAD-->
                 <div class="">
                     <x-jet-label for="electricidad" value="{{ __('Electricidad') }}" />
-                    <x-jet-input id="electricidad" type="number" class="mt-1 block w- form-control shadow-none"   wire:model="electricidad" wire:model.defer="costo.electricidad" required />
+                    <x-jet-input id="electricidad" type="number" class="mt-1 block w- form-control shadow-none" placeholder="Cantidad Kwh"  wire:model="electricidad" wire:model.defer="costo.electricidad" required />
                     @if($action == "updateCosto")
                     <small>Edite la cantidad de grano de soya</small>
                     <x-jet-input id="electricidad" type="text" class="mt-1 block w- form-control shadow-none"  wire:model.defer="costo.electricidad" />
@@ -233,9 +232,9 @@
                     <x-jet-input-error for="costo.precioElectricidad" class="mt-2" />
                 </div>
 
-                <!--Costo-->
+                <!--Costo Bs.-->
                 <div class="">
-                    <x-jet-label for="costoElectricidad" value="{{ __('Costo') }}" />
+                    <x-jet-label for="costoElectricidad" value="{{ __('Costo Bs.') }}" />
                     @if($action == "updateCosto")
                     <small>Edite la cantidad de costoElectricidad en %</small>
                     <x-jet-input id="costoElectricidad" type="text" class="mt-1 block w-full form-control shadow-none" wire:change="$emit('calcular')"  wire:model.defer="costo.costoElectricidad" />
@@ -263,7 +262,7 @@
                 <!--ELECTRICIDAD2-->
                 <div class="">
                     <x-jet-label for="electricidad2" value="{{ __('Electricidad') }}" />
-                    <x-jet-input id="electricidad2" type="number" class="mt-1 block w- form-control shadow-none"   wire:model="electricidad2" wire:model.defer="costo.electricidad2" required />
+                    <x-jet-input id="electricidad2" type="number" class="mt-1 block w- form-control shadow-none" placeholder="Cantidad Kwh"  wire:model="electricidad2" wire:model.defer="costo.electricidad2" required />
                     @if($action == "updateCosto")
                     <small>Edite la cantidad de grano de soya</small>
                     <x-jet-input id="electricidad2" type="text" class="mt-1 block w- form-control shadow-none"  wire:model.defer="costo.electricidad2" />
@@ -282,9 +281,9 @@
                     <x-jet-input-error for="costo.precioElectricidad2" class="mt-2" />
                 </div>
 
-                <!--Costo-->
+                <!--Costo Bs.-->
                 <div class="">
-                    <x-jet-label for="costoElectricidad2" value="{{ __('Costo') }}" />
+                    <x-jet-label for="costoElectricidad2" value="{{ __('Costo Bs.') }}" />
                     @if($action == "updateCosto")
                     <small>Edite la cantidad de costoElectricidad2 en %</small>
                     <x-jet-input id="costoElectricidad2" type="text" class="mt-1 block w-full form-control shadow-none" wire:change="$emit('calcular')"  wire:model.defer="costo.costoElectricidad2" />
@@ -298,7 +297,7 @@
                 <!--BOLSAS-->
                 <div class="">
                     <x-jet-label for="bolsas" value="{{ __('Bolsas') }}" />
-                    <x-jet-input id="bolsas" type="number" class="mt-1 block w- form-control shadow-none"   wire:model="bolsas" wire:model.defer="costo.bolsas" required />
+                    <x-jet-input id="bolsas" type="number" class="mt-1 block w- form-control shadow-none" placeholder="Unidades"  wire:model="bolsas" wire:model.defer="costo.bolsas" required />
                     @if($action == "updateCosto")
                     <small>Edite la cantidad de grano de soya</small>
                     <x-jet-input id="bolsas" type="text" class="mt-1 block w- form-control shadow-none"  wire:model.defer="costo.bolsas" />
@@ -317,9 +316,9 @@
                     <x-jet-input-error for="costo.precioBolsas" class="mt-2" />
                 </div>
 
-                <!--Costo-->
+                <!--Costo Bs.-->
                 <div class="">
-                    <x-jet-label for="costoBolsas" value="{{ __('Costo') }}" />
+                    <x-jet-label for="costoBolsas" value="{{ __('Costo Bs.') }}" />
                     @if($action == "updateCosto")
                     <small>Edite la cantidad de costoBolsas en %</small>
                     <x-jet-input id="costoBolsas" type="text" class="mt-1 block w-full form-control shadow-none" wire:change="$emit('calcular')"  wire:model.defer="costo.costoBolsas" />
