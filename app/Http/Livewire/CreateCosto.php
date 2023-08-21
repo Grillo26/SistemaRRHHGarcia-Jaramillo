@@ -4,6 +4,7 @@ namespace App\Http\Livewire;
 
 use App\Models\Produccion;
 use App\Models\Turno;
+use App\Models\Costo;
 use Illuminate\Support\Facades\Hash;
 use Livewire\Component;
 
@@ -19,6 +20,24 @@ class createCosto extends Component
 
     public $action;
     public $button;
+
+    //Cantidad
+    public $soya, $gasLicuado, $personal, $electricidad, $electricidad2, $bolsas, $total, $costo_total;
+
+    //Precio por unidad 
+    public $precioGasLicuado = 3.1;
+    public $precioPersonal = 330;
+    public $precioElectricidad = 0.601;
+    public $precioBolsas = 2.15;
+    public $aceite = 1000;
+
+    //Costo
+    public $costoGasLicuado;
+    public $costoPersonal;
+    public $costoElectricidad;
+    public $costoElectricidad2;
+    public $costoBolsas;
+
 
   
 
@@ -42,25 +61,67 @@ class createCosto extends Component
         ], $rules);
     }
 
-    public function calcular(){ //metodo para calcular y enviar al input disabled
+    public function loadSelectedData(){
         $this->producciones = Produccion::find($this->selectedId);
+
+    }
+
+    public function calcular(){ //metodo para calcular y enviar al input disabled
+        $this->loadSelectedData();
+        $this->costoGasLicuado = $this->gasLicuado * $this->precioGasLicuado;
+        $this->costoGasLicuado= round($this->costoGasLicuado, 2);
+
+        $this->costoPersonal = $this->personal * $this->precioPersonal;
+        $this->costoPersonal= round($this->costoPersonal, 2);
+
+
+        $this->costoElectricidad = $this->electricidad * $this->precioElectricidad;
+        $this->costoElectricidad= round($this->costoElectricidad, 2);
+
+
+        $this->costoElectricidad2 = $this->electricidad2 * $this->precioElectricidad;
+        $this->costoElectricidad2= round($this->costoElectricidad2, 2);
+
+        $this->costoBolsas = $this->bolsas * $this->precioBolsas;
+        $this->costoBolsas= round($this->costoBolsas, 2);
+
+        $this->total = $this->costoGasLicuado + $this->costoPersonal + $this->costoElectricidad;
+        $this->total= round($this->total, 2);
+
+        $this->costo_total = $this->costoElectricidad2 + $this->costoBolsas + $this->total;
+        $this->costo_total= round($this->costo_total, 2);
+
+
+        
+        
+
        
     }
-    public function loadSelectedData()
-    {
-        // Carga los datos según el ID seleccionado
-        $this->producciones = Produccion::find($this->selectedId);
-    }
-
     public function createCosto ()
     {
-        //Calculo del expeller dependiendo de las bolsas ingresadas en el fomulario
-        $this->expeller = $this->costo['bolsas']*50; //Extraemos del formulario
         $data = $this->costo;
 
-        $data['granoDeSoya'] = $this->granoDeSoya;
-        $data['humedadGrano'] = $this->humedadGrano;
-  
+        $data['soya'] = $this->soya;
+        $data['gasLicuado'] = $this->gasLicuado;
+        $data['precioGasLicuado'] = $this->precioGasLicuado;
+        $data['costoGasLicuado'] = $this->costoGasLicuado;
+
+        $data['personal'] = $this->personal;
+        $data['precioPersonal'] = $this->precioPersonal;
+        $data['costoPersonal'] = $this->costoPersonal;
+       
+
+        $data['electricidad'] = $this->electricidad;
+        $data['precioElectricidad'] = $this->precioElectricidad;
+        $data['costoElectricidad'] = $this->costoElectricidad;
+
+        $data['bolsas'] = $this->bolsas;
+        $data['precioBolsas'] = $this->precioBolsas;
+        $data['costoBolsas'] = $this->costoBolsas;
+
+        $data['costo_total'] = $this->costo_total;
+        $data['produccion_id'] = $this->selectedId;
+        
         
         Costo::create($data);
 
@@ -89,7 +150,6 @@ class createCosto extends Component
         if (!$this->costo && $this->costoId) {
                 $this->costo = Costo::find($this->costoId);
         }
-
         $this->button = create_button($this->action, "Costo");
         
 

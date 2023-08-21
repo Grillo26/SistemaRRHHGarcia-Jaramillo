@@ -10,12 +10,11 @@ class Costo extends Model
     use HasFactory;
     protected $fillable = [
         'id',
-        'soya',
-        'aceite',
-        'gasLicuado',
-        'personal',
-        'electricidad',
-        'bolsas',
+        'soya', 
+        'gasLicuado','precioGasLicuado', 'costoGasLicuado',
+        'personal','precioPersonal', 'costoPersonal',
+        'electricidad','precioElectricidad','costoElectricidad',
+        'bolsas','precioBolsas','costoBolsas',
         'costo_total',
         'produccion_id',
     ];

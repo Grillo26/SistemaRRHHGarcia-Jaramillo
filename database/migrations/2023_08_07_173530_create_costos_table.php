@@ -17,20 +17,20 @@ class CreateCostosTable extends Migration
             $table->id();
             $table->float('soya');
             $table->float('gasLicuado');
-            $table->float('gasLicuado');
-            $table->float('gasLicuado');
+            $table->float('precioGasLicuado');
+            $table->float('costoGasLicuado');
 
             $table->float('personal');
-            $table->float('personal');
-            $table->float('personal');
+            $table->float('precioPersonal');
+            $table->float('costoPersonal');
 
             $table->float('electricidad');
-            $table->float('electricidad');
-            $table->float('electricidad');
+            $table->float('precioElectricidad');
+            $table->float('costoElectricidad');
 
             $table->float('bolsas');
-            $table->float('bolsas');
-            $table->float('bolsas');
+            $table->float('precioBolsas');
+            $table->float('costoBolsas');
             
             $table->float('costo_total');
             $table->unsignedBigInteger('produccion_id');
