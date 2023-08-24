@@ -28,6 +28,8 @@ class createProduccion extends Component
     public $mermaP, $aguaP, $secadoP;
     public $aguaP1, $aceiteP, $solventeP;
 
+    public $resultado;
+
     protected $listeners = ['calcular'];
 
     protected function getRules()
@@ -42,6 +44,7 @@ class createProduccion extends Component
             'produccion.merma' => 'required|min:1|',
             'produccion.secado' => 'required|min:1|','produccion.humedadSecado' => 'required|min:1|', 'produccion.grasaSecado' => 'required|min:1|', 'produccion.mSecaSecado' => 'required|min:1|',
             'produccion.agua' => 'required|min:1|',
+            'produccion.agua2' => 'required|min:1|',
             'produccion.mermaP' => 'required|min:1|','produccion.aguaP' => 'required|min:1|','produccion.secadoP' => 'required|min:1|',
             'produccion.idTurno' => 'required|min:1|',
             'produccion.fecha' => 'required|min:1|',
@@ -97,7 +100,7 @@ class createProduccion extends Component
 
         //Agrega datos a la tabla balances en base al id lote
         if ($this->aceite != 0) {
-            $this->mSecaAceite = 1 - $this->humedadAceite - $this->grasaAceite;
+            $this->resultado = 1 - $this->produccion->humedadAceite - $this->produccio->grasaAceite;
             $this->mSecaAceite = round($this->mSecaAceite, 3);
 
             $this->mSecaHarina = 1 - $this->humedadHarina - $this->grasaHarina;
@@ -118,6 +121,13 @@ class createProduccion extends Component
             $this->aceiteP = null;
             $this->solventeP = null;
         }
+
+        if ($this->produccion && isset($this->produccion['humedadAceite']) && isset($this->produccion['grasaAceite'])) {
+            $this->produccion['mSecaAceite'] = 1 - $this->produccion['humedadAceite'] - $this->produccion['grasaAceite'];
+        } else {
+            // Manejar el caso en el que uno de los valores sea null o no esté definido
+        }
+
     }
     
     public function createProduccion ()
@@ -171,25 +181,8 @@ class createProduccion extends Component
 
     public function updateProduccion ()
     {
-        Produccion::query()
-            ->where('id', $this->produccionId)
-            ->update([
-                'agua2' => $this->agua2,
-                'aceite' => $this->aceite,
-                'humedadAceite' => $this->humedadAceite,
-                'grasaAceite' => $this->grasaAceite,
-                'mSecaAceite' => $this->mSecaAceite,
-
-                'harina' => $this->harina,
-                'humedadHarina' => $this->humedadHarina,
-                'grasaHarina' => $this->grasaHarina,
-                'mSecaHarina' => $this->mSecaHarina,
-
-                'aguaP2' => $this->aguaP2,
-                'aceiteP' => $this->aceiteP,
-                'solventeP' => $this->solventeP,
-            ]);
-
+        
+        $this->produccion->save();
         $this->emit('saved');
         
         
