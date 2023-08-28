@@ -61,7 +61,27 @@ class CreateProduccionsTable extends Migration
             $table->decimal('aceiteP',8,3)->nullable();
             $table->decimal('solventeP',8,3)->nullable();
 
-           
+            //Costos
+            $table->float('gasLicuado')->nullable();
+            $table->float('precioGasLicuado')->nullable();
+            $table->float('costoGasLicuado')->nullable();
+
+            $table->float('personal')->nullable();
+            $table->float('precioPersonal')->nullable();
+            $table->float('costoPersonal')->nullable();
+
+            $table->float('electricidad')->nullable();
+            $table->float('precioElectricidad')->nullable();
+            $table->float('costoElectricidad')->nullable();
+            $table->float('electricidad2')->nullable();
+            $table->float('costoElectricidad2')->nullable();
+
+            $table->float('precioBolsas')->nullable();
+            $table->float('costoBolsas')->nullable();
+            
+            $table->float('total')->nullable();
+            $table->float('costo_total')->nullable();
+
             $table->foreign('idTurno')
             ->references('id')->on('turnos')->onDelete('set null');
             

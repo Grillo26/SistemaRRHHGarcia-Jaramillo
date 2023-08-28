@@ -40,6 +40,7 @@ Route::group([ "middleware" => ['auth:sanctum', 'verified'] ], function() {
     Route::get('/produccion', [ ProduccionController::class, "index_view" ])->name('produccion');
     Route::view('/produccion/new', "pages.produccion.produccion-new")->name('produccion.new');
     Route::view('/produccion/edit/{produccionId}', "pages.produccion.produccion-edit")->name('produccion.edit');
+    Route::view('/produccion/costo/{produccionId}', "pages.produccion.produccion-costo")->name('produccion.costo');
     Route::view('/produccion/balance/{produccionId}', "pages.produccion.produccion-balance")->name('produccion.balance');      
     Route::view('/produccion/pdf/{produccionId}', "pages.produccion.pdf")->name('produccion.pdf');   
        

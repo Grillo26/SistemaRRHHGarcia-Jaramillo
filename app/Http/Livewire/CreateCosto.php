@@ -63,7 +63,6 @@ class createCosto extends Component
 
     public function loadSelectedData(){
         $this->producciones = Produccion::find($this->selectedId);
-
     }
 
     public function calcular(){ //metodo para calcular y enviar al input disabled
@@ -78,7 +77,6 @@ class createCosto extends Component
         $this->costoElectricidad = $this->electricidad * $this->precioElectricidad;
         $this->costoElectricidad= round($this->costoElectricidad, 2);
 
-
         $this->costoElectricidad2 = $this->electricidad2 * $this->precioElectricidad;
         $this->costoElectricidad2= round($this->costoElectricidad2, 2);
 
@@ -89,14 +87,9 @@ class createCosto extends Component
         $this->total= round($this->total, 2);
 
         $this->costo_total = $this->costoElectricidad2 + $this->costoBolsas + $this->total;
-        $this->costo_total= round($this->costo_total, 2);
-
-
-        
-        
-
-       
+        $this->costo_total= round($this->costo_total, 2); 
     }
+    
     public function createCosto ()
     {
         $data = $this->costo;
@@ -138,10 +131,7 @@ class createCosto extends Component
                 'agua2' => $this->agua2,
                 'aceite' => $this->aceite,
             ]);
-
-        $this->emit('saved');
-        
-        
+        $this->emit('saved');    
     }
 
 
@@ -151,8 +141,6 @@ class createCosto extends Component
                 $this->costo = Costo::find($this->costoId);
         }
         $this->button = create_button($this->action, "Costo");
-        
-
     }
 
     public function render()

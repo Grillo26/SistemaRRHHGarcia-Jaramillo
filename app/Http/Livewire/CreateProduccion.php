@@ -28,13 +28,21 @@ class createProduccion extends Component
     public $mermaP, $aguaP, $secadoP;
     public $aguaP1, $aceiteP, $solventeP;
 
+    //Precio por unidad 
+    public $precioGasLicuado = 3.1;
+    public $precioPersonal = 330;
+    public $precioElectricidad = 0.601;
+    public $precioBolsas = 2.15;
+    public $precioAceite = 1000;
+
     public $resultado;
 
     protected $listeners = ['calcular'];
 
     protected function getRules()
     {
-        $rules = ($this->action == "updateProduccion". $this->produccionId) ? [ 
+        $rules = ($this->action == "updateProduccion". $this->produccionId
+        || $this->action == "costoProduccion". $this->produccionId) ? [ 
             'produccion.lote' => 'required|min:1|',
             'produccion.granoDeSoya' => 'required|min:1|',
             'produccion.merma' => 'required|min:1|'
@@ -53,6 +61,16 @@ class createProduccion extends Component
 
             'produccion.aceite' => 'required|min:1|', 'produccion.humedadAceite' => 'required|min:1|', 'produccion.grasaAceite' => 'required|min:1|', 'produccion.mSecaAceite' => 'required|min:1|', 
             'produccion.harina' => 'required|min:1|', 'produccion.humedadHarina' => 'required|min:1|', 'produccion.grasaHarina' => 'required|min:1|', 'produccion.mSecaHarina' => 'required|min:1|', 
+            'produccion.aguaP2' => 'required|min:1|', 'produccion.aceiteP'=> 'required|min:1|', 'produccion.solventeP' => 'required|min:1|',
+
+            'produccion.gasLicuado' => 'required|min:1|', 'produccion.precioGasLicuado'=> 'required|min:1|', 'produccion.costoGasLicuado' => 'required|min:1|',
+            'produccion.personal' => 'required|min:1|', 'produccion.precioPersonal'=> 'required|min:1|', 'produccion.costoPersonal' => 'required|min:1|',
+            'produccion.electricidad' => 'required|min:1|', 'produccion.precioElectricidad'=> 'required|min:1|', 'produccion.costoElectricidad' => 'required|min:1|',
+            'produccion.electricidad2' => 'required|min:1|', 'produccion.costoElectricidad2' => 'required|min:1|',
+            'produccion.precioBolsas' => 'required|min:1|', 'produccion.costoBolsas'=> 'required|min:1|',
+            'produccion.total' => 'required|min:1|', 'produccion.costo_total' => 'required|min:1|'
+
+
         ];
 
         return array_merge([
@@ -65,6 +83,7 @@ class createProduccion extends Component
         $this->ax = $this->granoDeSoya *$this->mSecaGrano;
         $this->rendimiento1();
         $this->rendimiento2();
+        $this->calculoCosto();
     }
 
     public function rendimiento1(){
@@ -97,37 +116,34 @@ class createProduccion extends Component
     }
 
     public function rendimiento2(){
-
-        //Agrega datos a la tabla balances en base al id lote
-        if ($this->aceite != 0) {
-            $this->resultado = 1 - $this->produccion->humedadAceite - $this->produccio->grasaAceite;
-            $this->mSecaAceite = round($this->mSecaAceite, 3);
-
-            $this->mSecaHarina = 1 - $this->humedadHarina - $this->grasaHarina;
-            $this->mSecaHarina = round($this->mSecaHarina, 3);
-
-            $this->agua2 = $this->produccion['secado'] - $this->aceite - $this->harina;
-            $this->agua2 = round($this->agua2, 3);
-
-            $this->aguaP2 = number_format(($this->agua2 * 100) / $this->produccion['secado'], 3);
-            $this->aceiteP = number_format(($this->aceite * 100) / $this->produccion['secado'], 3);
-            $this->solventeP = number_format(($this->harina * 100) / $this->produccion['secado'], 3);
-        } 
-        else {
-            $this->mSecaAceite = null;
-            $this->mSecaHarina = null;
-            $this->agua2 = null;
-            $this->aguaP2 = null;
-            $this->aceiteP = null;
-            $this->solventeP = null;
-        }
-
         if ($this->produccion && isset($this->produccion['humedadAceite']) && isset($this->produccion['grasaAceite'])) {
-            $this->produccion['mSecaAceite'] = 1 - $this->produccion['humedadAceite'] - $this->produccion['grasaAceite'];
+            $this->produccion['mSecaAceite'] = round( 1 - $this->produccion['humedadAceite'] - $this->produccion['grasaAceite'],3);
+            $this->produccion['mSecaHarina'] = round( 1 - $this->produccion['humedadHarina'] - $this->produccion['grasaHarina'],3);
+            $this->produccion['agua2'] = round( $this->produccion['secado'] - $this->produccion['aceite'] - $this->produccion['harina'],3);
+
+            $this->produccion['aguaP2'] = number_format(($this->produccion['agua2'] * 100) / $this->produccion['secado'], 2);
+            $this->produccion['aceiteP'] = number_format(($this->produccion['aceite'] * 100) / $this->produccion['secado'], 2);
+            $this->produccion['solventeP'] = number_format(($this->produccion['harina'] * 100) / $this->produccion['secado'], 2);
+
+
         } else {
             // Manejar el caso en el que uno de los valores sea null o no esté definido
         }
 
+    }
+
+    public function calculoCosto(){
+        if ($this->produccion && isset($this->produccion['solventeP']) && isset($this->produccion['harina'])) {
+
+            $this->produccion['costoGasLicuado'] = round($this->produccion['gasLicuado'] * $this->precioGasLicuado,2);
+            $this->produccion['costoPersonal'] = round($this->produccion['personal'] * $this->precioPersonal,2);
+            $this->produccion['costoElectricidad'] = round($this->produccion['electricidad'] * $this->precioElectricidad,2);
+            $this->produccion['costoElectricidad2'] = round($this->produccion['electricidad2'] * $this->precioElectricidad,2);
+            $this->produccion['costoBolsas'] = round($this->produccion['bolsas'] * $this->precioBolsas,2);
+            $this->produccion['total']= round($this->produccion['costoGasLicuado'] + $this->produccion['costoPersonal'] + $this->produccion['costoElectricidad'],2);
+            $this->produccion['costo_total'] = round($this->produccion['costoElectricidad2'] + $this->produccion['costoBolsas'] + $this->produccion['total'],2);
+
+        }
     }
     
     public function createProduccion ()
@@ -171,6 +187,22 @@ class createProduccion extends Component
         $data['aguaP2'] = null;
         $data['aceiteP'] = null;
         $data['solventeP'] = null;
+
+        $data['gasLicuado'] = null; 
+        $data['precioGasLicuado'] = null; 
+        $data['costoGasLicuado'] = null; 
+        $data['personal'] = null; 
+        $data['precioPersonal'] = null; 
+        $data['costoPersonal'] = null;
+        $data['electricidad'] = null;
+        $data['precioElectricidad'] = null;
+        $data['costoElectricidad'] = null;
+        $data['electricidad2'] = null;
+        $data['costoElectricidad2'] = null;
+        $data['precioBolsas'] = null;
+        $data['costoBolsas'] = null;
+        $data['total'] = null;
+        $data['costo_total'] = null;
         
         Produccion::create($data);
 
@@ -180,11 +212,19 @@ class createProduccion extends Component
     }
 
     public function updateProduccion ()
-    {
-        
+    {    
         $this->produccion->save();
-        $this->emit('saved');
-        
+        $this->emit('saved');  
+    }
+
+    public function costoProduccion(){
+        $data = $this->produccion;
+        $data['precioGasLicuado'] = $this->precioGasLicuado;
+        $data['precioPersonal'] = $this->precioPersonal;
+        $data['precioElectricidad'] = $this->precioElectricidad;
+        $data['precioBolsas'] = $this->precioBolsas;
+        $this->produccion->save();
+        $this->emit('saved'); 
         
     }
 

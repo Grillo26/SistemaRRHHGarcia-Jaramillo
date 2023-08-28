@@ -18,7 +18,14 @@ class Produccion extends Model
 
         'agua2','aceite','humedadAceite','grasaAceite','mSecaAceite',
         'harina','humedadHarina', 'grasaHarina', 'mSecaHarina',
-        'aguaP2', 'aceiteP', 'solventeP'
+        'aguaP2', 'aceiteP', 'solventeP',
+
+        'gasLicuado','precioGasLicuado', 'costoGasLicuado',
+        'personal','precioPersonal', 'costoPersonal',
+        'electricidad','precioElectricidad','costoElectricidad',
+        'electricidad2','costoElectricidad',
+        'bolsas','precioBolsas','costoBolsas',
+        'total','costo_total'
     ];
 
     public function turnos(){
