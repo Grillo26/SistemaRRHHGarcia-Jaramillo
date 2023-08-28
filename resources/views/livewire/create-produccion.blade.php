@@ -91,6 +91,49 @@
             </div>
         @endif
 
+        @if ($action == "costoProduccion")
+        <div class="table-responsive">
+                <table class="table table-bordered table-md">
+                    <tbody>
+                        <tr>
+                            <th colspan="4" class="text-center">%RENDIMIENTO</th>
+                        </tr>
+                        <tr>
+                            <th>#</th>
+                            <th>MATERIA</th>
+                            <th>KG</th>
+                            <th>%</th>        
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td>Grano de Soya</td>
+                            <td> {{$produccion->secado}}</td>
+                            <td>100.00%</td>
+
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>Agua</td>
+                            <td>{{$produccion->agua2}}</td>
+                            <td>{{$produccion->aguaP2}}%</td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>Aceite</td>
+                            <td>{{$produccion->aceite}}</td>
+                            <td>{{$produccion->aceiteP}}%</td>            
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td>Solvente</td>
+                            <td>{{$produccion->harina}}</td>
+                            <td>{{$produccion->solventeP}}%</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        @endif
+
             <div class="card-body">
             @if ($action == "createProduccion")
             {{ __('Complete los siguientes datos para registrar una nueva producción. Nota: lea correctamente los campos y verifique si están escritos de
@@ -101,6 +144,12 @@
             @if($action == "updateProduccion")
             {{ __('Complete los siguientes datos para añadir un balance de materia en la producción que seleccionó. Nota: lea correctamente los campos y verifique  si están escritos de
                 manera adecuada dentro del formulario.') }} 
+            
+            @endif
+
+            @if($action == "costoProduccion")
+            {{ __('Los siguientes datos que se muestran en la tabla son los datos de el balance de producción agregado. Si los campos están vacios es porque 
+                falta agregar "balance de materia" en el lote seleccionado.') }} 
             
             @endif
             </div>
@@ -140,13 +189,13 @@
                 <!--TURNO-->
                 <div class="">
                     <x-jet-label for="turno" value="{{ __('Turno') }}" />
-                    <small>Edite el turno</small>
-                    <select wire:model.defer="produccion.idTurno" tabindex="-1" class="form-control " required>
+                    <select wire:model.defer="produccion.idTurno" tabindex="-1" class="form-control " disabled>
                         <option selected >Seleccione el turno</option>
                         @foreach ( $turnos as $turno )    
                         <option  value="{{$turno->id}}" data-index="0">{{$turno->nombreTurno}}</option>
                         @endforeach 
-                    </select>               
+                    </select>  
+                                        
                 </div>
 
                 <!--BOLSAS-->
@@ -440,7 +489,39 @@
 
 <!--###################################################################################################################################-->
         @if($action == "costoProduccion")
-        <div class=" grid grid-cols-1 gap-4 sm:grid-cols-3 pt-2">
+            <div class=" grid grid-cols-1 gap-4 sm:grid-cols-4">
+                <!--PRODUCCION ID-->
+                <div class="">
+                    <x-jet-label for="produccion.lote" value="{{ __('N° LOTE') }}" />
+                    <x-jet-input id="lote" type="text" class="mt-1 block w-full form-control shadow-none" disabled value="{{ $produccion->lote}}" />
+                </div>
+                <div class="">
+                    <x-jet-label for="fecha" value="{{ __('Fecha') }}" />
+                    <x-jet-input id="fecha" type="text" class="mt-1 block w-full form-control shadow-none" disabled value="{{ $produccion->fecha}}" />
+                </div>
+                <!--TURNO-->
+                <div class="">
+                    <x-jet-label for="turno" value="{{ __('Turno') }}" />
+                    <select wire:model.defer="produccion.idTurno" tabindex="-1" class="form-control " disabled>
+                        <option selected >Seleccione el turno</option>
+                        @foreach ( $turnos as $turno )    
+                        <option  value="{{$turno->id}}" data-index="0">{{$turno->nombreTurno}}</option>
+                        @endforeach 
+                    </select>  
+                                        
+                </div>
+            </div>
+
+            <div class=" grid grid-cols-1 gap-4 sm:grid-cols-4 pt-2">
+                <!--SOYA EN GRANO-->
+                <div class="">
+                    <x-jet-label for="soya" value="{{ __('Soya En Grano') }}" />
+                    <x-jet-input id="soya" type="number" class="mt-1 block w- form-control shadow-none"   disabled value="{{$produccion->granoDeSoya}}" />
+                    <x-jet-input-error for="produccion.soya" class="mt-2" />
+                </div>
+
+            </div>
+            <div class=" grid grid-cols-1 gap-4 sm:grid-cols-3 pt-2">
                 <!--GAS LICUADO-->
                 <div class="">
                     <x-jet-label for="gasLicuado" value="{{ __('Gas Licuado') }}" />
@@ -450,7 +531,7 @@
 
                  <!--COSTO PREDETERMINADO-->
                 <div class="">
-                    <x-jet-label for="precioGasLicuado" value="{{ __('Precio ') }}" />
+                    <x-jet-label for="precioGasLicuado" value="{{ __('Precio Bs.') }}" />
                     <x-jet-input id="precioGasLicuado" class="mt-1 block w-full form-control shadow-none" type="text" wire:model="precioGasLicuado" wire:change="$emit('calcular')" wire:model.defer="produccion.precioGasLicuado" disabled required/>
                     <x-jet-input-error for="produccion.precioGasLicuado" class="mt-2" />
                 </div>
@@ -473,7 +554,7 @@
 
                  <!--COSTO PREDETERMINADO-->
                 <div class="">
-                    <x-jet-label for="precioPersonal" value="{{ __('Precio ') }}" />
+                    <x-jet-label for="precioPersonal" value="{{ __('Precio Bs. ') }}" />
                     <x-jet-input id="precioPersonal" class="mt-1 block w-full form-control shadow-none" type="text" wire:model="precioPersonal" wire:change="$emit('calcular')" wire:model.defer="produccion.precioPersonal" disabled required/>
                     <x-jet-input-error for="produccion.precioPersonal" class="mt-2" />
                 </div>
@@ -496,7 +577,7 @@
 
                  <!--COSTO PREDETERMINADO-->
                 <div class="">
-                    <x-jet-label for="precioElectricidad" value="{{ __('Precio ') }}" />
+                    <x-jet-label for="precioElectricidad" value="{{ __('Precio Bs. ') }}" />
                     <x-jet-input id="precioElectricidad" class="mt-1 block w-full form-control shadow-none" type="text" wire:model="precioElectricidad" wire:change="$emit('calcular')" wire:model.defer="produccion.precioElectricidad" disabled required/>
                     <x-jet-input-error for="produccion.precioElectricidad" class="mt-2" />
                 </div>
@@ -529,7 +610,7 @@
 
                  <!--COSTO PREDETERMINADO-->
                 <div class="">
-                    <x-jet-label for="precioElectricidad" value="{{ __('Precio ') }}" />
+                    <x-jet-label for="precioElectricidad" value="{{ __('Precio Bs. ') }}" />
                     <x-jet-input id="precioElectricidad" class="mt-1 block w-full form-control shadow-none" type="text" wire:model="precioElectricidad" wire:change="$emit('calcular')" wire:model.defer="produccion.precioElectricidad" disabled required/>
                     <x-jet-input-error for="produccion.precioElectricidad2" class="mt-2" />
                 </div>
@@ -552,7 +633,7 @@
 
                  <!--COSTO PREDETERMINADO-->
                 <div class="">
-                    <x-jet-label for="precioBolsas" value="{{ __('Precio ') }}" />
+                    <x-jet-label for="precioBolsas" value="{{ __('Precio Bs. ') }}" />
                     <x-jet-input id="precioBolsas" class="mt-1 block w-full form-control shadow-none" type="text" wire:model="precioBolsas" wire:change="$emit('calcular')" wire:model.defer="produccion.precioBolsas" disabled required/>
                     <x-jet-input-error for="produccion.precioBolsas" class="mt-2" />
                 </div>

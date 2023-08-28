@@ -93,7 +93,7 @@ class createProduccion extends Component
     }
 
     public function calculoCosto(){
-        if ($this->produccion && isset($this->produccion['solventeP']) && isset($this->produccion['harina'])) {
+        if ($this->produccion && isset($this->produccion['granoDeSoya']) && isset($this->produccion['merma'])) {
 
             $this->produccion['costoGasLicuado'] = round($this->produccion['gasLicuado'] * $this->precioGasLicuado,2);
             $this->produccion['costoPersonal'] = round($this->produccion['personal'] * $this->precioPersonal,2);
