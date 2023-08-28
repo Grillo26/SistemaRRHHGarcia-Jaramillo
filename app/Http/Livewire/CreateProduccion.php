@@ -39,46 +39,6 @@ class createProduccion extends Component
 
     protected $listeners = ['calcular'];
 
-    protected function getRules()
-    {
-        $rules = ($this->action == "updateProduccion". $this->produccionId
-        || $this->action == "costoProduccion". $this->produccionId) ? [ 
-            'produccion.lote' => 'required|min:1|',
-            'produccion.granoDeSoya' => 'required|min:1|',
-            'produccion.merma' => 'required|min:1|'
-        ] : [
-            'produccion.lote' => 'required|min:1|',
-            'produccion.granoDeSoya' => 'required|digits|min:1|', 'produccion.humedadGrano' => 'required|min:1|','produccion.grasaGrano' => 'required|min:1|','produccion.mSecaGrano' => 'required|min:1|',
-            'produccion.merma' => 'required|min:1|',
-            'produccion.secado' => 'required|min:1|','produccion.humedadSecado' => 'required|min:1|', 'produccion.grasaSecado' => 'required|min:1|', 'produccion.mSecaSecado' => 'required|min:1|',
-            'produccion.agua' => 'required|min:1|',
-            'produccion.agua2' => 'required|min:1|',
-            'produccion.mermaP' => 'required|min:1|','produccion.aguaP' => 'required|min:1|','produccion.secadoP' => 'required|min:1|',
-            'produccion.idTurno' => 'required|min:1|',
-            'produccion.fecha' => 'required|min:1|',
-            'produccion.bolsas' => 'required|min:1|',
-            'produccion.expeller' => 'required|min:1|',
-
-            'produccion.aceite' => 'required|min:1|', 'produccion.humedadAceite' => 'required|min:1|', 'produccion.grasaAceite' => 'required|min:1|', 'produccion.mSecaAceite' => 'required|min:1|', 
-            'produccion.harina' => 'required|min:1|', 'produccion.humedadHarina' => 'required|min:1|', 'produccion.grasaHarina' => 'required|min:1|', 'produccion.mSecaHarina' => 'required|min:1|', 
-            'produccion.aguaP2' => 'required|min:1|', 'produccion.aceiteP'=> 'required|min:1|', 'produccion.solventeP' => 'required|min:1|',
-
-            'produccion.gasLicuado' => 'required|min:1|', 'produccion.precioGasLicuado'=> 'required|min:1|', 'produccion.costoGasLicuado' => 'required|min:1|',
-            'produccion.personal' => 'required|min:1|', 'produccion.precioPersonal'=> 'required|min:1|', 'produccion.costoPersonal' => 'required|min:1|',
-            'produccion.electricidad' => 'required|min:1|', 'produccion.precioElectricidad'=> 'required|min:1|', 'produccion.costoElectricidad' => 'required|min:1|',
-            'produccion.electricidad2' => 'required|min:1|', 'produccion.costoElectricidad2' => 'required|min:1|',
-            'produccion.precioBolsas' => 'required|min:1|', 'produccion.costoBolsas'=> 'required|min:1|',
-            'produccion.total' => 'required|min:1|', 'produccion.costo_total' => 'required|min:1|'
-
-
-        ];
-
-        return array_merge([
-            'produccion.granoDeSoya' => 'required|digits|min:1|',
-            'produccion.merma' => 'required|min:1'
-        ], $rules);
-    }
-
     public function calcular(){ //metodo para calcular y enviar al input disabled
         $this->ax = $this->granoDeSoya *$this->mSecaGrano;
         $this->rendimiento1();
@@ -146,8 +106,7 @@ class createProduccion extends Component
         }
     }
     
-    public function createProduccion ()
-    {
+    public function createProduccion (){
         //Calculo del expeller dependiendo de las bolsas ingresadas en el fomulario
         $this->expeller = $this->produccion['bolsas']*50; //Extraemos del formulario
         $data = $this->produccion;
@@ -171,9 +130,6 @@ class createProduccion extends Component
         $data['secadoP'] = $this->secadoP;
 
         //######################################################
-
-        $data['agua2'] = null;
-
         $data['aceite'] = null;
         $data['humedadAceite'] = null;
         $data['grasaAceite'] = null;
@@ -203,16 +159,16 @@ class createProduccion extends Component
         $data['costoBolsas'] = null;
         $data['total'] = null;
         $data['costo_total'] = null;
-        
+
         Produccion::create($data);
 
         $this->emit('saved');
         $this->reset('produccion'); 
         $this->limpiarCampos();
+
     }
 
-    public function updateProduccion ()
-    {    
+    public function updateProduccion (){    
         $this->produccion->save();
         $this->emit('saved');  
     }
@@ -228,20 +184,16 @@ class createProduccion extends Component
         
     }
 
-
-    public function mount ()
-    {
+    public function mount (){
         if (!$this->produccion && $this->produccionId) {
                 $this->produccion = Produccion::find($this->produccionId);
         }
 
         $this->button = create_button($this->action, "Produccion");
         $this->calcular();
-
     }
 
-    public function render()
-    {
+    public function render(){
         return view('livewire.create-produccion',[
             'turnos'=>Turno::get()
         ]
@@ -264,4 +216,44 @@ class createProduccion extends Component
         $this->secadoP = null;
 
     }
+
+    protected function getRules(){
+        $rules = ($this->action == "updateProduccion". $this->produccionId
+        || $this->action == "costoProduccion". $this->produccionId) ? [ 
+            'produccion.lote' => 'required|min:1|',
+            'produccion.granoDeSoya' => 'required|min:1|',
+            'produccion.merma' => 'required|min:1|'
+        ] : [
+            'produccion.lote' => 'required|min:1|',
+            'produccion.granoDeSoya' => 'required|digits|min:1|', 'produccion.humedadGrano' => 'required|min:1|','produccion.grasaGrano' => 'required|min:1|','produccion.mSecaGrano' => 'required|min:1|',
+            'produccion.merma' => 'required|min:1|',
+            'produccion.secado' => 'required|min:1|','produccion.humedadSecado' => 'required|min:1|', 'produccion.grasaSecado' => 'required|min:1|', 'produccion.mSecaSecado' => 'required|min:1|',
+            'produccion.agua' => 'required|min:1|',
+            'produccion.agua2' => 'required|min:1|',
+            'produccion.mermaP' => 'required|min:1|','produccion.aguaP' => 'required|min:1|','produccion.secadoP' => 'required|min:1|',
+            'produccion.idTurno' => 'required|min:1|',
+            'produccion.fecha' => 'required|min:1|',
+            'produccion.bolsas' => 'required|min:1|',
+            'produccion.expeller' => 'required|min:1|',
+
+            'produccion.aceite' => 'required|min:1|', 'produccion.humedadAceite' => 'required|min:1|', 'produccion.grasaAceite' => 'required|min:1|', 'produccion.mSecaAceite' => 'required|min:1|', 
+            'produccion.harina' => 'required|min:1|', 'produccion.humedadHarina' => 'required|min:1|', 'produccion.grasaHarina' => 'required|min:1|', 'produccion.mSecaHarina' => 'required|min:1|', 
+            'produccion.aguaP2' => 'required|min:1|', 'produccion.aceiteP'=> 'required|min:1|', 'produccion.solventeP' => 'required|min:1|',
+
+            'produccion.gasLicuado' => 'required|min:1|', 'produccion.precioGasLicuado'=> 'required|min:1|', 'produccion.costoGasLicuado' => 'required|min:1|',
+            'produccion.personal' => 'required|min:1|', 'produccion.precioPersonal'=> 'required|min:1|', 'produccion.costoPersonal' => 'required|min:1|',
+            'produccion.electricidad' => 'required|min:1|', 'produccion.precioElectricidad'=> 'required|min:1|', 'produccion.costoElectricidad' => 'required|min:1|',
+            'produccion.electricidad2' => 'required|min:1|', 'produccion.costoElectricidad2' => 'required|min:1|',
+            'produccion.precioBolsas' => 'required|min:1|', 'produccion.costoBolsas'=> 'required|min:1|',
+            'produccion.total' => 'required|min:1|', 'produccion.costo_total' => 'required|min:1|'
+
+
+        ];
+
+        return array_merge([
+            'produccion.granoDeSoya' => 'required|digits|min:1|',
+            'produccion.merma' => 'required|min:1'
+        ], $rules);
+    }
+
 }
