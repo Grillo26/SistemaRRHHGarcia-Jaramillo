@@ -51,7 +51,7 @@ Route::group([ "middleware" => ['auth:sanctum', 'verified'] ], function() {
 
     Route::get('/costo', [ CostoController::class, "index_view" ])->name('costo');
     Route::view('/costo/new', "pages.costo.costo-new")->name('costo.new');
-    Route::view('/costo/edit/{turnoId}', "pages.costo.costo-edit")->name('costo.edit');
+    Route::view('/costo/edit/{costoId}', "pages.costo.costo-edit")->name('costo.edit');
 
 
 

@@ -1,5 +1,5 @@
 <div>
-    <x-data-table :data="$data" :model="$produccions, $turnos" >
+    <x-data-table :data="$data" :model="$produccions, $turnos, $costos" >
         <x-slot name="head">
             <tr>
                 <th><a wire:click.prevent="sortBy('lote')" role="button" href="#">

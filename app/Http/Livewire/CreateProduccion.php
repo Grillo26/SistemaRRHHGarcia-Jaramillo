@@ -5,6 +5,7 @@ namespace App\Http\Livewire;
 use App\Models\Produccion;
 use App\Models\Balance;
 use App\Models\Turno;
+use App\Models\Costo;
 use Illuminate\Support\Facades\Hash;
 use Livewire\Component;
 
@@ -93,7 +94,7 @@ class createProduccion extends Component
     }
 
     public function calculoCosto(){
-        if ($this->produccion && isset($this->produccion['granoDeSoya']) && isset($this->produccion['merma'])) {
+        if ($this->produccion && isset($this->produccion['solventeP'])) {
 
             $this->produccion['costoGasLicuado'] = round($this->produccion['gasLicuado'] * $this->precioGasLicuado,2);
             $this->produccion['costoPersonal'] = round($this->produccion['personal'] * $this->precioPersonal,2);
@@ -195,7 +196,8 @@ class createProduccion extends Component
 
     public function render(){
         return view('livewire.create-produccion',[
-            'turnos'=>Turno::get()
+            'turnos'=>Turno::get(),
+            'costos'=>Costo::get()
         ]
     );
     }

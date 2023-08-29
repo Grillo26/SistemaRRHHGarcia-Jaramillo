@@ -189,7 +189,8 @@
                 <!--TURNO-->
                 <div class="">
                     <x-jet-label for="turno" value="{{ __('Turno') }}" />
-                    <select wire:model.defer="produccion.idTurno" tabindex="-1" class="form-control " disabled>
+                    <small>Seleccione el Turno</small>
+                    <select wire:model.defer="produccion.idTurno" tabindex="-1" class="form-control " required>
                         <option selected >Seleccione el turno</option>
                         @foreach ( $turnos as $turno )    
                         <option  value="{{$turno->id}}" data-index="0">{{$turno->nombreTurno}}</option>
@@ -222,24 +223,12 @@
                    
                     <small>Ingrese cantidad de grano de soya</small>
                     <x-jet-input id="granoDeSoya" type="number" class="mt-1 block w- form-control shadow-none"   wire:model="granoDeSoya" wire:model.defer="produccion.granoDeSoya" required />
-
-                  
-                    @if($action == "updateProduccion")
-                    <small>Edite la cantidad de grano de soya</small>
-                    <x-jet-input id="granoDeSoya" type="text" class="mt-1 block w- form-control shadow-none"  wire:model.defer="produccion.granoDeSoya" />
-
-                    @endif
                     <x-jet-input-error for="produccion.granoDeSoya" class="mt-2" />
                 </div>
 
                  <!--HUMEDAD-->
                  <div class="">
                     <x-jet-label for="humedadGrano" value="{{ __('Humedad') }}" />
-                    @if($action == "updateProduccion")
-                    <small>Edite la cantidad de humedadGrano en %</small>
-                    <x-jet-input id="humedadGrano" type="text" class="mt-1 block w-full form-control shadow-none" wire:change="$emit('calcular')"  wire:model.defer="produccion.humedadGrano" />
-
-                    @endif
                     <small>Ingrese cantidad de humedadGrano en %</small>
                     <x-jet-input id="humedadGrano" class="mt-1 block w-full form-control shadow-none" type="text" wire:model="humedadGrano" wire:change="$emit('calcular')" wire:model.defer="produccion.humedadGrano" required/>
                     <x-jet-input-error for="produccion.humedadGrano" class="mt-2" />
@@ -248,11 +237,6 @@
                 <!--GRASAS-->
                 <div class="">
                     <x-jet-label for="grasaGrano" value="{{ __('Grasa') }}" />
-                    @if($action == "updateProduccion")
-                    <small>Edite la cantida de grasa</small>
-                    <x-jet-input id="grasaGrano" type="text" class="mt-1 block w-full form-control shadow-none" wire:change="$emit('calcular')" wire:model.defer="produccion.grasaGrano" />
-
-                    @endif
                     <small>Ingrese la cantidad de grasa Grano</small>
                     <x-jet-input id="grasaGrano" type="text" class="mt-1 block w-full form-control shadow-none" wire:model="grasaGrano" wire:change="$emit('calcular')" wire:model.defer="produccion.grasaGrano" required/>
 
@@ -264,11 +248,6 @@
                 <!--%MERMA SECA-->
                 <div class="">
                     <x-jet-label for="" value="{{ __('% Merma Seca') }}" />    
-                    @if($action == "updateProduccion")
-                    <small>Cantidad de grasa</small>
-                    <x-jet-input id="mSecaGrano" type="text" class="mt-1 block w-full form-control shadow-none" disabled  wire:model.defer="produccion.mSecaGrano" />
-                    @endif
-
                     <small>Cantidad de grasa</small>
                     <x-jet-input id="mSecaGrano" type="text" class="mt-1 block w-full form-control shadow-none" disabled wire:model="mSecaGrano" wire:model.defer="produccion.mSecaGrano" />
 
@@ -282,11 +261,6 @@
                 <!--MERMA-->
                 <div class="">
                     <x-jet-label for="merma" value="{{ __('Merma') }}" />
-                    @if($action == "updateProduccion")
-                    <small>Edite la cantidad de merma</small>
-                    <x-jet-input id="merma" type="text" class="mt-1 block w-full form-control shadow-none"  wire:change="$emit('calcular')" wire:model.defer="produccion.merma" />
-
-                    @endif
                     <small>Ingrese cantidad de merma</small>
                     <x-jet-input id="merma" type="text" class="mt-1 block w-full form-control shadow-none"  wire:model="merma" wire:change="$emit('calcular')" wire:model.defer="produccion.merma" required />
                     <x-jet-input-error for="produccion.merma" class="mt-2" />
@@ -295,11 +269,6 @@
                 <!--AGUA-->
                 <div class="">
                     <x-jet-label for="agua" value="{{ __('Agua') }}" />
-                    @if($action == "updateProduccion")
-                    <small>Agua extraida expresada en</small>
-                    <x-jet-input id="agua" type="text" class="mt-1 block w-full form-control shadow-none" disabled wire:model.defer="produccion.agua"/>
-
-                    @endif
                     <small>Agua extraida expresada en</small>
                     <x-jet-input id="agua" type="text" class="mt-1 block w-full form-control shadow-none" disabled wire:model="agua" wire:model.defer="produccion.agua" required/>
                     <x-jet-input-error for="produccion.agua" class="mt-2" />
@@ -310,11 +279,6 @@
                 <!--SECADO-->
                 <div class="">
                     <x-jet-label for="secado" value="{{ __('Secado') }}" />  
-                    @if($action == "updateProduccion")        
-                    <small>Total del proceso de secado </small>
-                    <x-jet-input id="secado" type="text" class="mt-1 block w-full form-control shadow-none" disabled wire:model.defer="produccion.secado"/>
-
-                    @endif
                     <small>Valor total del proceso de secado </small>
                     <x-jet-input id="secado" type="text" class="mt-1 block w-full form-control shadow-none" disabled wire:model="secado" wire:model.defer="produccion.secado"/>
                     <x-jet-input-error for="produccion.secado" class="mt-2" />
@@ -324,11 +288,6 @@
                 <!--HUMEDAD DE LABORATORIO-->
                 <div class="">
                     <x-jet-label for="humedadSecado" value="{{ __('Humedad') }}" />
-                    @if($action == "updateProduccion")
-                    <small>Edite la cantidad de humedadSecado</small>
-                    <x-jet-input id="humedadSecado" type="text" class="mt-1 block w-full form-control shadow-none"  wire:model.defer="produccion.humedadSecado" />
-
-                    @endif
                     <small>Humedad obtenido de Laboratorio</small>
                     <x-jet-input id="humedadSecado" class="mt-1 block w-full form-control shadow-none" type="text" wire:model="humedadSecado" wire:change="$emit('calcular')" wire:model.defer="produccion.humedadSecado" required/>
 
@@ -338,11 +297,6 @@
                 <!--GRASA DE LABORATORIO-->
                 <div class="">
                     <x-jet-label for="grasaSecado" value="{{ __('Grasa') }}" />
-                    @if($action == "updateProduccion")
-                    <small>Edite la cantidad de Grasa</small>
-                    <x-jet-input id="grasaSecado" class="mt-1 block w-full form-control shadow-none" type="text" wire:change="$emit('calcular')" wire:model.defer="produccion.grasaSecado"/>
-
-                    @endif
                     <small>Cantidad de grasa obtenida del Laboratorio</small>
                     <x-jet-input id="grasaSecado" type="text" class="mt-1 block w-full form-control shadow-none" wire:model="grasaSecado" wire:change="$emit('calcular')" wire:model.defer="produccion.grasaSecado" required/>
 
@@ -357,8 +311,7 @@
                     <x-jet-input-error for="produccion.mSecaSecado" class="mt-2" />
 
                 </div>
-
-                </div>
+            </div>
 
         @endif
 <!--##################################################################################################################################-->
@@ -525,7 +478,7 @@
                 <!--GAS LICUADO-->
                 <div class="">
                     <x-jet-label for="gasLicuado" value="{{ __('Gas Licuado') }}" />
-                    <x-jet-input id="gasLicuado" type="number" class="mt-1 block w- form-control shadow-none" placeholder="Cantidad Kg"  wire:change="$emit('calcular')" wire:model.defer="produccion.gasLicuado" required />
+                    <x-jet-input id="gasLicuado" type="text" class="mt-1 block w- form-control shadow-none" placeholder="Cantidad Kg"  wire:change="$emit('calcular')" wire:model.defer="produccion.gasLicuado" required />
                     <x-jet-input-error for="produccion.gasLicuado" class="mt-2" />
                 </div>
 
@@ -548,7 +501,7 @@
                 <!--PERSONAL-->
                 <div class="">
                     <x-jet-label for="personal" value="{{ __('Personal') }}" />
-                    <x-jet-input id="personal" type="number" class="mt-1 block w- form-control shadow-none" placeholder="Cantidad" wire:change="$emit('calcular')"  wire:model.defer="produccion.personal" required />
+                    <x-jet-input id="personal" type="text" class="mt-1 block w- form-control shadow-none" placeholder="Cantidad" wire:change="$emit('calcular')"  wire:model.defer="produccion.personal" required />
                     <x-jet-input-error for="produccion.personal" class="mt-2" />
                 </div>
 
@@ -571,7 +524,7 @@
                 <!--ELECTRICIDAD-->
                 <div class="">
                     <x-jet-label for="electricidad" value="{{ __('Electricidad') }}" />
-                    <x-jet-input id="electricidad" type="number" class="mt-1 block w- form-control shadow-none" placeholder="Cantidad Kwh" wire:change="$emit('calcular')" wire:model.defer="produccion.electricidad" required />
+                    <x-jet-input id="electricidad" type="text" class="mt-1 block w- form-control shadow-none" placeholder="Cantidad Kwh" wire:change="$emit('calcular')" wire:model.defer="produccion.electricidad" required />
                     <x-jet-input-error for="produccion.electricidad" class="mt-2" />
                 </div>
 
@@ -594,7 +547,7 @@
                 <!--TOTAL-->
                 <div class="">
                     <x-jet-label for="total" value="{{ __('TOTAL') }}" />
-                    <x-jet-input id="total" type="number" class="mt-1 block w- form-control shadow-none"  wire:change="$emit('calcular')" wire:model.defer="produccion.total" disabled required />
+                    <x-jet-input id="total" type="text" class="mt-1 block w- form-control shadow-none"  wire:change="$emit('calcular')" wire:model.defer="produccion.total" disabled required />
                     <x-jet-input-error for="produccion.total" class="mt-2" />
                 </div>
                 
@@ -604,7 +557,7 @@
                 <!--ELECTRICIDAD2-->
                 <div class="">
                     <x-jet-label for="electricidad2" value="{{ __('Electricidad') }}" />
-                    <x-jet-input id="electricidad2" type="number" class="mt-1 block w- form-control shadow-none" placeholder="Cantidad Kwh" wire:change="$emit('calcular')" wire:model.defer="produccion.electricidad2" required />
+                    <x-jet-input id="electricidad2" type="text" class="mt-1 block w- form-control shadow-none" placeholder="Cantidad Kwh" wire:change="$emit('calcular')" wire:model.defer="produccion.electricidad2" required />
                     <x-jet-input-error for="produccion.electricidad2" class="mt-2" />
                 </div>
 
@@ -627,7 +580,7 @@
                 <!--BOLSAS-->
                 <div class="">
                     <x-jet-label for="bolsas" value="{{ __('Bolsas') }}" />
-                    <x-jet-input id="bolsas" type="number" class="mt-1 block w- form-control shadow-none" placeholder="Unidades" wire:change="$emit('calcular')" wire:model.defer="produccion.bolsas" required />
+                    <x-jet-input id="bolsas" type="text" class="mt-1 block w- form-control shadow-none" placeholder="Unidades" wire:change="$emit('calcular')" wire:model.defer="produccion.bolsas" required />
                     <x-jet-input-error for="produccion.bolsas" class="mt-2" />
                 </div>
 

@@ -52,11 +52,13 @@ trait WithDataTable {
                         ->orderBy($this->sortField, $this->sortAsc ? 'asc' : 'desc')
                         ->paginate($this->perPage);
                 $turnos = Turno::get(); //Extrayendo de otra tabla
+                $costos = Costo::get(); //Extrayendo de otra tabla
     
                 return [
                         "view" => 'livewire.table.produccion',
                         "produccions" => $produccions,
                         "turnos"=>$turnos,
+                        "costos"=>$costos,
                         "data" => array_to_object([
                             'href' => [
                                 'create_new' => route('produccion.new'),
@@ -92,11 +94,9 @@ trait WithDataTable {
                 $costos = $this->model::search($this->search)
                         ->orderBy($this->sortField, $this->sortAsc ? 'asc' : 'desc')
                         ->paginate($this->perPage);
-                $produccions = Produccion::get(); //Extrayendo de otra tabla
                 return [
                         "view" => 'livewire.table.costo',
                         "costos" => $costos,
-                        "produccions" => $produccions,
                         "data" => array_to_object([
                             'href' => [
                                 'create_new' => route('costo.new'),

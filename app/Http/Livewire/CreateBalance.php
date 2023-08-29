@@ -20,6 +20,19 @@ class createBalance extends Component
     public $button;
     public $imagePath; 
     public $loteId;
+
+    $phpWord = new \PhpOffice\PhpWord\PhpWord();
+    $template = $phpWord->loadTemplate('ruta/a/tu/plantilla.docx');
+
+    // Reemplaza los marcadores con los datos
+    $template->setValue('MARCADOR1', $dato1);
+    $template->setValue('MARCADOR2', $dato2);
+
+    // Guarda el documento Word en una ubicación temporal
+    $tempFilePath = storage_path('app/temp/plantilla_generada.docx');
+    $template->save($tempFilePath);
+
+    
  
     public function mount (){
         if (!$this->balance && $this->balanceId) {
@@ -63,6 +76,7 @@ class createBalance extends Component
 }
 
     public function generatePdf($produccionId){
+        
 
         $this->imagePath = public_path('img/logo.png');
         $exports = Produccion::find($produccionId);

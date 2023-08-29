@@ -9,14 +9,7 @@ class Costo extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'id',
-        'soya', 
-        'gasLicuado','precioGasLicuado', 'costoGasLicuado',
-        'personal','precioPersonal', 'costoPersonal',
-        'electricidad','precioElectricidad','costoElectricidad',
-        'bolsas','precioBolsas','costoBolsas',
-        'costo_total',
-        'produccion_id',
+        'id', 'precioGasLicuado', 'precioPersonal', 'precioElectricidad', 'precioBolsas', 'precioAceite',
     ];
 
     public function produccion()
@@ -29,12 +22,8 @@ class Costo extends Model
     {
         return empty($query) ? static::query()
             : static::where('id', 'like', '%'.$query.'%')
-                ->orWhere('aceite', 'like', '%'.$query.'%')
-                ->orWhere('soya', 'like', '%'.$query.'%')
-                ->orWhere('gasLicuado', 'like', '%'.$query.'%')
-                ->orWhere('personal', 'like', '%'.$query.'%')
-                ->orWhere('electricidad', 'like', '%'.$query.'%')
-                ->orWhere('bolsas', 'like', '%'.$query.'%')
-                ->orWhere('costo_total', 'like', '%'.$query.'%');
+                ->orWhere('precioGasLicuado', 'like', '%'.$query.'%')
+                ->orWhere('precioPersonal', 'like', '%'.$query.'%');
+                
     }
 }
