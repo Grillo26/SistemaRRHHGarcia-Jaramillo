@@ -482,11 +482,17 @@
                     <x-jet-input-error for="produccion.gasLicuado" class="mt-2" />
                 </div>
 
-                 <!--COSTO PREDETERMINADO-->
+                <!--TURNO-->
                 <div class="">
                     <x-jet-label for="precioGasLicuado" value="{{ __('Precio Bs.') }}" />
-                    <x-jet-input id="precioGasLicuado" class="mt-1 block w-full form-control shadow-none" type="text" wire:model="precioGasLicuado" wire:change="$emit('calcular')" wire:model.defer="produccion.precioGasLicuado" disabled required/>
+                    <select wire:model.defer="produccion.precioGasLicuado" tabindex="-1" class="form-control " disabled>
+                        @foreach ( $costos as $costo )    
+                        <option  value="{{$costo->id}}" data-index="0">{{$costo->precioGasLicuado}}</option>
+                        @endforeach 
+                    </select>  
                     <x-jet-input-error for="produccion.precioGasLicuado" class="mt-2" />
+
+                                        
                 </div>
 
                 <!--Costo Bs.-->
@@ -508,7 +514,11 @@
                  <!--COSTO PREDETERMINADO-->
                 <div class="">
                     <x-jet-label for="precioPersonal" value="{{ __('Precio Bs. ') }}" />
-                    <x-jet-input id="precioPersonal" class="mt-1 block w-full form-control shadow-none" type="text" wire:model="precioPersonal" wire:change="$emit('calcular')" wire:model.defer="produccion.precioPersonal" disabled required/>
+                    <select wire:model.defer="produccion.precioPersonal" tabindex="-1" class="form-control " disabled>
+                        @foreach ( $costos as $costo )    
+                        <option  value="{{$costo->id}}" data-index="0">{{$costo->precioPersonal}}</option>
+                        @endforeach 
+                    </select> 
                     <x-jet-input-error for="produccion.precioPersonal" class="mt-2" />
                 </div>
 
@@ -531,7 +541,11 @@
                  <!--COSTO PREDETERMINADO-->
                 <div class="">
                     <x-jet-label for="precioElectricidad" value="{{ __('Precio Bs. ') }}" />
-                    <x-jet-input id="precioElectricidad" class="mt-1 block w-full form-control shadow-none" type="text" wire:model="precioElectricidad" wire:change="$emit('calcular')" wire:model.defer="produccion.precioElectricidad" disabled required/>
+                    <select wire:model.defer="produccion.precioElectricidad" tabindex="-1" class="form-control " disabled>
+                        @foreach ( $costos as $costo )    
+                        <option  value="{{$costo->id}}" data-index="0">{{$costo->precioElectricidad}}</option>
+                        @endforeach 
+                    </select>
                     <x-jet-input-error for="produccion.precioElectricidad" class="mt-2" />
                 </div>
 
@@ -564,7 +578,11 @@
                  <!--COSTO PREDETERMINADO-->
                 <div class="">
                     <x-jet-label for="precioElectricidad" value="{{ __('Precio Bs. ') }}" />
-                    <x-jet-input id="precioElectricidad" class="mt-1 block w-full form-control shadow-none" type="text" wire:model="precioElectricidad" wire:change="$emit('calcular')" wire:model.defer="produccion.precioElectricidad" disabled required/>
+                    <select wire:model.defer="produccion.precioElectricidad" tabindex="-1" class="form-control " disabled>
+                        @foreach ( $costos as $costo )    
+                        <option  value="{{$costo->id}}" data-index="0">{{$costo->precioElectricidad}}</option>
+                        @endforeach 
+                    </select>                    
                     <x-jet-input-error for="produccion.precioElectricidad2" class="mt-2" />
                 </div>
 
@@ -587,7 +605,11 @@
                  <!--COSTO PREDETERMINADO-->
                 <div class="">
                     <x-jet-label for="precioBolsas" value="{{ __('Precio Bs. ') }}" />
-                    <x-jet-input id="precioBolsas" class="mt-1 block w-full form-control shadow-none" type="text" wire:model="precioBolsas" wire:change="$emit('calcular')" wire:model.defer="produccion.precioBolsas" disabled required/>
+                    <select wire:model.defer="produccion.precioBolsas" tabindex="-1" class="form-control " disabled>
+                        @foreach ( $costos as $costo )    
+                        <option  value="{{$costo->id}}" data-index="0">{{$costo->precioBolsas}}</option>
+                        @endforeach 
+                    </select>
                     <x-jet-input-error for="produccion.precioBolsas" class="mt-2" />
                 </div>
 

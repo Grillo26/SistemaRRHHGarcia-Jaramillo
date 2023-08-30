@@ -118,7 +118,6 @@ class createBalance extends Component
 
 
         try {
-            
             $templateProcessor = new \PhpOffice\PhpWord\TemplateProcessor(Storage_path('template.docx'));
             $templateProcessor->setValue('fecha',$fecha);
             $templateProcessor->setValue('granoDeSoya',$granoDeSoya);

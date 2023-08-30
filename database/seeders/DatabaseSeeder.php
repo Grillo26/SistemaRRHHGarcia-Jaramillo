@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 use App\Models\User;
 use App\Models\Turno;
+use App\Models\Costo;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Str;
 class DatabaseSeeder extends Seeder
@@ -29,13 +30,18 @@ class DatabaseSeeder extends Seeder
         $turno->nombreTurno = 'Mañana';
         $turno->descripcion = 'Horario de 8 de la mañana a 2 de la tarde';
         $turno->save();
+
         $turno2 = new Turno();
         $turno2->nombreTurno = 'Tarde';
         $turno2->descripcion = 'Horario de la tarde a 8 de la noche';
         $turno2->save();
 
-
-
-
+        $costo = new Costo();
+        $costo->precioGasLicuado = 3.10;
+        $costo->precioPersonal = 330;
+        $costo->precioElectricidad = 0.60;
+        $costo->precioBolsas = 2.15;
+        $costo->precioAceite = 1000;
+        $costo->save();
     }
 }
