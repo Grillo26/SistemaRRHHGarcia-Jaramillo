@@ -32,7 +32,7 @@ class Produccion extends Model
         return $this->belongsTo('App\Models\Turno');
     }
     public function costos(){
-        return $this->hasOne('App\Models\Costo');
+        return $this->belongsTo('App\Models\Costo');
     }
 
 

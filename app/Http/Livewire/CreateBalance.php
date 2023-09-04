@@ -62,12 +62,12 @@ class createBalance extends Component
     public function obtenerDatos(){
     $producciones = Produccion::all();
 
-    foreach ($producciones as $produccion) {
+    /*foreach ($producciones as $produccion) {
         // Formatear la fecha y obtener solo la hora
         $produccion->hora_creacion = Carbon::parse($produccion->created_at)->format('H:i:s');
     }
 
-    return view('livewire.tu-vista', compact('producciones'));
+    return view('livewire.tu-vista', compact('producciones'));*/
 
 }
 
@@ -166,20 +166,11 @@ class createBalance extends Component
             header("Content-Disposition: attachment; filename=produccion.docx; charset=iso-8859-1");
             echo file_get_contents("Document02.docx");
 
-            
-            $pdf = Pdf::loadView('pages.produccion.pdf', compact('templateProcessor'));
-            // Guarda el PDF en una ubicación deseada o envíalo al navegador
-            return $pdf->setPaper('A4')->stream('balance.pdf');
-            
-                
         } catch (\Exception $e) {
             // Manejo de excepciones
             dd($e->getMessage());
         }
         
-        
-
-
         /*
         $this->imagePath = public_path('img/logo.png');
         $exports = Produccion::find($produccionId);
@@ -187,5 +178,29 @@ class createBalance extends Component
 
         $pdf = Pdf::loadView('pages.produccion.pdf', compact('exports'),['imagePath' => $this->imagePath]);
         return $pdf->setPaper('A4')->stream('balance.pdf'); */
+    }
+
+    public function pdf ($produccionId){
+
+        $data = Produccion::find($produccionId);
+        $granoDeSoya = $data['granoDeSoya'];
+        $humedadGrano = $data['humedadGrano'];
+        $hume = $humedadGrano*100;
+        $secado = $data['secado'];
+
+        $resul = $granoDeSoya - $secado;
+        $resulPor = ($resul*100)/$granoDeSoya;
+
+        $solventeP = $data['solventeP'];
+        $aceiteP = $data['aceiteP'];
+
+        $aprovechamiento =round( $solventeP + $aceiteP, 1);
+
+        $this->imagePath = public_path('img/logo.png');
+
+        $pdf = Pdf::loadView('pages.produccion.pdf', compact('data',
+        'hume', 'resul', 'resulPor', 'aprovechamiento'),['imagePath' => $this->imagePath]);
+        return $pdf->setPaper('A4')->stream('balance.pdf'); 
+
     }
 }

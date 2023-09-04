@@ -12,10 +12,11 @@ class Costo extends Model
         'id', 'precioGasLicuado', 'precioPersonal', 'precioElectricidad', 'precioBolsas', 'precioAceite',
     ];
 
-    public function produccion()
-    {
-        return $this->belongsTo(Produccion::class);
+    //relacion uno a muchos
+    public function produccions(){
+        return $this->hasMany('App\Models\Produccion');
     }
+    
     
 
     public static function search($query)

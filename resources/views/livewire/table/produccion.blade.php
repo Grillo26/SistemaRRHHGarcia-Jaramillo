@@ -69,7 +69,8 @@
                     
                     <td class="whitespace-no-wrap row-action--icon"> 
                         <!-- Vista producciones.blade.php -->
-                        <a role="button" href="/produccion/pdf/{{ $produccion->id }}" class="mr-3"><i class="fa fa-16px text-blue-500 fa-file-pdf"></i></a>
+                        <a role="button" href="/produccion/pdf/{{ $produccion->id }}" class="mr-3"><i class="fa fa-16px text-blue-500 fa-file-word"></i></a>
+                        <a role="button" href="/produccion/document/{{ $produccion->id }}" class="mr-3"  target="_blank"><i class="fa fa-16px text-red-500 fa-file-pdf"></i></a>
                         <a role="button" href="/produccion/edit/{{ $produccion->id }}" class="mr-3"><i class="fa fa-16px text-green-500 fa-balance-scale"></i></a>
                         <a role="button" href="/produccion/costo/{{ $produccion->id }}" class="mr-3"><i class="fa fa-16px text-green-500 fa-coins"></i></a>
                         <a role="button" x-on:click.prevent="deleteItem" href="#"><i class="fa fa-16px fa-trash text-red-500"></i></a>

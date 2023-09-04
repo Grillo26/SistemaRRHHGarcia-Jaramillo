@@ -63,20 +63,20 @@ class CreateProduccionsTable extends Migration
 
             //Costos
             $table->float('gasLicuado')->nullable();
-            $table->float('precioGasLicuado')->nullable();
+            $table->unsignedBigInteger('precioGasLicuado')->nullable();
             $table->float('costoGasLicuado')->nullable();
 
             $table->float('personal')->nullable();
-            $table->float('precioPersonal')->nullable();
+            $table->unsignedBigInteger('precioPersonal')->nullable();
             $table->float('costoPersonal')->nullable();
 
             $table->float('electricidad')->nullable();
-            $table->float('precioElectricidad')->nullable();
+            $table->unsignedBigInteger('precioElectricidad')->nullable();
             $table->float('costoElectricidad')->nullable();
             $table->float('electricidad2')->nullable();
             $table->float('costoElectricidad2')->nullable();
 
-            $table->float('precioBolsas')->nullable();
+            $table->unsignedBigInteger('precioBolsas')->nullable();
             $table->float('costoBolsas')->nullable();
             
             $table->float('total')->nullable();
@@ -84,6 +84,17 @@ class CreateProduccionsTable extends Migration
 
             $table->foreign('idTurno')
             ->references('id')->on('turnos')->onDelete('set null');
+            $table->foreign('precioGasLicuado')
+            ->references('id')->on('costos')->onDelete('set null');
+            $table->foreign('precioPersonal')
+            ->references('id')->on('costos')->onDelete('set null');
+            $table->foreign('precioElectricidad')
+            ->references('id')->on('costos')->onDelete('set null');
+            $table->foreign('precioBolsas')
+            ->references('id')->on('costos')->onDelete('set null');
+            
+            
+            
             
             $table->timestamps();
         });

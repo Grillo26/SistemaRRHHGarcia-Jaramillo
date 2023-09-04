@@ -29,12 +29,8 @@ class createProduccion extends Component
     public $mermaP, $aguaP, $secadoP;
     public $aguaP1, $aceiteP, $solventeP;
 
-    //Precio por unidad 
-    public $precioGasLicuado = 3.1;
-    public $precioPersonal = 330;
-    public $precioElectricidad = 0.601;
-    public $precioBolsas = 2.15;
-    public $precioAceite = 1000;
+    //Precios
+    public $precioPersonal, $precioGasLicuado, $precioElectricidad, $precioBolsas, $precioAceite;
 
     public $resultado;
 
@@ -44,7 +40,10 @@ class createProduccion extends Component
         $this->ax = $this->granoDeSoya *$this->mSecaGrano;
         $this->rendimiento1();
         $this->rendimiento2();
-        $this->calculoCosto();
+
+        if($this->action == "costoProduccion"){
+            $this->calculoCosto();
+        }
     }
 
     public function rendimiento1(){
@@ -94,17 +93,22 @@ class createProduccion extends Component
     }
 
     public function calculoCosto(){
-        if ($this->produccion && isset($this->produccion['solventeP'])) {
+            $costo = Costo::find(1);
+            $this->precioGasLicuado = $costo['precioGasLicuado'];
+            $this->precioPersonal = $costo['precioPersonal'];
+            $this->precioElectricidad = $costo['precioElectricidad'];
+            $this->precioBolsas = $costo['precioBolsas'];
+            $this->precioAceite = $costo['precioAceite'];
 
-            $this->produccion['costoGasLicuado'] = round($this->produccion['gasLicuado'] * $this->precioGasLicuado,2);
-            $this->produccion['costoPersonal'] = round($this->produccion['personal'] * $this->precioPersonal,2);
-            $this->produccion['costoElectricidad'] = round($this->produccion['electricidad'] * $this->precioElectricidad,2);
-            $this->produccion['costoElectricidad2'] = round($this->produccion['electricidad2'] * $this->precioElectricidad,2);
-            $this->produccion['costoBolsas'] = round($this->produccion['bolsas'] * $this->precioBolsas,2);
-            $this->produccion['total']= round($this->produccion['costoGasLicuado'] + $this->produccion['costoPersonal'] + $this->produccion['costoElectricidad'],2);
-            $this->produccion['costo_total'] = round($this->produccion['costoElectricidad2'] + $this->produccion['costoBolsas'] + $this->produccion['total'],2);
+                $this->produccion['costoGasLicuado'] = round($this->produccion['gasLicuado'] * $this->precioGasLicuado,2);
+                $this->produccion['costoPersonal'] = round($this->produccion['personal'] * $this->precioPersonal,2);
+                $this->produccion['costoElectricidad'] = round($this->produccion['electricidad'] * $this->precioElectricidad,2);
+                $this->produccion['costoElectricidad2'] = round($this->produccion['electricidad2'] * $this->precioElectricidad,2);
+                $this->produccion['costoBolsas'] = round($this->produccion['bolsas'] * $this->precioBolsas,2);
+                $this->produccion['total']= round($this->produccion['costoGasLicuado'] + $this->produccion['costoPersonal'] + $this->produccion['costoElectricidad'],2);
+                $this->produccion['costo_total'] = round($this->produccion['costoElectricidad2'] + $this->produccion['costoBolsas'] + $this->produccion['total'],2);
 
-        }
+
     }
     
     public function createProduccion (){
@@ -175,11 +179,6 @@ class createProduccion extends Component
     }
 
     public function costoProduccion(){
-        $data = $this->produccion;
-        $data['precioGasLicuado'] = $this->precioGasLicuado;
-        $data['precioPersonal'] = $this->precioPersonal;
-        $data['precioElectricidad'] = $this->precioElectricidad;
-        $data['precioBolsas'] = $this->precioBolsas;
         $this->produccion->save();
         $this->emit('saved'); 
         
@@ -189,6 +188,7 @@ class createProduccion extends Component
         if (!$this->produccion && $this->produccionId) {
                 $this->produccion = Produccion::find($this->produccionId);
         }
+
 
         $this->button = create_button($this->action, "Produccion");
         $this->calcular();

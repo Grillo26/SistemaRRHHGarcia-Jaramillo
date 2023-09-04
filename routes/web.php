@@ -47,6 +47,7 @@ Route::group([ "middleware" => ['auth:sanctum', 'verified'] ], function() {
     Route::view('/produccion/balance/{produccionId}', "pages.produccion.produccion-balance")->name('produccion.balance');      
        
     Route::get('/produccion/pdf/{produccionId}', [ CreateBalance::class, 'generatePdf' ]);
+    Route::get('/produccion/document/{produccionId}', [ CreateBalance::class, 'pdf' ]);
 
     Route::get('/balance', [ BalanceController::class, "index_view" ])->name('balance');
     Route::view('/balance/new/{produccionId}', "pages.balance.balance-new")->name('balance.new');
