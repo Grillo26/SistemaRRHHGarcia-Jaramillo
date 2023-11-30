@@ -6,32 +6,7 @@ $links = [
         "icon" => "fas fa-chart-pie",
         "is_multi" => false,
     ],
-    [
-        "href" => "produccion",
-        "text" => "Producción",
-        "icon" => "fas fa-chart-line",
-        "is_multi" => false,
-    ],
-    [
-        "href" => "turno",
-        "text" => "Mantenimiento",
-        "icon" => "fas fa-industry",
-        "is_multi" => false,
-    ],
-    [
-        "href" => "costo",
-        "text" => "Costos",
-        "icon" => "fas fa-money-bill",
-        "is_multi" => false,
-    ],
-    [
-        "href" => "turno",
-        "text" => "Turnos",
-        "icon" => "fas fa-calendar",
-        "is_multi" => false,
-    ],
     
-
     [
         "href" => [
             [

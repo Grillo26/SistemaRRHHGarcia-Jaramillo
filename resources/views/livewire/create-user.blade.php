@@ -9,57 +9,129 @@
         </x-slot>
 
 
-        <x-slot name="form">
-            
-            <div class="form-group col-span-6 sm:col-span-5">
-                <x-jet-label for="name" value="{{ __('Nombre') }}" />
-                <small>Nombres del Usuario astrar</small>
-                <x-jet-input id="name" type="text" class="mt-1 block w-full form-control shadow-none" wire:model.defer="user.name" />
-                <x-jet-input-error for="user.name" class="mt-2" />
-            </div>
+        <x-slot name="form">  
 
-            <div class="form-group col-span-6 sm:col-span-5">
-                <x-jet-label for="lastname" value="{{ __('Apellido') }}" />
-                <small>Apellidos del Usuario a registrar</small>
-                <x-jet-input id="lastname" type="text" class="mt-1 block w-full form-control shadow-none" wire:model.defer="user.lastname" />
-                <x-jet-input-error for="user.lastname" class="mt-2" />
-            </div>
+        <div class="col-12 col-md-12 col-lg-12">
+            <div class="card-body">
+                <div class="row">
+                    <div class="form-group col-md-6 col-12">
+                        <label>Nombre del Usuario</label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text">
+                                    <i class="fas fa-text-height"></i>
+                                </div>
+                            </div>
+                            <input id="name" type="text" class="form-control phone-number" wire:model.defer="user.name" autocomplete="name">
+                        </div>
+                        <x-jet-input-error for="name" class="mt-2" />
 
-            <div class="form-group col-span-6 sm:col-span-5">
-                <x-jet-label for="username" value="{{ __('User') }}" />
-                <small>Usuario para iniciar sesión</small>
-                <x-jet-input id="username" type="text" class="mt-1 block w-full form-control shadow-none" wire:model.defer="user.username" />
-                <x-jet-input-error for="user.username" class="mt-2" />
-            </div>
+                    </div>
+                    <div class="form-group col-md-6 col-12">
+                        <label>Apellido del Usuario</label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text">
+                                    <i class="fas fa-text-height"></i>
+                                </div>
+                            </div>
+                            <input id="lastname" type="text" class="form-control phone-number" wire:model.defer="user.lastname" autocomplete="lastname">
+                        </div>
+                    </div>
+                </div>
 
-            <div class="form-group col-span-6 sm:col-span-5">
-                <x-jet-label for="email" value="{{ __('Email') }}" />
-                <x-jet-input id="email" type="text" class="mt-1 block w-full form-control shadow-none" wire:model.defer="user.email" />
-                <x-jet-input-error for="user.email" class="mt-2" />
-            </div>
+                <div class="row">
+                    <div class="form-group col-md-6 col-12">
+                        <label>UserName</label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text">
+                                    <i class="fas fa-user"></i>
+                                </div>
+                            </div>
+                            <input id="username" type="text" class="form-control phone-number" wire:model.defer="user.username" autocomplete="username">
+                        </div>
+                    </div>
 
-            @if ($action == "createUser")
-            <div class="form-group col-span-6 sm:col-span-5">
-                <x-jet-label for="password" value="{{ __('Contraseña') }}" />
-                <small>Ingrese mínimo 8 caracteres</small>
-                <x-jet-input id="password" type="password" class="mt-1 block w-full form-control shadow-none" wire:model.defer="user.password" />
-                <x-jet-input-error for="user.password" class="mt-2" />
-            </div>
+                    <div class="form-group col-md-6 col-12">
+                        <label>Correo Electrónico</label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text">
+                                    <i class="fas fa-at"></i>
+                                </div>
+                            </div>
+                            <input id="email" type="text" class="form-control phone-number" wire:model.defer="user.email">
+                        </div>
+                    </div>
 
-            <div class="form-group col-span-6 sm:col-span-5">
-                <x-jet-label for="password_confirmation" value="{{ __('Confirmar Contraseña') }}" />
-                <small>Ingrese mínimo 8 caracteres</small>
-                <x-jet-input id="password_confirmation" type="password" class="mt-1 block w-full form-control shadow-none" wire:model.defer="user.password_confirmation" />
-                <x-jet-input-error for="user.password_confirmation" class="mt-2" />
-            </div>
-            @endif
-            <x-jet-action-message class="mr-3" on="saved">
+                </div>
+                <div class="row">
+                    <div class="form-group col-md-7 col-12">
+                        <label>Dirección</label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text">
+                                    <i class="fas fa-home"></i>
+                                </div>
+                            </div>
+                            <input type="text" class="form-control phone-number">
+                        </div>
+                    </div>
+                    <div class="form-group col-md-5 col-12">
+                        <label>Teléfono</label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text">
+                                    <i class="fas fa-phone"></i>
+                                </div>
+                            </div>
+                            <input type="text" class="form-control phone-number">
+                        </div>
+                    </div>
+                </div>
+                @if ($action == "createUser")
+                <div class="row">
+                    <div class="form-group col-md-12 col-12">
+                        <label>Nueva Contraseña</label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text">
+                                    <i class="fas fa-lock"></i>
+                                </div>
+                            </div>
+                            <input id="password" type="password" class="form-control" wire:model.defer="user.password" autocomplete="current-password">
+                        </div>
+                        <x-jet-input-error for="password" class="mt-2" />
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="form-group col-md-12 col-12">
+                        <label>Confirmar Contraseña</label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text">
+                                    <i class="fas fa-lock"></i>
+                                </div>
+                            </div>
+                            <input id="password_confirmation" type="password" class="form-control" wire:model.defer="user.password_confirmation" autocomplete="new-password">
+                        </div>
+                        <x-jet-input-error for="password_confirmation" class="mt-2" />
+                    </div>
+                </div>
+                @endif
+                <x-jet-action-message class="mr-3" on="saved">
                 {{ __($button['submit_response']) }}
-            </x-jet-action-message>
+                </x-jet-action-message>
 
-            <x-jet-button>
-                {{ __($button['submit_text']) }}
-            </x-jet-button>
+                <x-jet-button>
+                    {{ __($button['submit_text']) }}
+                </x-jet-button>
+            </div>  
+        </div>
+            
+            
         </x-slot>
 
         <x-slot name="actions">
